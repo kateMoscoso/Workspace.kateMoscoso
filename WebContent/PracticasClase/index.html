@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+
+<body>
+	<nav>
+		<article id='contenedor'>
+			<h2>WebWorker</h2>
+			<p id="elemento"></p>
+			<button type="submit">generar</button>
+		</article>
+	</nav>
+	<script>
+		var w;
+		
+		function escribePrimo(mensaje){
+			
+		}
+
+		function startWorker() {
+			w = new Worker("primos.js");
+			document.getElementById("contenedor").innerHTML = "";
+				w.onmessage = function(event) {
+					if (event.data=="fin")
+						escribePrimo("se termino");
+					else{
+					document.getElementById("elemento").innerHTML = event.data;
+					}
+				}
+		}
+
+		function stopWorker() {
+			w.terminate();
+			w = undefined;
+		}
+	</script>
+</body>
+</html>
