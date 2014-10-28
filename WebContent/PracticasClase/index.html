@@ -9,8 +9,8 @@
 	<nav>
 		<article id='contenedor'>
 			<h2>WebWorker</h2>
-			<p id="elemento"></p>
-			<button type="submit">generar</button>
+			<p> Elementos: <output id="elemento"></output></p>
+			<button onclick="startWorker()">Start Worker</button> 
 		</article>
 	</nav>
 	<script>
@@ -22,7 +22,7 @@
 
 		function startWorker() {
 			w = new Worker("primos.js");
-			document.getElementById("contenedor").innerHTML = "";
+			document.getElementById("elemento").innerHTML = "";
 				w.onmessage = function(event) {
 					if (event.data=="fin")
 						escribePrimo("se termino");
