@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript" src="jquery.js"></script>
+<script language="JavaScript" type="text/javascript">
+/**$(document).ready(function(){
+	$("h1").css("color":"black");
+	$("#titulo").css("color":"olive");
+	$(".import").css("color":"blue");
+})
+$().ready(
+		$("boton").onclick(function (){
+			
+			
+		})
+		)
+		*/
+$().ready(function(){
+	$('#Aniadir').click( function(){
+		$("#mitabla").append('<p class="parrafo"> Parrafo </p>')
+	});
+	$('#Vacia').click( function(){
+		$('#mitabla').empty();
+	});
+})
+
+</script>
+<body>
+	<div id='mitabla'>
+		<p id="listaParrafos">Lista de parráfos</p>
+		<p class="parrafo">Esto es un parrafo</p>
+
+	</div>
+	<form>
+
+		<button id ="Aniadir"type="button" onclick="Aniadir()">Añadir</button>
+		<button id ="Vacia" type="button" onclick="Vacia()">Eliminar</button>
+	</form>
+</body>
+</html>

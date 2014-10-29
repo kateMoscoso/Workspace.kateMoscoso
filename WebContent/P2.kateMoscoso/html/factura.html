@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Ferretería González</title>
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+	<header>
+		<figure id="logo">
+			<img alt="" src="imagenes/llave.png">
+		</figure>
+	</header>
+	<nav>
+		<ul>
+			<li><a href="factura.html">Facturar</a></li>
+		</ul>
+	</nav>
+	<section id="contenedorFactura">
+		<article id="articuloFactura">
+			<table id="elementosFacturas" border=1 rules=cols>
+				<tbody>
+					<tr>
+						<th>Concepto</th>
+						<th>Precio Unidad</th>
+						<th>Unidades</th>
+						<th>Total</th>
+					</tr>
+					<tr>
+						<td><input type="text" placeholder="concepto"></td>
+						<td><input type="text" placeholder="precio unidad"></td>
+						<td><input type="text" placeholder="unidades"></td>
+						<td><input type="text" placeholder="total"></td>
+					</tr>
+				</tbody>
+			</table>
+			<button>Añadir</button>
+		</article>
+		<article>
+			<table id="elementosFacturas" border=1 rules=cols>
+				<tbody>
+					<tr>
+						<th>Subtotal</th>
+						<th>Iva</th>
+						<th>Total</th>
+					</tr>
+					<tr>
+						<td><input type="text" placeholder="Subtotal"></td>
+						<td><input type="text" placeholder="Iva"></td>
+						<td><input type="text" placeholder="total"></td>
+					</tr>
+				</tbody>
+			</table>
+			<button>Calcularr</button>
+		</article>
+	</section>
+	<footer>
+		<p>Creado por Katherin Moscoso León</p>
+	</footer>
+</body>
+</html>
