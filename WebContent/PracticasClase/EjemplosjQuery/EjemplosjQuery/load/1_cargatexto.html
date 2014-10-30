@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+ <head>
+<!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8">-->
+ <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"> 
+ <title>Selectores</title>
+  <script type="text/javascript" src="../jquery.js"></script>    
+  <style type="text/css">
+    body { font-family: Verdana, sans-serif; }
+    h1, h2 { text-align:center; }
+    ul { padding-left:300px; }
+    li {color:red}
+    a {text-decoration:none}
+    .impar {color:green}                
+  </style>  
+ <script type="text/javascript">
+ <!--
+ $(document).ready(function (){
+    $('#patrones').click( function (){
+                     $('#temaspatrones').load('temaspatrones.html');
+                   });
+                   
+    $('#moviles').click( function (){  
+                          $('#temasmoviles').load('temasmoviles.html');
+                        });
+    $('#tdcl').click( function (){
+                          $('#temastdcl').load('temastdcl.html');
+                        });
+		});   
+ //-->
+ </script>
+ </head>
+ 
+ <body>
+  <hr /><br /><br /><br />
+  <h1>Máster en Ingeniería Web</h1>
+  <hr /><br />  
+  <h2 id='titulo'>Temario de Asignaturas de Primer Cuatrimestre</h2>
+  <hr /><br />      
+  <ul>
+    <li class='impar' id='patrones'>Patrones de Diseño <br/>
+       <div id='temaspatrones'></div>
+    </li>
+    <li class='impar' id='moviles'>Desarrollo de Aplicaciones para Sistemas Móviles<br/>
+       <div id='temasmoviles'></div>
+    </li>
+    <li class='par' id='tdcl'>Tecnologías de Desarrollo para Clientes Ligeros <br/>
+       <div id='temastdcl'></div>
+    </li>
+  </ul>          
+  <br /><br />
+  <hr /><br /><br />
+ </body>
+</html>

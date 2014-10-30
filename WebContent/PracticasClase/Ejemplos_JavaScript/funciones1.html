@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+<title>Untitled</title>
+<script language="JavaScript" type="text/javascript">
+<!--
+
+function suma1(x,y) {
+	  return x + y;
+}
+var suma2 = new Function("x","y","return x + y");
+var suma3 = function (x,y){
+ return x + y;
+}
+misuma=suma1;
+suma1.nombre=10;
+suma1.Diferencia=new Function("x","y","return x - y");;
+alert(suma1(1,2));
+alert(suma2(2,2));
+alert(suma3(3,2));
+alert(misuma(4,2)+" "+misuma.nombre+" "+suma1.Diferencia(3,4));
+//-->
+</script>
+
+
+</head>
+<body>
+
+</body>
+</html>

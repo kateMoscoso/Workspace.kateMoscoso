@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+<title>Untitled</title>
+<script language="JavaScript" type="text/javascript">
+<!--
+function getNombre(){
+  return this.nombre;
+}
+function Persona1(nombre, edad, sexo){
+    // propiedades públicas
+	  this.nombre = nombre;
+	  this.edad = edad;
+	  this.sexo = sexo;
+    // métodos públicos
+    this.getNombre = getNombre;
+	  this.getEdad = function(){return this.edad}
+	  this.getSexo = new Function("{return this.sexo}");
+    // propiedad privada
+    var categoria = "amigo";
+    // método público
+    this.getCategoria= function(){return categoria}
+    // método privado
+    function incrementa(edad){return edad + 1;
+    }
+    // this.edad = incrementa(this.edad);
+} 
+
+function Persona2(nombre, edad, sexo){
+	  this['nombre'] = nombre;
+	  this['edad'] = edad;
+	  this['sexo'] = sexo;
+} 
+
+Persona3 = function (nombre, edad, sexo){
+    this.nombre = nombre;
+	  this.edad = edad;
+	  this.sexo = sexo;
+}
+
+
+Pepe = {nombre:"Pepe",
+        edad:"33",
+        sexo:"hombre",
+        getNombre: getNombre,
+        getEdad: function() {return this.edad},
+        getSexo: new Function("{return this.sexo}")
+        }   
+
+   
+Lucia = new Persona1("Lucía",27,"mujer");
+Olga = new Persona1("Olga",30,"mujer");
+alert(Pepe["nombre"]+" "+" "+Pepe["getEdad"]()+"  "+Pepe.getSexo())
+alert(Lucia.getNombre()+" "+Lucia["getEdad"]()+" "+Lucia.getSexo()+" "+Lucia.getCategoria());
+Luis = new Persona3("Luis",30,"hombre");
+alert(Luis.nombre) 
+
+//Médodos y propiedades de clase
+Persona1.especie="Homo Sapiens";  
+
+Persona1.escribirEspecie= function() {alert('Las personas son de la especie'+Persona1.especie)}
+Persona1.escribirEspecie();
+
+//Propiedades de un objeto
+alert(Lucia.toString());
+
+cadena="";
+for(elemento in Lucia)
+  cadena += elemento+" "+Lucia[elemento]+"<br>\n";
+alert(cadena);
+//-->
+</script>
+
+</head>
+<body>
+
+</body>
+</html>

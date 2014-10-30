@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+
+<html>
+	<head>
+		<title>Selectores de visibilidad</title>
+		
+		<script type="text/javascript" src="../jquery.js"></script>
+		
+		<style type="text/css">
+			#img1 { width:30%; height:100%; position: absolute; top: 0px; left: 0px; }
+#img2 { width:30%; height:100%; position: absolute; top: 0px; right: 0px; 
+display: none; }
+		</style>
+		
+		<script type="text/javascript">
+		<!--
+			$(document).ready(function (){
+					$("img:visible").css({ border:"5px Crimson solid"});				
+					$("img:hidden").slideDown(3000);
+				}
+			);
+		//-->
+		</script>
+	</head>
+	
+	<body>
+		<img src="palmera.jpg" id="img1">
+		<img src="invierno.jpg" id="img2">
+	</body>
+</html>

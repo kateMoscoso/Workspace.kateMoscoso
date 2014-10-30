@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="iso-8859-1">
+<title>...</title>
+<style>
+  #marcador{text-align:center}
+  #micanvas{margin-left:auto;margin-right:auto;width:1050px}
+  svg{border:2px solid green; margin-bottom:10px; text-align:center;}
+  form{text-align:center}
+</style>
+<script language="JavaScript" type="text/javascript">
+<!--
+
+ var numCirculos = 5;
+ var aciertos;
+ var milisegundos;
+ var ejecucion=0;
+ var anchura = '1050';
+ var altura = '550';
+ var miTimer, miTimer2;
+ 
+ function aleatorioEntre(inicio, fin){
+  var hueco = fin - inicio + 1;
+  var valor = Math.floor(Math.random() * (hueco * hueco) % hueco + inicio);
+  return valor;
+ }
+
+ function marca(figura){
+   document.getElementById('figura'+ejecucion).style.display = "none";
+   aciertos++;
+ }
+ 
+ function ejecutar(){
+ if (pasos !=0){
+   pasos--;
+   document.getElementById('figura'+ejecucion).style.display = "block";
+   document.getElementById('figura'+ejecucion).setAttributeNS(null,'cx',
+        aleatorioEntre(limiteIzquierda,limiteDerecha));
+   document.getElementById('figura'+ejecucion).setAttributeNS(null,'cy',
+        aleatorioEntre(limiteArriba,limiteAbajo));
+   miTimer = setTimeout("ejecutar()",milisegundos);
+   
+ }  
+ else {
+   document.getElementById('figura'+ejecucion).style.display = "none";
+   actualizarMarcador();
+   alert('fin del test'); 
+   } 
+ }
+
+function crearObjeto(ejecucion, radioCirculo){
+   var obj;
+   svgdoc=document.getElementById('misvg');
+   
+   obj = document.createElementNS("http://www.w3.org/2000/svg",'circle')
+   obj.setAttributeNS(null,'id','figura'+ejecucion);
+   obj.setAttributeNS(null,'fill','red');
+   obj.setAttributeNS(null,'cx','100');
+   obj.setAttributeNS(null,'cy','100');
+   obj.setAttributeNS(null,'r',radioCirculo);
+   obj.setAttributeNS(null,'onclick','marca("figura'+ejecucion+'")');
+   svgdoc.appendChild(obj);
+
+}
+
+function calcularValorSelect(identificador){
+  var miselect = document.getElementById(identificador);
+  return miselect[miselect.selectedIndex].value;
+}
+
+function inicializarMarcador(){
+  aciertos = 0;
+  clearInterval(miTimer2);
+  miTimer2 = setInterval("actualizarMarcador()",100)
+}
+
+function actualizarMarcador(){
+  document.getElementById("marcador").innerHTML = 
+     "Aciertos:" + (aciertos) +"  de " + (numCirculos - pasos);
+}
+
+function comenzar(){
+  
+  if (ejecucion > 0){
+    clearTimeout(miTimer);
+    document.getElementById('figura'+ejecucion).style.display = "none";
+  }
+  milisegundos = calcularValorSelect('nivel');
+  valorRadio = calcularValorSelect('radio'); 
+  limiteIzquierda = parseInt(valorRadio) + 1;
+  limiteDerecha = anchura - parseInt(valorRadio) - 1;
+  limiteArriba = parseInt(valorRadio) + 1;
+  limiteAbajo = altura - parseInt(valorRadio) - 1;
+  ejecucion++
+  crearObjeto(ejecucion, valorRadio);
+  pasos = numCirculos;
+  inicializarMarcador();
+  ejecutar();
+}
+
+
+function definirTamanioSVG(anchura,altura){
+  document.getElementById('misvg').setAttributeNS(null,'width',anchura);
+  document.getElementById('misvg').setAttributeNS(null,'height',altura);
+}
+
+//-->
+</script>
+
+</head>
+<body onload="definirTamanioSVG(anchura,altura)">
+<div id="debug">
+</div>
+<h1 style="text-align:center">Acceso Dom: Test de rapidez</h1>
+<h2 id="marcador">
+&nbsp;
+</h2>
+<div id="micanvas">
+<svg id="misvg" version="1.1"  
+xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+</svg>
+</div>
+<form>
+Nivel:
+<select id="nivel">
+ <option value="3000">1</option>
+ <option value="2000">2</option>
+ <option value="1000">3</option>
+</select>
+&nbsp;
+Radio de los círculos:
+<select id="radio">
+ <option value="20">20px</option>
+ <option value="30">30px</option>
+ <option value="50">50px</option>
+</select>
+<button type="button" onClick="comenzar()">Comenzar</button>
+</form>
+</body>
+</html>

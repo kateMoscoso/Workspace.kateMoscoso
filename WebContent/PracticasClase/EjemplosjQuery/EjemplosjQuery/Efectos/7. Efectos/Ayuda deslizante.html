@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Ayuda deslizante</title>
+		<script type="text/javascript" src="../jquery.js"></script>
+		
+		<style type="text/css">
+			body {
+			margin: 0;
+			font-size:16px;
+			color: #000000;
+			font-family:Arial, Helvetica, sans-serif;
+			background:DimGray;
+			}
+
+			#marcoSlider {
+			margin: 0 auto;
+			width: 300px;
+			}
+
+			#slider {
+			position: absolute;
+			background:url(slider.png);
+			background-repeat:no-repeat;
+			background-position: bottom;
+			width: 300px;
+			height: 159px;
+			margin-top: -141px;
+			}
+
+			#slider img {
+			border: 0;
+			}
+
+			#sliderContenedor {
+			margin: 10px 0 0 10px;
+			position: absolute;
+			text-align:center;
+			color:AntiqueWhite;
+			font-weight:bold;
+			padding: 10px;
+			}
+
+			#header {
+			margin: 0 auto;
+			width: 600px;
+			background-color: #F0F0F0;
+			height: 200px;
+			padding: 10px;
+			}
+
+			#wrd {
+			margin: 0 auto;
+			width: 600px;
+			padding: 10px;
+			}
+
+			#abrirCerrarMarco {
+			position:absolute;
+			margin: 143px 0 0 120px;
+			font-size:12px;
+			font-weight:bold;
+			}
+			a{
+			color:Crimson;
+			font-weight:bold;
+			text-decoration:none;
+			}
+		</style>
+		
+		<script type="text/javascript">
+		<!--
+			$(document).ready(function() {
+				$(".abrirCerrarMenu").click( function() {
+					if ($("#abrirCerrar").is(":hidden")) {
+						$("#slider").animate({ 
+							marginTop: "-141px"
+							}, 500 );
+						$("#imgAbrirCerrarMenu").html('<img src="abrir.png" alt="abrir" />');
+						$("#abrirCerrar").show();
+					} else {
+						$("#slider").animate({ 
+							marginTop: "0px"
+							}, 500 );
+						$("#imgAbrirCerrarMenu").html('<img src="cerrar.png" alt="cerrar" />');
+						$("#abrirCerrar").hide();
+					}
+				});  
+			});
+		-->
+		</script>
+	</head>
+
+	<body>
+		<div id="marcoSlider">
+			<div id="abrirCerrar"></div>
+			<div id="slider">
+				<div id="sliderContenedor">
+					<p id="info">Aqu&iacute;≠ podemos poner informaci&oacute;n que sirva de ayuda al usuario para comprender mejor algunos de los contenidos de la p√°gina web.</p>
+				</div>
+
+				<div id="abrirCerrarMarco">
+					<a href="#" class="abrirCerrarMenu" id="imgAbrirCerrarMenu">
+						<img src="abrir.png" alt="abrir" />
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div id="header">
+			<br><br><br><br><br><br><br><br><br>
+			<p>Tambi&eacute;n puedes hacer click <a href="#" class="abrirCerrarMenu">aqu&iacute;</a> para abrir y cerrar la ayuda al usuario.</p>
+		</div>
+
+	</body>
+</html>

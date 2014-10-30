@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+	<head>
+		<title>Formulario</title>	
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		
+		<script type="text/javascript" src="../jquery.js"></script>
+		
+		<style type="text/css">
+			body { font-family: Verdana, sans-serif; line-height: 25px;
+             background-color: WhiteSmoke; color: #4682B4; }
+			h1 { text-align: left; font-size:26pt}             
+			h2 { text-align: left; font-size:22pt; position:static}    
+		</style>
+  </head>
+  <body>
+  <h2>Esto es un texto con sombra</h2>
+  <br /><hr />
+  <h1>Esto es un texto SIN sombra</h1>
+  <br /><hr />  
+  <h2>Esto es un texto con sombra</h2>    		
+		<script type="text/javascript">
+		<!--
+			$(document).ready(function (){
+      jQuery.fn.sombra = function(veces, opacidad, desplazamiento){
+        return this.each( function (){
+           var original = jQuery(this);
+           for (var i=1; i<= veces; i++){
+             original.clone()
+             .css({
+                //border:'1px solid red',
+                position:'absolute',
+                left:original.offset().left + desplazamiento*i,
+                top:original.offset().top + desplazamiento*i,
+                margin:0,
+                zIndex: -1,
+                opacity:opacidad,               
+                })
+                .appendTo('body');
+            }
+          });  
+       };
+       $('h2').sombra(5, 0.3, 2);
+//       $('h1').sombra();                                                          
+      });
+    -->      
+  </script>
+</body>
+</html>

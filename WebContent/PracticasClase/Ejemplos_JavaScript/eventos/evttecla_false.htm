@@ -1,0 +1,21 @@
+<html><head><title>Prueba de eventos</title>
+</head>
+<body>
+<script language='javascript'>
+  function Procesa(ElEvento){
+    var evento = ElEvento || window.event;   
+    var tecla = evento.charCode || evento.keyCode;
+    if (tecla <48 || tecla > 57){
+      alert ('Te dije solo números');
+      return false;     
+      } // del if tecla esta fuera de rango
+    return true;          
+    } // de la función        
+</script>
+<br /><br /><hr /><br />
+<form name='datos'>
+  Campo de números<input type='text' name='campo' onkeypress='return Procesa(event)'>
+<br /><hr /><br />  
+</form>  
+</body>
+</html>

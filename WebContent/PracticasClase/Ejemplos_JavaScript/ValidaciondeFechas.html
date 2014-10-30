@@ -1,0 +1,110 @@
+<html><head><title>Validación de Fechas</title>
+
+<script language="JavaScript">
+  
+   // Creación de un objeto para manejar los errores
+   var error= new crear_error();
+   
+   // Crea un objeto que guarda un mensaje de error y un 
+   // indice a la posición donde se ha producido dentro de una cadena
+   function crear_error()
+   {
+   this.mensaje="";
+   this.posicion=0;
+   this.rellenar=rellenar;
+   }
+  
+   // Método del objeto "crearerror" que rellena el error con un mensaje
+   // explicativo y la posición donde se produjo dentro de la cadena validada
+   function rellenar(mensaje,posicion)
+   {
+   this.mensaje=mensaje;
+   this.posicion=posicion;
+   return false;
+   }
+
+   // Determina si un carácter es un número
+   function es_numero(car)
+   {
+   var NUMEROS="0123456789";
+   return (NUMEROS.indexOf(car) >= 0)
+   }
+   
+   // Determina si un año es bisiesto
+   function es_bisiesto(anio) 
+   {
+   if (((anio % 4 == 0) && anio % 100 != 0) || anio % 400 == 0) 
+      return true;
+   return false;
+   }
+
+   // Comprueba si una fecha es correcta
+   function comprobar_fecha(contenido,error)
+   {
+   var separador_fecha="/";
+   var numero_separadores=0;
+
+   if ((contenido.length == 0))
+      return error.rellenar("Campo vacío no contiene ningún valor ",1);
+
+   // Comprobación de la sintáxis de una fecha 
+   for (var i=0; i < contenido.length; i++)
+      {
+      var caracter=contenido.charAt(i);
+      if (!es_numero(caracter) && caracter != separador_fecha)
+         return error.rellenar("Carácter ilegal en una fecha",i+1); 
+      if (caracter == separador_fecha)
+        numero_separadores++ 
+      }
+   if (numero_separadores != 2)
+      return error.rellenar("Faltan separadores en una fecha",i+1); 
+    
+   // Comprobación de la semántica de una fecha
+   var posicion_separador_1=contenido.indexOf(separador_fecha);
+   var dia=contenido.substring(0,posicion_separador_1);
+   var posicion_separador_2=contenido.indexOf(separador_fecha,
+                                                        posicion_separador_1+1);
+   var mes=contenido.substring(posicion_separador_1+1,posicion_separador_2); 
+   var anio=contenido.substring(posicion_separador_2+1,10);
+   if (anio.length != 4)
+      return error.rellenar("Año incorrecto en una fecha",6); 
+   if (mes < 1 || mes > 12)
+      return error.rellenar("Mes incorrecto en una fecha",4);
+   if ((dia < 1 || dia > 31) || (mes == 4 && dia > 30) ||
+       (mes == 6 && dia > 30) || (mes == 9 && dia > 30) ||
+       (mes == 11 && dia > 30) || (mes == 2 && es_bisiesto(anio) && dia > 29) ||
+       (mes == 2 && !es_bisiesto(anio) && dia > 28))
+      return error.rellenar("Día incorrecto en una fecha",2);
+   return true 
+   } 
+  
+   // Ejecuta la validación pedida
+   function ejecuta()
+   {
+   if (comprobar_fecha(window.document.formulario.campo.value,error))
+      {
+			alert("El campo es válido")
+			return true;
+			}
+   else
+	    {
+      alert("El campo NO es válido. ERROR:"+error.mensaje+
+            " en la posicion "+error.posicion);
+      return false;
+			}
+	 }
+
+</script></head>
+<body>
+<form name="formulario" action="" onsubmit="return ejecuta();">
+
+   <center>
+   <b>Validaciones de Elementos</b><br><br>
+   Fecha:
+   <input type="text" value="" name="campo" maxlength="10" size="10"><br><br>
+   <input type="button" value="Valida Fecha" onclick="ejecuta()">
+	 <input type="submit" value="enviar">
+   </center>
+   
+</form>
+</body></html>

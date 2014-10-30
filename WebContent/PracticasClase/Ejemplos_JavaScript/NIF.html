@@ -1,0 +1,22 @@
+<html>
+	<head><title>EJERCICIO 1 JAVASCRIPT</title>
+  <style>
+    #mensaje {font-size:32pt; color:red}
+  </style></head>
+	<body>
+		<br /><center> Cálculo de N.I.F. <hr /><br /><br />
+		<script language='JavaScript'>
+			var Letras = new Array('T','R','W','A','G','M','Y','F','P','D','X','B','N','J','Z','S','Q','V','H','L','C','K','E');
+      var DNI;
+      var resto;
+      var letra;
+      do{
+        DNI = parseInt(prompt("Dame tu DNI",""));
+      }while (isNaN(DNI));
+      resto = DNI % 23;
+      letra = Letras[resto];
+      document.write("<p id='mensaje'>La letra del DNI "+DNI+" es "+letra+"</p>");
+      
+		</script>
+	</body>
+</html>

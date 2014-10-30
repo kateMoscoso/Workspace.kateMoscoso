@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="iso-8859-1">
+<title>Bordes y color</title>
+<style>
+  canvas{border:1px solid pink;}
+</style>
+<script language="JavaScript" type="text/javascript">
+<!--
+    window.onload = function(){ 
+    var canvas = document.getElementById("miCanvas");
+    var context = canvas.getContext("2d"); 
+    
+    
+    context.strokeStyle = "green";  // Color de borde "green"
+    context.lineWidth = 1;  // Grosor de línea 1
+    // Rectángulo
+    // context.fillRect(100,100,300,200);  // Relleno de rectángulo situado en (100,100) de anchura y altura 300x200
+    context.strokeRect(100,100,300,200);// Borde de rectángulo situado en (100,100) de anchura y altura 300x200 
+    
+    context.lineWidth = 20;  // Grosor de línea 20
+    context.strokeRect(500,100,300,200);// Borde de rectángulo situado en (500,100) de anchura y altura 300x200 
+    
+    context.lineWidth = 20;  // Grosor de línea 20
+    context.strokeStyle = "rgba(0,0,255,0.2)";  // Color de borde "green" con opacidad 0.2
+    context.strokeRect(900,100,300,200);// Borde de rectángulo situado en (900,100) de anchura y altura 300x200 
+    
+    context.lineWidth = 20;  // Grosor de línea 20
+    context.strokeStyle = "rgba(0,0,255,0.2)";  // Color de borde "green" con opacidad 0.2
+    context.strokeRect(100,400,300,200);// Borde de rectángulo situado en (100,400) de anchura y altura 300x200 
+    
+    context.lineWidth = 20;  // Grosor de línea 20
+    context.strokeStyle = "rgba(0,0,255,0.2)";  // Color de borde "green" con opacidad 0.2
+    context.fillStyle = "orange";  // Color de relleno "orange"    
+    context.fillRect(500,400,300,200);  // Relleno de rectángulo situado en (900,400) de anchura y altura 300x200
+    context.strokeRect(500,400,300,200);// Borde de rectángulo situado en (500,400) de anchura y altura 300x200 
+    
+    context.lineWidth = 20;  // Grosor de línea 20
+    context.strokeStyle = "rgba(0,0,255,0.2)";  // Color de borde "green" con opacidad 0.2
+    context.fillStyle = "rgba(255,165,0,0.2)";  // Color de relleno "orange" con opacidad 0.2
+    context.fillRect(900,400,300,200);  // Relleno de rectángulo situado en (900,400) de anchura y altura 300x200
+    context.strokeRect(900,400,300,200);// Borde de rectángulo situado en (900,400) de anchura y altura 300x200 
+
+};
+
+//-->
+</script>
+
+</head>
+<body>
+<h1>Canvas: bordes y color</h1>
+<canvas id="miCanvas" width="1300" height="700">
+</canvas> 
+
+</body>
+</html>

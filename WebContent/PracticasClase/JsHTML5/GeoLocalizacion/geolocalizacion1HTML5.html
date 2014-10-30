@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>  
+<html>  
+<head>  
+<meta charset="iso-8859-1">
+<title></title>  
+</head>  
+<body>  
+<script language="javascript">  
+function obtener_localizacion() {   
+  if (navigator.geolocation) {   
+        navigator.geolocation.getCurrentPosition(coordenadas,gestiona_errores);   
+  }else{   
+    alert('Tu navegador no soporta la API de geolocalizacion');     
+  }   
+}   
+function coordenadas(miPosicion) {   
+  var latitud = miPosicion.coords.latitude;   
+  var longitud = miPosicion.coords.longitude; 
+  var altitud = miPosicion.coords.altitude;
+  var precision = miPosicion.coords.accuracy;
+  var precisionAltitud = miPosicion.coords.altitudeAccuracy; 
+  var direccion = miPosicion.coords.heading;
+  var velocidad = miPosicion.coords.speed;
+
+  alert("Tus coordenadas son: ("+latitud+","+longitud+")\n" + 
+        "a una altitud de"+ altitud+" metros\n"+
+        "con una precisión de "+ precision +"metros\n"+
+        "con una precisión de altitud de "+ precisionAltitud +"metros\n"+
+        "con una dirección de "+ direccion +"grados\n"+
+        "con una velocidad de "+ velocidad +"metros/segundo\n"
+        );   
+}   
+function gestiona_errores(err) {   
+  if (err.code == 0) {   
+    alert("error desconocido");   
+  }   
+  if (err.code == 1) {   
+    alert("El usuario no ha compartido su posicion");   
+  }   
+  if (err.code == 2) {   
+    alert("no se puede obtener la posicion actual");   
+  }   
+  if (err.code == 3) {   
+    alert("timeout recibiendo la posicion");   
+  }   
+}   
+  
+</script>  
+<a href="javascript:obtener_localizacion();">Mostrar Posición</a>  
+</body>  
+</html>   

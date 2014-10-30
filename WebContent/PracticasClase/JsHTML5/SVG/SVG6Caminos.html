@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="iso-8859-1">
+<title>Caminos</title>
+</head>
+<body>
+<h1 style="text-align:center">Caminos</h1>
+<svg version="1.1" width="1300" height="900"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ 
+<defs>
+ <marker id="limite" markerWidth="14" markerHeight="14" refX="7" refY="7">
+   <circle cx="7" cy="7" r="7"  fill="none" stroke="red">
+ </marker>
+</defs>  
+
+<path d="M100, 100 L200, 200 l100 0z M300,100 L400, 200 l100 0z" stroke="red" fill="none"/>
+
+<path d="M600, 200 A100, 140, 0 1, 1 900,250" stroke="red" fill="none"/>   
+
+<path d="M100, 400 Q350, 200 400,350" stroke="red" fill="none"/>   
+
+<path d="M600, 400 C650, 200 700, 300 900, 300" stroke="red" fill="none"/>   
+
+<path d="M100, 500 L400, 500"  marker-start="url(#limite)" marker-end="url(#limite)" stroke="red" fill="none"/>
+
+<defs>
+<path id="camino" d="M600, 600 C650, 400 700, 500 900, 500" stroke="red" fill="none"/>   
+</defs>
+
+<text stroke="red">
+<textPath xlink:href="#camino">
+  Texto dispuesto a lo largo de la senda marcada
+</textPath>
+</text>
+
+</svg>
+</body>
+</html>

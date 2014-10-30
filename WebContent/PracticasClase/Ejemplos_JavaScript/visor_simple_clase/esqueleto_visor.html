@@ -1,0 +1,51 @@
+<html>
+<head><title>Visor de imágenes</title>
+
+<script language='javascript'>
+ var fotos = new Array ('Img0.gif','Img1.gif','Img2.gif','Img3.gif');
+ var Actual=0;
+ var idTemp;
+ 
+ function Comenzar(){
+   idTemp = setInterval("Cambiar()",500);
+   }
+   
+ function Cambiar(){
+   if (Actual < fotos.length-1)
+      Actual = Actual +1;
+   else
+      Actual = 0;
+   document.getElementById('visor').src = fotos[Actual];
+   }
+
+ function Parar(){
+   clearInterval(idTemp);
+   }
+    
+        
+</script>
+
+</head>
+
+<body>
+<center><font size=6 color='blue'>Visor de imágenes<br><br><Hr color='blue'><br>
+<form name='formul'>
+ <table border=1>
+  <tr><td colspan='2' align='center'>
+      <image src="Img0.gif" name='visor' id='visor' height='150' width='165'>
+      </td>
+  </tr>
+  <tr>
+      <td align='center'>
+      <input type='button' onclick='Comenzar()' value='Comenzar'>
+      </td>
+      <td align='center'>
+      <input type='button' onclick='Parar()' value='Parar'>
+      </td>
+  </tr>
+ </table>
+</form>
+<hr color='blue'></font></center>
+</body>
+</html>
+

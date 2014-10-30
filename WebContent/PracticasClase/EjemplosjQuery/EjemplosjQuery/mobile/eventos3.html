@@ -1,0 +1,48 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+	<title>Eventos3: Mi Aplicación</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+</head> 
+<body> 
+<script>
+ $(document).ready(function (){
+   $(document).bind('orientationchange', function (evento){
+               if (evento.orientation=="landscape")
+                    $('#capa').html('<b>Estoy horizontal</b>');
+               else
+                    $('#capa').html('<b>Estoy vertical</b>');
+               });
+   $('#boton').change(function() {
+        $('#capa2').text('La posición del botón es: ' + $('#boton').val());
+        });                                                                                    
+    }); //de inicio
+	</script>
+<!-- Home -->
+<div data-role="page" id="page1">
+    <div id="cab" data-theme="a" data-role="header" data-position="fixed">
+        <h2 id="cabtext">Mi aplicación</h2>
+    </div><!-- de cabecera-->
+    <div data-role="content">
+        <div data-role="fieldcontain">
+            <fieldset data-role="controlgroup">
+                <label for="boton">Desliza</label>
+                <select name="boton" id="boton" data-theme="e" data-role="slider"
+                data-mini="true" >
+                    <option value="off">Off</option>
+                    <option value="on">On</option>
+                </select>
+            </fieldset>
+        </div> <!-- del boton -->
+        <br /><hr /><br />
+       <div id='capa' style='color:red;left:150px'>   
+       </div><!-- de la capa -->
+       <div id='capa2' style='color:green'>   
+       </div><!-- de la capa -->                     
+    </div><!-- de content-->
+</div> <!-- de pagina-->
+</body>
+</html>

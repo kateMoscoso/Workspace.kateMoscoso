@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+	<head>
+		<title>Formulario dinámico</title>
+		
+		<script type="text/javascript" src="../jquery.js"></script>
+		
+		<style type="text/css">
+			h1 {  font-family: Arial, sans-serif; text-align:center; }
+			label {font-family: Arial, sans-serif; font-weight:bold;}
+		</style>
+		
+		<script type="text/javascript">
+		<!--
+			var numCajas=0;
+
+			function modificarFormulario(incremento) {
+				var nombreDiv="#entrada"+numCajas; //Generamos el nombre del último div
+				
+				numCajas+=incremento; //Modificamos el número de cajas según el incremento (+1 ó -1)
+				
+				//Creamos el código html necesario
+				etiquetaNueva= '<label for="caja' +numCajas + '" id="etiqueta' +numCajas + '">Entrada ' + numCajas + ': </label>';
+				cajaNueva = '<input type="text" id="caja' +numCajas + '" name="caja' + numCajas + '" size="30"><br id="salto1' +numCajas + '" ><br id="salto2' +numCajas + '" >'
+				divNuevo = '<div id="entrada' + numCajas + '">' + etiquetaNueva + cajaNueva + '</div>'
+				
+				if(incremento==1){ //Si incrementamos añadimos un nuevo div con la caja de texto
+					$("#cajasTexto").append(divNuevo);
+				}else{ //Si el incremento es -1 eliminamos el div correspondiente
+					$(nombreDiv).remove();
+				}
+				if(numCajas!=0){ //Si hay alguna caja eliminamos el atributo de deshabilitar del botonQuitar, es decir, lo habilitamos.
+					$("#botonQuitar").removeAttr("disabled");
+				}else{ //Si no hay ninguna caja deshabilitamos el botonQuitar, añadimos el atributo disabled.
+					$("#botonQuitar").attr("disabled", "disabled");
+				}
+			}
+		//-->
+		</script>
+	</head>
+	
+	<body>
+		<h1>Formulario dinámico</h1>
+		<br><br><hr><br><br>
+		<div id="cajasTexto">
+		</div>
+
+		<div id='botones'>
+			<form name='form1' id='form1'>
+				<input type='button' value="Añadir un campo" onclick="modificarFormulario(1)"> 
+				<input type='button' id="botonQuitar" value="Quitar un campo" onclick="modificarFormulario(-1)" disabled="disabled"> <br><br>
+				<br><br><hr><br><br>
+			</form>
+		</div>	
+	</body>
+</html>
+

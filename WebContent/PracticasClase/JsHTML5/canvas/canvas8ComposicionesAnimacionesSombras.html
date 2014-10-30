@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="iso-8859-1">
+<title>Composiciones, animaciones  y sombras</title>
+<style>
+  canvas{border:1px solid pink;}
+  #canvasAnimacion{position: absolute; left:700px; top:100px}
+  #canvasReloj{position: absolute; left:700px; top:440px; border:none}
+  #canvasSombras{position: absolute; left:1060px; top:100px}
+</style>
+<script language="JavaScript" type="text/javascript">
+<!--
+   window.requestAnimFrame = (function(callback) {
+        return window.requestAnimationFrame || 
+        window.webkitRequestAnimationFrame || 
+        window.mozRequestAnimationFrame || 
+        window.oRequestAnimationFrame || 
+        window.msRequestAnimationFrame ||
+        function(callback) {
+          window.setTimeout(callback, 1000 / 60);
+        };
+      })();
+
+   var tiposComposite = ['source-over','source-in','source-out','source-atop',
+  'destination-over','destination-in','destination-out','destination-atop',
+  'lighter','darker','copy','xor'];
+  
+   
+   function crearTablaCanvas(filas, columnas, tiposComposite){
+     
+     cadena = "<table border=1>\n";
+     var actual = 0;
+     for (var i = 0; i < filas; i++){
+        cadena += "<tr>";
+        for (var j = 0; j < columnas; j++){
+          cadena += "<td>\n";
+          cadena += "<canvas id='micanvas"+actual+"' width='150' height='150'></canvas>\n</br>";
+          cadena += tiposComposite[actual];
+          cadena += "</td>\n";
+          actual++;
+        }
+        cadena += "</tr>\n";
+     }
+     cadena += "</table>\n";
+     document.write(cadena);
+   }
+    
+   
+  function dibujaComposite(){
+    for (var i=0; i < tiposComposite.length; i++){
+    
+      var context = document.getElementById('micanvas'+i).getContext('2d');
+
+      // Pintamos un rectángulo
+      context.fillStyle = "red";
+      context.fillRect(15,15,70,70);
+
+      // Realizamos la composición
+      context.globalCompositeOperation = tiposComposite[i];
+    
+      // dibujamos un círculo
+      context.fillStyle = "yellow";
+      context.beginPath();
+      context.arc(75,75,35,0,Math.PI*2,true);
+      context.fill();
+    }
+  }
+
+  // Animaciones
+  function borrarCanvas(canvas,context){
+    context.clearRect(0,0, canvas.width, canvas.height);
+    canvas.width = canvas.width;
+  }
+  
+  function pintarRectangulo(context,rectangulo,color){ 
+    context.fillStyle = color;
+    context.fillRect(rectangulo.x, rectangulo.y, 
+                     rectangulo.anchura, rectangulo.altura);
+  }
+  
+  function animar(canvas,context, rectangulo, color){
+      if (rectangulo.y < 200){
+        borrarCanvas(canvas,context);
+        rectangulo.y = rectangulo.y + 1;
+        pintarRectangulo(context,rectangulo,"blue");
+        requestAnimFrame(function() {
+          animar(canvas,context, rectangulo, color);
+        });
+      }
+  }
+  
+  function pruebaAnimacion(){
+     var canvas = document.getElementById("canvasAnimacion");
+    var context = canvas.getContext("2d"); 
+    var rectangulo = {x : 10, y : 10, anchura : 100, altura : 100}
+    //alert(rectangulo)
+    animar(canvas,context, rectangulo, "blue");
+  }
+  
+  
+  // Sombras
+  function pruebaSombras(){
+    var canvas = document.getElementById("canvasSombras");
+    var context = canvas.getContext("2d");
+    context.shadowBlur=0;
+    context.shadowColor="black";
+    context.shadowOffsetX=20;
+    context.shadowOffsetY=20;
+    context.fillStyle="red";
+    context.fillRect(20,20,100,80);
+     
+    context.shadowOffsetX=-20;
+    context.shadowBlur=10;
+    context.fillRect(280,20,100,80);
+    
+    // Círculo
+    context.beginPath();
+    context.shadowOffsetX=-0;
+    context.arc(200,120,40,0,2 * Math.PI, true);
+    context.fill();
+  }
+  
+  
+  
+// reloj  
+  function init(){
+  clock();
+  setInterval(clock,1000);
+  }
+  function clock(){
+  var now = new Date();
+  var ctx = document.getElementById('canvasReloj').getContext('2d');
+  ctx.save();
+  ctx.clearRect(0,0,150,150);
+  ctx.translate(75,75);
+  ctx.scale(0.4,0.4);
+  ctx.rotate(-Math.PI/2);
+  ctx.strokeStyle = "black";
+  ctx.fillStyle = "white";
+  ctx.lineWidth = 8;
+  ctx.lineCap = "round";
+
+  // Señales de las horas
+  ctx.save();
+  for (var i=0;i<12;i++){
+    ctx.beginPath();
+    ctx.rotate(Math.PI/6);
+    ctx.moveTo(100,0);
+    ctx.lineTo(120,0);
+    ctx.stroke();
+  }
+  ctx.restore();
+
+  // Señales de los minutos
+  ctx.save();
+  ctx.lineWidth = 5;
+  for (i=0;i<60;i++){
+    if (i%5!=0) {
+      ctx.beginPath();
+      ctx.moveTo(117,0);
+      ctx.lineTo(120,0);
+      ctx.stroke();
+    }
+    ctx.rotate(Math.PI/30);
+  }
+  ctx.restore();
+  
+  var sec = now.getSeconds();
+  var min = now.getMinutes();
+  var hr  = now.getHours();
+  hr = hr>=12 ? hr-12 : hr;
+
+  ctx.fillStyle = "black";
+
+  // Escribir horas
+  ctx.save();
+  ctx.rotate( hr*(Math.PI/6) + (Math.PI/360)*min + (Math.PI/21600)*sec )
+  ctx.lineWidth = 14;
+  ctx.beginPath();
+  ctx.moveTo(-20,0);
+  ctx.lineTo(80,0);
+  ctx.stroke();
+  ctx.restore();
+
+  // Escribir minutos
+  ctx.save();
+  ctx.rotate( (Math.PI/30)*min + (Math.PI/1800)*sec )
+  ctx.lineWidth = 10;
+  ctx.beginPath();
+  ctx.moveTo(-28,0);
+  ctx.lineTo(112,0);
+  ctx.stroke();
+  ctx.restore();
+  
+  // Escribir segundos
+  ctx.save();
+  ctx.rotate(sec * Math.PI/30);
+  ctx.strokeStyle = "#D40000";
+  ctx.fillStyle = "#D40000";
+  ctx.lineWidth = 6;
+  ctx.beginPath();
+  ctx.moveTo(-30,0);
+  ctx.lineTo(83,0);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.arc(0,0,10,0,Math.PI*2,true);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(95,0,10,0,Math.PI*2,true);
+  ctx.stroke();
+  ctx.fillStyle = "#555";
+  ctx.arc(0,0,3,0,Math.PI*2,true);
+  ctx.fill();
+  ctx.restore();
+
+  ctx.beginPath();
+  ctx.lineWidth = 14;
+  ctx.strokeStyle = '#325FA2';
+  ctx.arc(0,0,142,0,Math.PI*2,true);
+  ctx.stroke();
+
+  ctx.restore();
+}
+  window.onload = function(){ 
+    dibujaComposite();
+    pruebaAnimacion();
+    init();  // reloj
+    pruebaSombras()
+   
+   }
+//-->
+</script>
+
+</head>
+<body>
+<h1>Composiciones, animaciones  y sombras</h1>
+<script language="JavaScript" type="text/javascript">
+<!--
+// Creamos una tabla que contiene 3x4 canvas
+   crearTablaCanvas(3,4,tiposComposite) 
+//-->
+</script>
+<canvas id="canvasAnimacion" width="300" height="300"></canvas>
+<canvas id="canvasReloj" width="300" height="300"></canvas> 
+<canvas id="canvasSombras" width="400" height="200"></canvas>
+</body>
+</html>
+

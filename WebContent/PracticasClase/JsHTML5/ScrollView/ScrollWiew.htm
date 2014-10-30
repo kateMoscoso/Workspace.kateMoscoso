@@ -1,0 +1,55 @@
+<html>
+ <head>
+  <style>
+    p{font-size:20px}
+  </style>
+  <script type="text/javascript">
+    function saltar(lugar)
+    {
+      var element = document.getElementById(lugar);
+      element.scrollIntoView(true);
+    }
+  </script>
+ </head>
+<body>
+<div style="background: #ff9900; width:'100%';"
+    align="center">
+    <h1>Ejemplo de scrollView()</h1>
+  </font>
+ </div>
+<div style="height: 200px; overflow: scroll;">
+ <p>Moralzarzal tiene un nombre claramente compuesto por dos acepciones. 
+ La primera, MORAL, viene de su antiguo nombre, FUENTE DEL MORAL; y la segunda, ZARZAL, 
+ también viene de antaño pero ha conservado sus caracteres intactos.</p>
+ <p>La historia dice que, en un principio, el nombre del pueblo era FUENTE DEL MORAL, y que 
+ éste tenía agregado otro nucleo urbano, llamado ZARZAL. Se supone que, con el paso del tiempo, 
+ al unirse los dos nucleos, ambos nombres se fusionaron y, por evolución, formaron el actual.
+ </p>
+
+ <p>Tras la Reconquista, la zona quedó despoblada por la marcha forzosa de los árabes. 
+ Y parece que fueron los ganaderos segovianos los que repoblaron el lugar. 
+ Este hecho fue uno de los que marcaron el camino para las posteriores luchas 
+ entre madrileños y segovianos, encaminadas a implantar su dominio y jurisdicción sobre esta zona.
+ </p>
+ <p id="salto">Más tarde, el municipio pasó a formar parte del Real de Manzanares. 
+ En la relación de los lugares que formaban El Real, aparece como "...la Fuente del Moral, el Alpedret...".
+ A pesar de todo, los pleitos siguieron y el municipio participó en ellos como el resto de las aldeas del Real. 
+ Es en uno de los documentos que hace referencia a estos pleitos donde aparece ya Zarzal: "...
+ Diego de Alfaro en nombre, e como Prior del lugar de las villas de Fuente del Moral e Zarzal...". 
+ De esto último, se puede sacar una consecuencia importante: ahora se conoce al lugar como 
+ Fuente del Moral y Zarzal. El núcleo importante era Fuente del Moral, y Zarzal venía a ser 
+ lo que hoy entenderíamos como una especie de barrio, que, con el paso del tiempo, 
+ fue tomando cuerpo y se identificó con el primero.
+ </p>
+ <p>
+ En junio de 1636, se separó del Real de Manzanares y se hizo villa independiente.
+  A partir de entonces, pudo nombrar justicia por sí mismo y disponer de su privativa 
+  jurisdicción y término. En este año, aparece ya como Moralzarzal.
+ </p>
+</div> 
+ <br>
+ <form>
+ <button type="button" onclick='saltar("salto")'>scroll</button>
+  </form>
+</body>
+</html>

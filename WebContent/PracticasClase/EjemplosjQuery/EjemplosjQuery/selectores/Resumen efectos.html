@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+	<head>
+		<title>Resumen de efectos</title>
+		
+		<script type="text/javascript" src="../jquery.js"></script>
+		
+		<style type="text/css">
+			body { font-family: Verdana, sans-serif; line-height:25px; text-align: justify; font-size:10pt; 
+						background-image: url(corcho.jpg); background-size:100%;}
+			.contenido { width: 800px; margin: 0px auto; background-color: FloralWhite; padding: 20px; }
+			
+			h1 {text-align: center; color: WhiteSmoke; background: MidnightBlue; padding-top:30px; padding-bottom:30px;}
+			#basicos { background: DeepPink;  height:40px; width: 80px; position:absolute;  }
+			#fundido { background: Turquoise;  height:40px; width: 80px; position:absolute; }
+			#deslizamiento { background: OrangeRed;  height:40px; width: 80px; position:absolute; }
+			#medida { background: DarkGreen;  height:40px; width: 80px;  position:relative; left:0px; }
+			#medida.colorAlternativo { background: YellowGreen; }
+			button { position:relative; top:0px; }
+			#infoCola {visibiliy:hidden; height:40px;}
+		</style>
+		
+		<script type="text/javascript">
+		<!--
+			$(document).ready(function (){	
+			$("#basicos").addClass("colorAlternativo");
+				//Efectos básicos
+			   $("#mostrar").click(function () {
+					$("#basicos").show();
+				 });
+			   
+				$("#ocultar").click(function () {
+					$("#basicos").hide();
+				 });
+				
+				$("#toggle").click(function () {
+					$("#basicos").toggle();
+				});
+				
+				//Efectos de fundido
+				
+				$("#fadeIn").click(function () {
+					$("#fundido").fadeIn("slow");
+				 });
+			   
+				$("#fadeOut").click(function () {
+					$("#fundido").fadeOut();
+				 });
+				
+				$("#fadeTo").click(function () {
+					$("#fundido").fadeTo("slow", Math.random());
+				});
+				
+				$("#fadeToggle").click(function () {
+					$("#fundido").fadeToggle("slow");
+				});
+				
+				//Efectos de deslizamiento
+				
+				$("#slideDown").click(function () {
+					$("#deslizamiento").slideDown("slow");
+				 });
+			   
+				$("#slideUp").click(function () {
+					$("#deslizamiento").slideUp("fast");
+				 });
+				
+				$("#slideToggle").click(function () {
+					$("#deslizamiento").slideToggle("slow");
+				});
+				
+				//Efectos a medida
+
+				$("#animate").click(function () {
+					$("#medida").animate({ 
+					width: "20%"
+					}, 1500 );
+				});
+			   
+				$("#efectos").click(function () {
+					$("#medida").queue(function () {
+						$(this).addClass("colorAlternativo");
+						$(this).dequeue();
+					});
+					$("#medida").queue(function () {
+						$(this).animate({left:'+=200'},2000);
+						$(this).dequeue();
+					});
+					$("#medida").queue(function () {
+						$(this).removeClass("colorAlternativo");
+						$(this).dequeue();
+					});
+					$("#medida").queue(function () {
+						$(this).animate({left:'0'},2000);
+						$(this).dequeue();
+					});
+				 });
+				
+				$("#queue").click(function () {
+					var funcionesEnCola = $("#medida").queue("fx").length;
+					$("#infoCola").html("<br>A las " + reloj() + " hay " + funcionesEnCola + " funciones de efectos en cola "); 
+				});
+				
+				$("#stop").click(function () {
+					$("#medida").stop();
+				});
+			});
+			
+			function reloj(){
+				horaActual = new Date() 
+
+				Hora = horaActual.getHours() 
+				Minutos = horaActual.getMinutes() 
+				Segundos = horaActual.getSeconds() 
+				 
+				if (Hora<=9)
+					Hora = "0" + Hora
+				 
+				if (Minutos<=9)
+					Minutos = "0" + Minutos
+				 
+				if (Segundos<=9)
+					Segundos = "0" + Segundos
+				var hora = Hora + ":" + Minutos + ":" + Segundos;
+				return hora;
+			};
+		//-->
+		</script>
+	</head>
+	
+	<body>
+	<div class='contenido'> 
+		<h1>Efectos en jQuery</h1>
+		<div id="basicos">
+		</div>
+		<br><br>
+		<button id="mostrar">show</button>
+		<button id="ocultar">hide</button>
+		<button id="toggle">toggle</button>
+		<br><hr /><br>
+		
+		<div id="fundido">
+		</div>
+		<br><br>
+		<button id="fadeIn">fadeIn</button>
+		<button id="fadeOut">fadeOut</button>
+		<button id="fadeTo">fadeTo</button>
+		<button id="fadeToggle">fadeToggle</button>
+		<br><hr /><br>
+		
+		<div id="deslizamiento">
+		</div>
+		<br><br>
+		<button id="slideDown">slideDown</button>
+		<button id="slideUp">slideUp</button>
+		<button id="slideToggle">slideToggle</button>
+		<br><hr /><br>
+		
+		<div id="medida">
+		</div>
+		<br>
+		<button id="animate">animate</button>
+		<button id="stop">stop</button>
+		<button id="efectos">varios efectos</button>
+		<button id="queue">queue</button>
+		<br>		
+		<div id="infoCola">
+		</div>
+	</div>
+	</body>
+</html>

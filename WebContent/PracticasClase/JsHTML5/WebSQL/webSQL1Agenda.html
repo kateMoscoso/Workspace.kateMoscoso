@@ -1,0 +1,186 @@
+<!DOCTYPE html> 
+<html lang="es">   
+<head>
+<style>       
+ th {width:150px;background-color:green;color:white}
+ div{}
+</style>     
+<script>    
+
+var nombreForm, telefonoForm, direccionForm, telefonoAntiguoForm;  
+
+function error(){
+  alert("error");
+}
+
+function ok(){
+  alert("ok");
+}
+
+// Manejo de Base de datos
+var db = null;
+function abrir(){           
+  db = openDatabase("miAgenda", "1.0", "itemsList", 5 * 1024 * 1024);   
+}    
+          
+function SQLCreartabla(tx){           
+    tx.executeSql("CREATE TABLE IF NOT EXISTS Agenda (telefono INTEGER PRIMARY KEY ASC, nombre TEXT, direccion TEXT)");
+}        
+  
+function crearTabla() {                
+  db.transaction(SQLCreartabla);
+}
+  
+function insertarFila(telefono,nombre,direccion) {         
+  db.transaction(
+  function(tx){                
+     tx.executeSql("INSERT INTO Agenda (telefono, nombre, direccion) VALUES (?,?,?)",[telefono,nombre,direccion])
+  });       
+}    
+
+function borrarFila(telefono) {         
+  db.transaction(
+  function(tx){                
+     tx.executeSql("DELETE FROM Agenda WHERE telefono =?",[telefono])
+  });       
+}   
+
+function actualizarFila(telefono,nombre,direccion,telefonoAntiguo) {
+  alert(telefono+" "+nombre+" "+direccion+" "+telefonoAntiguo)         
+  db.transaction(
+  function(tx){                
+     tx.executeSql("UPDATE Agenda SET telefono = ?, nombre = ?, direccion =? WHERE telefono =?",
+     [telefono,nombre,direccion,telefonoAntiguo])
+  });       
+}  
+
+function seleccionarFila(telefono) {
+  //alert(telefono);        
+  db.transaction(
+  function(tx){                
+     tx.executeSql("SELECT * FROM Agenda WHERE telefono =?",[telefono],function(tx, resultado){
+       if (resultado.rows.length > 0){
+         telefonoForm = resultado.rows.item(0).telefono;
+         telefonoAntiguoForm = telefonoForm
+         nombreForm = resultado.rows.item(0).nombre;
+         direccionForm = resultado.rows.item(0).direccion;
+         ponerValoresFormulario(telefonoForm, nombreForm, direccionForm, telefonoAntiguoForm)
+       }
+       else{
+          alert('Registro Inexistente'); 
+          apagarFormulario(); 
+          }
+     },ok,error)
+  });       
+}    
+
+
+function SQLlistar(tx){
+  tx.executeSql("SELECT * FROM Agenda ORDER BY nombre",[],function(tx, resultado){
+    var cadena = "<table border=1>\n";
+    cadena += "<tr>\n"+
+              "<th>TELEFONO</th><th>NOMBRE</th><th>DIRECCION</th>"+
+              "<th><button type='button' onclick='activarFormulario(\"\",1)'>insertar</button>"+
+              "</th><th></th>"+
+              "</tr>\n"
+    for (var i = 0; i < resultado.rows.length; i++){
+      cadena += "<tr>\n"
+      cadena += "<td>"+resultado.rows.item(i).telefono+"</td>\n"; 
+      cadena += "<td>"+resultado.rows.item(i).nombre+"</td>\n"; 
+      cadena += "<td>"+resultado.rows.item(i).direccion+"</td>\n";
+      cadena += "<td><button type='button' onclick='borrar("+
+                resultado.rows.item(i).telefono+")'>borrar</button></td>\n";
+      cadena += "<td><button type='button' onclick='activarFormulario("+
+                resultado.rows.item(i).telefono+",2)'>modificar</button></td>\n"; 
+      cadena += "<tr>\n";
+    }
+    cadena += "</table>\n";
+    document.getElementById("contenido").innerHTML = cadena;
+  });  
+}
+   
+function listar(){
+  db.transaction(SQLlistar);
+}
+function borrar(telefono){
+  borrarFila(telefono);
+  listar();
+}  
+
+// Manejo de Interfaz
+function encenderFormulario(){
+  document.getElementById("entrada").style.display="block";
+}
+
+function apagarFormulario(){
+  document.getElementById("entrada").style.display="none";
+  ponerValoresFormulario("","","","")
+}
+
+function obtenerValoresFormulario(){
+  telefonoForm = document.getElementById("otroTelefono").value;
+  nombreForm = document.getElementById("otroNombre").value;
+  direccionForm = document.getElementById("otraDireccion").value;
+  telefonoAntiguoForm = document.getElementById("telefonoAntiguo").value;
+}
+
+
+function ponerValoresFormulario(telefonoForm, nombreForm, direccionForm, telefonoAntiguoForm){
+  document.getElementById("otroTelefono").value = telefonoForm;
+  document.getElementById("otroNombre").value = nombreForm;
+  document.getElementById("otraDireccion").value = direccionForm;
+  document.getElementById("telefonoAntiguo").value = telefonoAntiguoForm;
+}
+
+
+
+function activarFormulario(telefono,operacion){
+  encenderFormulario();
+  if (operacion == 1) {// insertar
+     document.getElementById("boton").innerHTML="insertar";
+     document.getElementById("boton").onclick= function (telefono,operacion){
+     obtenerValoresFormulario();
+     insertarFila(telefonoForm,nombreForm,direccionForm);
+     apagarFormulario();
+     listar();
+     }
+   }
+   else{ //modificar
+     document.getElementById("boton").innerHTML="modificar";
+     seleccionarFila(telefono);
+     document.getElementById("boton").onclick= function (){
+       obtenerValoresFormulario();
+       actualizarFila(telefonoForm,nombreForm,direccionForm,telefonoAntiguoForm)
+       apagarFormulario();
+       listar();
+     }
+   }  
+}    
+            
+
+             
+function inicio() {         
+  abrir();         
+  crearTabla();        
+  listar();       
+}  
+          
+</script>   
+</head>   
+<body onload="inicio();">  
+<div>   
+  <div id="contenido"></div>
+  <br>
+  <div id="entrada" style="position:absolute; right:10px; top:10px; display:none">
+  <form>
+    Teléfono : <input type="text" id="otroTelefono" value=""><br>
+    Nombre : <input type="text" id="otroNombre" value=""></br>
+    Direccion : <input type="text" id="otraDireccion" value=""></br>
+    <input type="hidden" id="telefonoAntiguo" value="">
+    <button type="button" id="boton"></button>
+    <button type="button" onclick="apagarFormulario()">cancelar</button>
+  </form>
+  </div>
+</div>
+</body> 
+</html>

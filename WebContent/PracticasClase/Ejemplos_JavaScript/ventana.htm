@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+<title>Untitled</title>
+<STYLE>
+  .miinput {text-align:right}
+</STYLE>
+</head>
+<body>
+<Script language='JavaScript'>
+  var miventana;
+  function AbrirVentana(){
+    miventana = window.open("catalogo.htm","ventana2","top=200,left=500,width=250,height=300");
+    }
+  function CalculaTotal(){
+    document.miform.iva.value = parseFloat(document.miform.importe.value * 0.16);
+    document.miform.total.value = parseFloat(document.miform.importe.value) +   
+                                  parseFloat(document.miform.iva.value);
+    // Suma del importe de la forma de pago                              
+    for (var i=0; i< document.miform.formapago.length; i++)
+      if (document.miform.formapago[i].checked)
+        document.miform.total.value = parseFloat(document.miform.total.value) 
+                                +  parseFloat(document.miform.formapago[i].value)                                                                       
+    }    
+</script>
+<Center>
+<Font color='blue'><H2>Formulario de Compra</H1></Font>
+<hr><br> 
+<Form name='miform' action="http://www.eui.upm.es/~salonso/curso/procesa.php" method='post'>
+ <Table border=0>
+ <tr>
+ <td> Importe:</td><td> <Input class='miinput' type='text' name='importe' size=8></td></tr>
+ <tr><td>IVA: </td><td><Input class='miinput' type='text' name='iva' size=8></td></tr>
+ <tr><td>TOTAL: </td><td><Input class='miinput' type='text' name='total' size=8></td></tr>
+ <Tr><td colspan=2>&nbsp;</td></tr>
+ <Tr><td colspan=2><Input type='hidden' name='oculto'></td></tr>
+ <tr><td><Input type='button' value='Calcular' onclick="CalculaTotal()"></td>
+     <td><Input type='button' value='Catalogo' onclick="AbrirVentana()"></td>  
+ </table>
+<hr>
+<font color='blue'><h4>Forma de Pago</H4></Font>
+ <Table border=1 bordercolor='blue' cellspacing=0>
+ <tr>
+ <td> Tarjeta (10€) <Input type='radio' name='formapago' value=10 checked onclick='CalculaTotal()'></td>
+ <td>Cheque (20€) <Input type='radio' name='formapago' value=20 onclick='CalculaTotal()'></td>
+ <td>Transferencia (5€)<Input type='radio' name='formapago' value=5 onclick='CalculaTotal()'></td></tr>
+ <td colspan=3 align='center'><Input type='button' value='Comprar' onclick="document.miform.submit();"></td> 
+ </table> 
+</Center>
+</Form> 
+</body>
+</html>

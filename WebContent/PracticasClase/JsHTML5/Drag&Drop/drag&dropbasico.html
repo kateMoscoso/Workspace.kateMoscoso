@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="iso-8859-1">
+<title>Drag&amp;Drop</title>
+<style>
+div {border:1px solid red}
+</style>
+<script language="JavaScript" type="text/javascript">
+
+function DragStart(e) {
+  e.dataTransfer.effectAllowed = 'copyMove';
+  e.dataTransfer.setData('text/html', e.target.innerHTML);
+}
+
+function DragOver(e) {
+  e.preventDefault(); 
+  e.dataTransfer.dropEffect = 'copy';  
+}
+
+function Drop(e) {
+  e.stopPropagation(); 
+  e.preventDefault();
+  e.target.innerHTML += "<br>"+e.dataTransfer.getData('text/html');
+}
+</script>
+</head>
+<body>
+<h1>Drag&Drop</h1>
+
+<br><br>
+<div id="origen" draggable="true" ondragstart="DragStart(event)">origen</div>
+<br><br><br><br><br><br><br><br>
+<div id="destino" ondragover="DragOver(event) " ondrop="Drop(event)">destino</div>
+
+</body>
+</html>

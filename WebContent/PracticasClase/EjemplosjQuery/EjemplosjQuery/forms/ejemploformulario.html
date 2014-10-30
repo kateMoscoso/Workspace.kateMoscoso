@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+	<head>
+		<title>Formulario</title>	
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		
+		<script type="text/javascript" src="../jquery.js"></script>
+		
+		<style type="text/css">
+			body { font-family: Verdana, sans-serif; line-height: 25px;
+             background-color: WhiteSmoke; color: #4682B4; }
+			h2 { text-align: center; }
+			fieldset {width: 450px;}
+			#infoCheckbox {color: red; text-align: center;}
+			#idSeleccionado {font-style: italic; font-size: 10pt;}
+			.claseFoco { background: #4682B4; }
+      #areatexto{border:1px solid blue;width:450px;height:200px;overflow:auto}
+		</style>
+		
+		<script type="text/javascript">
+		<!--
+      var datos_completos="";			
+			$(document).ready(function (){
+					$(":button").css({background:"PapayaWhip", border:"2px Crimson solid"});
+					$(":input").css("color", "orange");
+					$(":text").css("font-weight","bold");
+					$(":image").css("opacity","0.2");
+					$(":submit").css("background","#4682B4");
+					$(":reset").css("background","white");
+									
+					/*Foco*/
+					function cambiarFondoFoco() {
+						$('input, textarea').removeClass("claseFoco");
+						$('input:focus, textarea:focus').addClass("claseFoco");
+					  }
+					$(":input").click(cambiarFondoFoco);
+					
+					/*Contar el número de checkbox que están seleccionados actualmente*/
+					function contarChecked() {
+						var n = $("input:checkbox:checked").length;
+						$("#infoCheckbox").html("<br>Has seleccionado " + n + " checkbox");
+					  }
+					contarChecked();
+					$(":checkbox").click(contarChecked);
+					
+					/*Escribe en el textarea la opción elegida en los botones radio*/
+					$("input:radio").click(function() {
+				     	$("textarea").html( "Motivo elegido:" + $("input:radio:checked").val());
+					    });
+              					           
+        $("#miboton").click(function (){
+            var fields = $(":input").serializeArray();
+            $("#areatexto").load("procesa.php", fields);
+            });
+ 		}); // de document.ready
+		//-->
+		</script>		
+	</head>
+	
+	<body>
+		<h2><b>Atenci&oacute;n al cliente</b></h2>
+		
+		<form name="formulario" id="formulario" method="post" accept-charset="utf-8" action="http://www.eui.upm.es/~salonso/master/procesa.php">
+			<table width="97%" border="0" align="center">
+				<tr>
+					<td align="right" width="40%">Nombre:</td>
+					<td><input type="text" name="nombre" maxlength="20" /></td>
+				</tr>
+				<tr>
+					<td align="right">Apellidos:</td>
+					<td><input type="text" name="apellidos" maxlength="40" /></td>
+				</tr>
+				<tr>
+					<td align="right">Direcci&oacute;n:</td>
+					<td><input type="text" name="dir" maxlength="70" /></td>
+				</tr>
+				<tr>
+					<td align="right">Correo electrónico :</td>
+					<td><input type="text" name="correo" maxlength="40"/></td>
+				</tr>	
+				<tr>
+					<td align="right" valign="top">Motivo del contacto:</td>
+					<td>
+						<fieldset>
+							<legend><font size="3" color="#4682B4"><i>Selecciona una opci&oacute;n</i></font></legend>
+							<table>
+								<tr>
+									<td><input type="radio" name="motivo" value="Info"/>Solicitar informaci&oacute;n<br></td>
+								</tr>
+								<tr>
+									<td><input type="radio" name="motivo" value="Sugerencia"/>Presentar sugerencia<br></td>
+								</tr>
+								<tr>
+									<td><input type="radio" name="motivo" value="Otro"/> Otro</td>
+								</tr>
+							</table>
+						</fieldset>
+					</td>	
+				</tr>	
+				<tr>
+					<td></td>
+					<td><div name="areatexto" id="areatexto" cols="55" rows="10">Resultado...</div> </td>
+				</tr>
+				<tr>
+					<td align="right" ><input type="checkbox" name="recibirInfoMail" checked="checked"/></td>
+					<td>Deseo recibir informaci&oacute;n y ofertas por correo electr&oacute;nico<br></td>
+				</tr>
+				<tr>
+					<td align="right" ><input type="checkbox" name="recibirInfoMovil"/></td>
+					<td>Deseo recibir informaci&oacute;n y ofertas al móvil<br></td>
+				</tr>
+				<tr>
+					<td><br></td>
+					<td align="left"><br><input type="submit" value="Enviar Datos" />&nbsp; &nbsp;<input type="reset" value="Eliminar Datos" />
+                                &nbsp; &nbsp;<input type="button" id="miboton" value="Envio Ajax" /></td>
+				</tr>
+			</table>
+		</form>			
+		<div id="infoCheckbox"></div>
+	</body>
+</html>
+

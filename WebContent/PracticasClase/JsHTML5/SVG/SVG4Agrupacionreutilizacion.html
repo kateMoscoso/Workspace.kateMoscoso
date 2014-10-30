@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="iso-8859-1">
+<title>Agrupación y Reutilización</title>
+</head>
+<body>
+<h1 style="text-align:center">Agrupación y Reutilización</h1>
+<svg version="1.1" width="1300" height="700"
+xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g fill="orange" stroke="black">
+  <rect x="100" y="100" width="300" height="200" 
+      rx="10" ry="10"/>
+  <text x="500" y="200" rotate="10 20 30 40 50 60 70" style="font-size:54pt">Rotadas</text>    
+</g>
+
+<defs>
+<rect id="rectangulo"  width="300" height="200"
+      rx="20" ry="10" stroke="green"/>
+<text id="texto" font-family="verdana" style="font-size:20pt" 
+      font-style="italic"> Rectángulo
+</text>   
+</defs>
+
+<use x="100" y="400" fill="blue" xlink:href="#rectangulo" />
+<use x="180" y="510" fill="orange"  xlink:href="#texto" />
+<use x="500" y="400" fill="red"  xlink:href="#rectangulo" />
+<use x="580" y="510" fill="yellow"  xlink:href="#texto" />
+</svg>
+</body>
+</html>

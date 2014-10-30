@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+  <head>
+     <meta charset="utf-8">
+     <title>Demo</title>
+  </head>
+ <style>
+	<link href="css/ui-lightness/jquery-ui-1.9.0.custom.css" rel="stylesheet">
+ </style>   
+  <body>
+
+	<script src="js/jquery-1.8.2.js"></script>
+	<script src="js/jquery-ui-1.9.0.custom.js"></script>
+     <script>
+        $(document).ready(function() {
+           $("#lista1").sortable({
+              update : function(event, ui) {
+                 $('#resultado').append(ui.item.parent().attr('id')+"<br/>");
+                 $('#resultado').append(ui.item.parent().sortable('toArray')+"<br/>");
+              }});
+        });   
+     </script>
+     <ul id="lista1" >
+        <li id="11">uno</li>
+        <li id="12">dos</li>
+        <li id="13">tres</li>
+        <li id="14">cuatro</li>
+     </ul>
+     <div id="resultado"></div>
+  </body>
+</html>

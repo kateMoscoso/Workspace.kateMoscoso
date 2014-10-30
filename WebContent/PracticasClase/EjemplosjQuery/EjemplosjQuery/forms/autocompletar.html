@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<title>Formulario con autocompletar</title>	  
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+	  		<!--	<meta http-equiv="Content-Type" content="text/html" charset="iso-8859-1">-->
+	
+		<script type="text/javascript" src="../jquery.js"></script>
+		
+		<style type="text/css">
+			body { font-family: Verdana, sans-serif; line-height: 25px;
+             background-color: WhiteSmoke; color: #4682B4; }
+			h2 { text-align: center; }
+			.claseFoco { background: #4682B4; }
+      li {cursor: hand;cursor: pointer}
+      .autoc {position:relative; left:30px; top:-20px;
+     //        float:left;
+              border:1px solid black; 
+              width:150px; font-size:11pt; z-index:50; 
+              background-color:white}
+		</style>
+		
+		<script type="text/javascript">
+		<!--
+			$(document).ready(function (){
+					$(":button").css({background:"PapayaWhip", border:"2px Crimson solid"});
+					$(":input").css("color", "orange");
+					$(":text").css("font-weight","bold");
+					$(":submit").css("background","#4682B4");
+					$(":reset").css("background","white");
+          				
+					/*Foco*/
+					function cambiarFondoFoco() {
+						$('input, textarea').removeClass("claseFoco");
+						$('input:focus, textarea:focus').addClass("claseFoco");
+					  }
+            
+					$(":input").click(cambiarFondoFoco);
+          var $autocompletar = $('<ul class="autoc"></ul>').hide().insertAfter('#tema');
+          
+          $('#tema').keyup (function() {
+           var busqueda = $('#tema').val();
+           $.ajax({
+              dataType: "json",                      
+              url: "textos.php",           
+              data: {'tema': busqueda},          
+              success: function(datos){
+                   $autocompletar.empty();
+                   if (datos.length > 0){           
+                     $.each(datos, function(indice, termino){
+                         $('<li></li>').text(termino).appendTo($autocompletar)
+                         .click (function(){
+                                $('#tema').val(termino);
+                                $autocompletar.hide();
+                                }); //click 
+                         }); //each
+                     $autocompletar.show();                     
+                     } //if   
+                   }// success
+             });  //de $.ajax                       
+        }); //keyup         
+					
+ 		}); // de document.ready
+		//-->
+		</script>		
+	</head>
+	
+	<body>
+		<h2><b>Atenci&oacute;n al cliente</b></h2>
+		
+		<form name="formulario" id="formulario" accept-charset="utf-8" method="post" action="http://www.eui.upm.es/~salonso/master/procesa.php">
+			<table width="97%" border="0" align="center">
+				<tr>
+					<td align="right" width="40%">Nombre:</td>
+					<td><input type="text" name="nombre" maxlength="20" /></td>
+				</tr>
+				<tr>
+					<td align="right" valign="top" >Tema:</td>
+					<td><input type="text" name="tema" id="tema" maxlength="40" /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><textarea name="areatexto" cols="55" rows="10">Introducir texto...</textarea> </td>
+				</tr>
+				<tr>
+					<td><br></td>
+					<td align="left"><br><input type="submit" value="Enviar Datos" />&nbsp; &nbsp;<input type="reset" value="Eliminar Datos" /></td>
+				</tr>
+			</table>
+		</form>			
+	</body>
+</html>
+

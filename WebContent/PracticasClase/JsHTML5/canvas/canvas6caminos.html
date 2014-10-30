@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="iso-8859-1">
+<title>canvas: caminos</title>
+<style>
+  canvas{border:1px solid pink;}
+</style>
+<script language="JavaScript" type="text/javascript">
+<!--
+   
+    function rectanguloRedondeado(contexto ,x, y, anchura, 
+                                  altura, radio, relleno){
+       contexto.beginPath();
+       contexto.moveTo(x,y + radio)
+       contexto.lineTo(x,y + altura - radio);
+       contexto.quadraticCurveTo(x, y + altura,
+                                 x + radio, y + altura);
+       contexto.lineTo(x + anchura - radio, y + altura);
+       contexto.quadraticCurveTo(x + anchura, y + altura, 
+                                 x + anchura, y + altura - radio);
+       contexto.lineTo(x + anchura, y + radio);
+       contexto.quadraticCurveTo(x + anchura, y, 
+                                 x + anchura - radio, y);
+       contexto.lineTo(x + radio, y);
+       contexto.quadraticCurveTo(x, y, 
+                                 x, y + radio);
+       if (relleno)
+          contexto.fill();
+       else
+          contexto.stroke()   
+    
+    }
+    
+    function pintaCanvas(conRecorte){ 
+    var canvas = document.getElementById("miCanvas");
+    var context = canvas.getContext("2d"); 
+    
+    // limpiar el canvas
+    context.clearRect(0,0, 1300, 700);
+    canvas.width = canvas.width;
+    
+   
+    if (conRecorte){
+      context.beginPath();
+      context.arc(500,300,250,0,2 * Math.PI, true);
+      context.strokeStyle = "yellow";
+      context.stroke();
+      context.clip();
+    }
+    
+    context.strokeStyle = "red";
+    context.beginPath();
+    context.moveTo(100,100);
+    context.lineTo(200, 200);
+    context.lineTo(300, 200);
+    context.closePath();
+    context.stroke();
+    
+    context.beginPath();
+    context.moveTo(300,100);
+    context.lineTo(400, 200);
+    context.lineTo(500, 200);
+    context.closePath();
+    context.stroke();
+    
+    context.beginPath();
+    context.arc(750, 200, 150, (200 * Math.PI)/180, (360 *  Math.PI)/180, false) ;
+    context.stroke();
+    
+    
+    context.beginPath();
+    context.moveTo(100,400);
+    context.quadraticCurveTo(350, 200, 400, 350);
+    context.stroke();
+    
+    context.beginPath();
+    context.moveTo(600,400);
+    context.bezierCurveTo(650, 200, 700, 300, 900, 300);
+    context.stroke();
+    
+    rectanguloRedondeado(context ,100, 450, 300,200, 30, false);
+    
+   }
+
+   
+//-->
+</script>
+
+</head>
+<body onload = "pintaCanvas(false)">
+<h2>Caminos
+<form>
+  <button type="button" onclick="pintaCanvas(true)">Con Recorte</button>
+  <button type="button" onclick="pintaCanvas(false)">Sin Recorte</button>
+</form>
+</h2>
+<canvas id="miCanvas" width="1300" height="700">
+</canvas> 
+
+</body>
+</html>

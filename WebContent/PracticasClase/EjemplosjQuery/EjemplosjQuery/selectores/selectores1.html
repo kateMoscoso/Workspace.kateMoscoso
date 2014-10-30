@@ -1,0 +1,44 @@
+<html>
+ <head><title>Selectores</title>
+  <script type="text/javascript" src="jquery.js"></script>    
+  <style type="text/css">
+    body { font-family: Verdana, sans-serif; }
+    h1, h2 { text-align:center; }
+    ul { padding-left:300px; }
+    li {color:red}
+    .impar {color:green}                
+  </style>  
+ <script type="text/javascript">
+ <!--
+ $(document).ready(function cambiarColor(){
+    //Selector etiqueta
+    $("h1").css("color", "#ff3333");    
+    //Selector de identificador
+    $("#titulo").css("font-style", "italic");
+    //Selector de clase        
+	  $(".impar").css("color", "blue");        
+		}
+		);   
+ //-->
+ </script>
+ </head>
+ 
+ <body>
+  <hr /><br /><br /><br />
+  <h1>Máster en Ingeniería Web</h1>
+  <hr /><br />  
+  <h2 id='titulo'>Asignaturas de Primer Cuatrimestre</h2>
+  <hr /><br />      
+  <ul>
+    <li class='impar'>Visión General de la Ingeniería Web</li>
+    <li class='par'>Diseño Gráfico</li>
+    <li class='impar'>Patrones de Diseño</li>
+    <li class='par'>Servicios y Protocolos de Aplicaciones en Internet</li>
+    <li class='impar'>Desarrollo de Aplicaciones para Sistemas Móviles</li>
+    <li class='par'>Tecnologías de Desarrollo para Clientes Ligeros</li>
+  </ul>          
+  <br /><br />
+  <hr /><br /><br />
+  </script>    
+ </body>
+</html>

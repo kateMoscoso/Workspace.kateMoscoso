@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<!--
+Ejemplo de HTML5 Developer's Cookbook
+By: Chuck Hudson; Tom Leadbetter
+Publisher: Addison-Wesley Professional
+Pub. Date: December 06, 2011
+Print ISBN-10: 0-321-76938-4
+Print ISBN-13: 978-0-321-76938-1
+Web ISBN-10: 0-13-269736-X
+Web ISBN-13: 978-0-13-269736-1
+-->
+<head>
+<meta charset="UTF-8" />
+<title>13.1 Basic Drag and Drop</title>
+<style>
+img{width:40px;height:40px}
+#notes {
+  float:left;
+  height:220px;
+  width:50px;
+  text-align:center;
+  border-style:solid;
+  border-width:2px;
+  border-color:#333;
+  background-color:#666;
+}
+#board {
+  float:left;
+  width:300px;
+  height:220px;
+  border-style:solid;
+  border-width:2px;
+  border-color:#333;
+}
+</style>
+<script>
+
+// variables to hold the offset of the click on image
+var imgOffsetX = 0;
+var imgOffsetY = 0;
+
+// function to handle starting the drag
+function dragStartHandler(tgt, evt) {
+  evt.dataTransfer.setData("Text", tgt.id);
+}
+
+// Handler for drop action
+function dropHandler(tgt, evt) {
+
+  // prevent the default browser action from occurring
+  // for example open a new tab with the item dragged
+  if(evt.preventDefault) {
+    evt.preventDefault();
+  }
+
+  // retrieve the id of the image being dragged
+  var elImgId = evt.dataTransfer.getData("Text");
+
+  // create a new image instance
+  var oImg = new Image();
+
+  // set the src of the image
+  oImg.src = document.getElementById(elImgId).src;
+
+  // set the image position
+  oImg.style.position='absolute';
+  var newX = evt.x - imgOffsetX;
+  var newY = evt.y - imgOffsetY;
+
+  var divLeft = tgt.x;
+  var divTop = tgt.y;
+  var divWidth = parseInt(tgt.style.width);
+  var divHeight = parseInt(tgt.style.height);
+
+  // make sure image is fully in the div
+  var imgWH = 50;
+  if (newX<tgt.offsetLeft) {
+    newX=tgt.offsetLeft
+  } else if (newX+imgWH>(tgt.offsetLeft + divWidth)) {
+    newX = tgt.offsetLeft + divWidth-imgWH;
+  }
+  if (newY<tgt.offsetTop) {
+    newY=tgt.offsetTop;
+  } else if (newY+imgWH>(tgt.offsetTop + divHeight)) {
+    newY = tgt.offsetTop + divHeight-imgWH;
+  }
+
+  // position image
+  oImg.style.left = newX+'px';
+  oImg.style.top = newY+'px';
+
+  // append image to the div dropzone
+  tgt.appendChild(oImg);
+}
+
+// help function to set the point of click on the note image
+function getStartPos(evt) {
+  imgOffsetX = evt.offsetX;
+  imgOffsetY = evt.offsetY;
+}
+
+// initialize the board width and height
+function init() {
+  document.getElementById('board').style.width = '300px';
+  document.getElementById('board').style.height = '220px';
+}
+
+// call the init function on page load
+window.addEventListener('load',init,false);
+
+</script>
+</head>
+<body>
+  <h1>Drag notes to the corkboard:</h1>
+  <div id="notes">
+    <img id="note_blue" src="naturaleza.jpg" onmousedown="getStartPos(event);" ondragstart="dragStartHandler(this, event);"><br>
+    <img id="note_green" src="naturaleza.jpg" onmousedown="getStartPos(event);" ondragstart="dragStartHandler(this, event);"><br>
+    <img id="note_pink" src="naturaleza.jpg" onmousedown="getStartPos(event);" ondragstart="dragStartHandler(this, event);"><br>
+    <img id="note_yellow" src="naturaleza.jpg" onmousedown="getStartPos(event);" ondragstart="dragStartHandler(this, event);">
+  </div>
+  <div id="board" dropzone="copy" ondrop="dropHandler(this, event);" ondragover="return false;"></div>
+</body>
+</html>
+

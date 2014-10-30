@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="iso-8859-1">
+<title>Transformaciones y estados</title>
+<style>
+  canvas{border:1px solid pink;}
+</style>
+<script language="JavaScript" type="text/javascript">
+<!--
+   function rectanguloRedondeado(contexto, x, y, anchura, 
+                                 altura, radio, relleno, borde){
+     contexto.beginPath();
+     contexto.moveTo(x,y + radio)
+     contexto.lineTo(x,y + altura - radio);
+     contexto.quadraticCurveTo(x, y + altura,
+                               x + radio, y + altura);
+     contexto.lineTo(x + anchura - radio, y + altura);
+     contexto.quadraticCurveTo(x + anchura, y + altura, 
+                               x + anchura, y + altura - radio);
+     contexto.lineTo(x + anchura, y + radio);
+     contexto.quadraticCurveTo(x + anchura, y, 
+                               x + anchura - radio, y);
+     contexto.lineTo(x + radio, y);
+     contexto.quadraticCurveTo(x, y, 
+                               x, y + radio);
+     if (relleno)
+        contexto.fill();
+     if (borde || !relleno)
+        contexto.stroke();   
+  }
+  
+  window.onload = function(){ 
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+    
+    context.strokeStyle = "green";
+    context.fillStyle = "orange";
+    context.lineWidth = 10;
+    context.save();
+    rectanguloRedondeado(context, 100, 100, 300, 200, 10, true, true);
+    
+    context.translate(400,0);
+    rectanguloRedondeado(context, 100, 100, 300, 200, 10, true, true);
+    
+    context.translate(400,20);
+    context.scale(0.8, 0.8);
+    //context.scale(1.2, 1.2);
+    rectanguloRedondeado(context, 100, 100, 300, 200, 10, true, true);
+    context.restore();
+    
+    context.save();
+    context.translate(100,400);
+    context.rotate(15 * Math.PI/180);
+    rectanguloRedondeado(context, 0, 0, 300, 200, 10, true, true);
+    context.restore();
+    
+    context.save();
+    context.setTransform(1, 0, 15 * Math.PI/180, 1, 500, 400);
+    //context.rotate(15 * Math.PI/180);
+    rectanguloRedondeado(context, 0, 0, 300, 200, 10, true, true);
+    context.restore();
+   
+    context.save();
+    context.setTransform(1, -25 * Math.PI/180, 0,  1, 900, 400);
+    //context.rotate(15 * Math.PI/180);
+    rectanguloRedondeado(context, 0, 0, 300, 200, 10, true, true);
+    context.restore();
+  }  
+  
+  
+
+//-->
+</script>
+
+</head>
+<body>
+<h1>Transformaciones y estados</h1>
+
+<canvas id="canvas" width="1300" height="700"></canvas>
+</body>
+</html>
+

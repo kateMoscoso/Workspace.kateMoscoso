@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+<title>Movimiento</title>
+<style>
+
+</style>
+</head>
+<body>
+<script language='javascript'>
+function DaTeclaKeypress (ElEvento){
+  var evento = ElEvento || window.event;   
+  var codigo = evento.charCode || evento.keyCode;
+  caracter = String.fromCharCode(codigo);
+  //alert (caracter);
+  if (caracter.toLowerCase()=='z'){
+    var posh = parseInt(document.getElementById('capa').style.left);
+    posh = posh - 5;
+    document.getElementById('capa').style.left = posh +'px';
+    } //if
+  if (caracter.toLowerCase()=='x'){
+    var posh = parseInt(document.getElementById('capa').style.left);
+    posh = posh + 5;
+    document.getElementById('capa').style.left = posh +'px';
+    } //if    
+  } // dela funcion
+
+document.onkeypress = DaTeclaKeypress;
+   
+</script>
+<div id='capa' STYLE="position:absolute;top:200px;left:250px;width:100px;height:100px;">
+ <img src='ciclista.gif'/>
+</div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+CACHE MANIFEST
+#v2
+CACHE:
+offline1.htm
+offline2.php
+NETWORK:
+*
+FALLBACK:
+/ /fueradelinea.html

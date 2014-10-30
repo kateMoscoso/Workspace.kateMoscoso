@@ -1,0 +1,57 @@
+<html>
+ <head><title>Selectores</title>
+  <script type="text/javascript" src="jquery.js"></script>    
+  <style type="text/css">
+    body { font-family: Verdana, sans-serif; }
+    h1, h2 { text-align:center; }
+    p {text-align: center}
+    ul { padding-left:300px; }
+    li {color:red}   
+  </style>  
+ <script type="text/javascript">
+ <!--
+ $(document).ready(function cambiarColor(){
+    //Selector de impares
+    $("p:odd").css("text-decoration", "underline");
+    //Selector de último elemento
+    $("p:last").css("color", "blue");
+    //Selector de elementos impares
+    $("li:odd").css("color", "green");
+    //Selector de primer hijo
+    $("li:first-child").css("color", "blue");
+    //Selector de contenido
+    $("li:contains('Internet')").css("color", "blue");
+    $("ul > li").prepend("- ");   
+		}
+	);   
+ //-->
+ </script>
+ </head>
+ 
+ <body>
+  <hr /><br /><br /><br />
+  <h1>Máster en Ingeniería Web</h1>
+  <p>El Máster en Ingeniería Web se imparte en la Escuela Universitaria de 
+  Informática de la Universidad Politécnica de Madrid</p> 
+  <hr /><br />  
+  <h2 id='titulo'>Asignaturas de Primer Cuatrimestre</h2>
+  <p>El listado que aparece a continuación es el correspondiente al conjunto de 
+  asignaturas del <b>primer cuatrimestre</b> del curso académico actual
+  <hr /><br />      
+  <ul>
+    <li>Visión General de la Ingeniería Web</li>
+    <li>Diseño Gráfico</li>
+    <li>Patrones de Diseño</li>
+    <li>Servicios y Protocolos de Aplicaciones en Internet</li>
+    <li>Desarrollo de Aplicaciones para Sistemas Móviles</li>
+    <li>Tecnologías de Desarrollo para Clientes Ligeros</li>
+  </ul>          
+  <br /><br />
+  <hr /><br />
+  <h3>Disponibilidad</h3>
+    <p>Las asignaturas estarán disponibles en periodo de matriculación</p>
+    <p>Se considera periodo de matriculación el habitual</p>    
+  <br />
+  </script>    
+ </body>
+</html>

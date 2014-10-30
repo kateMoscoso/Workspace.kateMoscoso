@@ -1,0 +1,72 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+	<title>Mi Aplicación</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+</head> 
+<body> 
+<script>
+ $(document).ready(function (){
+        $(document).bind('tap', function (){
+                            alert('Has tocado');
+                            });
+        $(document).bind('taphold', function (){
+                            alert('Has tooooocaaaaadooooo');
+                            });
+        $(document).bind('swipe', function (){
+                            alert('Has deslizado');
+                            });
+        $('#capafoto').bind('vmouseover', function (){
+                            alert('Encima');
+                            });
+                            
+    }); //de inicio
+	</script>
+<!-- Home -->
+<div data-role="page" id="page1">
+    <div id="cab" data-theme="a" data-role="header" data-position="fixed">
+        <h2 id="cabtext">
+            Mi aplicación
+        </h2>
+    </div><!-- de cabecera-->
+    <div data-role="content">
+        <div data-role="fieldcontain">
+            <fieldset data-role="controlgroup">
+                <label for="botonon">
+                    Desliza
+                </label>
+            <select name="toggleswitch1" id="botonon" data-theme="e" data-role="slider"
+                data-mini="true">
+                    <option value="off">
+                        Off
+                    </option>
+                    <option value="on">
+                        On
+                    </option>
+                </select>
+            </fieldset>
+        </div> <!-- del boton -->
+        <br /><hr /><br />
+        <div data-role="fieldcontain">
+         <fieldset data-role="controlgroup" data-type='horizontal'>
+    	     <legend>Elige un curso</legend>
+         	   <input type="radio" name="curso" id="curso1" value="el1" checked="checked" />
+             <label for="curso1">Primer Curso</label>
+             <input type="radio" name="curso" id="curso2" value="el2"  />
+         	   <label for="curso2">Segundo Curso</label>
+         	   <input type="radio" name="curso" id="curso3" value="el3"  />
+         	   <label for="curso3">Tercer Curso</label>
+         	   <input type="radio" name="curso" id="curso4" value="el4"  />
+         	   <label for="curso4">Cuarto Curso</label>
+         </fieldset>
+       </div> <!-- de radio button-->		
+       <div id='capafoto' style="">
+             <img src="paisaje.jpg">                
+       </div><!-- de la página -->       
+    </div><!-- de content-->
+</div> <!-- de pagina-->
+</body>
+</html>

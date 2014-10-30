@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+<title>Untitled</title>
+<script language="JavaScript" type="text/javascript">
+<!--
+function getNombre(){
+  return this.nombre;
+}
+function Persona1(nombre, edad, sexo){
+    // propiedades públicas
+	  this.nombre = nombre;
+	  this.edad = edad;
+	  this.sexo = sexo;
+    // métodos públicos
+    this.getNombre = getNombre;
+	  this.getEdad = function(){return this.edad}
+	  this.getSexo = new Function("{return this.sexo}");
+} 
+
+
+Concepcion = new Persona1("Concepcion","70","mujer");
+// Eliminación de un propiedad del objeto Concepción
+delete(Concepcion.nombre);
+// Eliminación de un método del objeto Concepción
+delete(Concepcion.getEdad);
+delete(Persona1.edad);
+cadena="";
+for (i in Concepcion)
+  cadena+=i+" - ";
+alert(cadena);  
+Lucia = new Persona1("Lucía","30","mujer");
+// Nueva propiedad del objeto Lucia
+Lucia.apodo = "Lulú";
+// Nuevo método del objeto Lucia
+Lucia.getApodo = function(){return this.apodo}
+alert(Lucia.apodo+" "+Lucia.getApodo())
+// Extendiendo todos los objetos persona1
+Persona1.prototype.telefono="91";
+Persona1.prototype.setTelefono=function(telefono){this.telefono=telefono};
+Lucia.setTelefono("88888888888");
+alert(Lucia.telefono+" "+Concepcion.telefono)
+//-->
+</script>
+
+</head>
+<body>
+
+</body>
+</html>

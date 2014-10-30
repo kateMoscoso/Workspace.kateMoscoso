@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="iso-8859-1">
+<title>...</title>
+<style>
+  canvas{width:600px; width:500px;border:1px solid red}
+</style>
+<script language="JavaScript" type="text/javascript">
+
+function incluyeImagen(ficheros){
+ file = ficheros[0];
+ alert(file)
+ var reader = new FileReader();
+ reader.onload = function(event) {
+     var dataUri = event.target.result;
+     // referencia DOM
+     var img     = document.createElement("img");
+
+     // Para canvas
+     var imgCanvas = new Image();
+     context = document.getElementById("micanvas").getContext("2d"),
+   
+     // En canvas
+     imgCanvas.src = dataUri;
+     imgCanvas.onload = function(){
+        context.drawImage(imgCanvas, 10, 10);
+     }
+     // En DOM
+     img.src = dataUri;
+     alert(dataUri)
+     document.body.appendChild(img);
+ };
+
+ reader.onerror = function(event) {
+    console.error("File could not be read! Code " + event.target.error.code);
+ };
+
+reader.readAsDataURL(file);
+}
+</script>
+</head>
+<body>
+<h1>Lectura de una imagen y su inclusión en el DOM</h1>
+<form>
+<input type="file" id="ficheros" name="ficheros" onchange="incluyeImagen(this.files)" />
+<canvas id="micanvas">
+</canvas>
+</form>
+</body>
+</html>

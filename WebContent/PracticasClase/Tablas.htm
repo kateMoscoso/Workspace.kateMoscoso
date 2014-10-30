@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+<title>Untitled</title>
+<script language="JavaScript" type="text/javascript">
+ tabla = document.getElementById("mitabla");
+   for (var i=0; i < tabla.childNodes.length; i++){
+    if (tabla.childNodes[i].nodeType == 1){
+      var tbody = tabla.childNodes[i];
+      break;
+    }
+  }
+	
+	var contenidoTabla = new Array();
+  // buscamos TR
+  for (var i=0; i < tbody.childNodes.length; i++){
+    if (tbody.childNodes[i].nodeType == 1){
+      var tr = tbody.childNodes[i];
+      var indiceCelda = 0;
+      contenidoTabla[contenidoTabla.length] = new Array();
+      
+      // Buscamos TH o TD
+      for (var j=0; j < tr.childNodes.length; j++){
+        if (tr.childNodes[j].nodeType == 1){
+          var td = tr.childNodes[j];
+          contenidoTabla[contenidoTabla.length-1][indiceCelda] = td.firstChild.nodeValue;
+          indiceCelda++;
+        }
+      }
+    }
+  }
+	
+	var nuevaFila = document.createElement("tr");
+nuevaFila.setAttribute("align","center");
+// Primera celda
+var primeraCelda = document.createElement("td");
+var textoprimeraCelda = document.createTextNode("Total:");
+primeraCelda.appendChild(textoprimeraCelda);
+nuevaFila.appendChild(primeraCelda);
+// Resto de celdas
+
+for (var i=1; i < media.length; i++){
+  var nuevaCelda = document.createElement("td");
+  var textoNuevaCelda = document.createTextNode(media[i]);
+  nuevaCelda.appendChild(textoNuevaCelda);
+  nuevaFila.appendChild(nuevaCelda);
+}
+
+function añadir(){
+tabla = document.getElementById("mitabla");
+nodo=document.createElement("p");
+}
+
+nodo.innerHTML = cadena;
+
+// añadir nuevaFila a Tbody de tabla
+tbody.appendChild(nuevaFila);
+</script>
+
+</head>
+<body>
+<div id='mitabla'>
+<p id="listaParrafos"> Lista de parráfos</p>
+<p id="parrafo">Esto es un parrafo</p>
+
+</div>
+<form>
+
+			<button type="button" onclick="añadir()"> Añadir</button>
+			<button type="button" onclick="eliminar()"> Eliminar</button>
+</form>
+</body>
+</html>

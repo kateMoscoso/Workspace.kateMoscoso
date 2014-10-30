@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="iso-8859-1">
+<title>...</title>
+<style>
+#salida{width:800px; border:1px solid red}
+</style>
+<script>
+  function manejadorFicherosSeleccionados(evt) {
+    var ficheros = evt.target.files; 
+    var salida = [];
+    for (var i = 0; i < ficheros.length; i++) {
+      salida.push('<li><b>', escape(ficheros[i].name), '</b> (', ficheros[i].type || 'n/a', ') - ',
+                  ficheros[i].size, ' bytes, última modificación: ',
+                  ficheros[i].lastModifiedDate ? ficheros[i].lastModifiedDate.toLocaleDateString() : 'n/a',
+                  '</li>');
+    }
+    document.getElementById('datos').innerHTML = '<ol>' + salida.join('') + '</ol>';
+  }
+  function inicial(){
+    var ref = document.getElementById('ficheros');
+    ref.addEventListener('change', manejadorFicherosSeleccionados, false);
+  }
+  
+  function muestraPropiedades(){
+    objFicheros = document.getElementById('ficheros').files;
+    if (objFicheros.length > 0)
+      alert(objFicheros[0].type+" "+objFicheros[0].size +" "+objFicheros[0].name)
+    else
+      alert("escoja un fichero")  
+  }
+</script>
+</head>
+<body onload="inicial()">
+<form>
+<h1>Acceso a la información de varios ficheros seleccionados</h1>
+<input type="file" id="ficheros" name="ficheros[]" multiple />
+</form>
+<div id="datos">
+</div>
+<form>
+<button type="button" onclick="muestraPropiedades()">propiedades del 1º fichero seleccionado</button>
+</form>
+</body>
+</html>

@@ -5,21 +5,34 @@
 <title>Ferretería González</title>
 <link rel="stylesheet" href="css/estilos.css">
 </head>
+<script type="text/javascript" src="JavaScript/jquery.js"></script>
+<script type="text/javascript" src="funciones.js"></script>
+<script type="text/javascript">
+$().ready(function(){
+	$('#Aniadir').click( function(){
+		$("#articuloFactura").append('<p class="parrafo"> Parrafo </p>')
+	});
+	$('#Vacia').click( function(){
+		$('#mitabla').empty();
+	});
+})
 
+</script>
 <body>
-	<header>
+	<header onclick="location.href='index.html'">
 		<figure id="logo">
 			<img alt="" src="imagenes/llave.png">
 		</figure>
 	</header>
 	<nav>
 		<ul>
+			<li><a href="index.html">Inicio</a></li>
 			<li><a href="factura.html">Facturar</a></li>
 		</ul>
 	</nav>
 	<section id="contenedorFactura">
 		<article id="articuloFactura">
-			<table id="elementosFacturas" border=1 rules=cols>
+			<table id="productosFacturas" border=1>
 				<tbody>
 					<tr>
 						<th>Concepto</th>
@@ -35,7 +48,7 @@
 					</tr>
 				</tbody>
 			</table>
-			<button>Añadir</button>
+			<button id="Aniadir" type="button" onclick="Aniadir()">Añadir</button>
 		</article>
 		<article>
 			<table id="elementosFacturas" border=1 rules=cols>

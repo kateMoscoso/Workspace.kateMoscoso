@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="iso-8859-1">
+<title>Canvas</title>
+<style>
+  canvas{border:1px solid pink}
+</style>
+<script language="JavaScript" type="text/javascript">
+<!--
+    window.onload = function(){ 
+    var canvas = document.getElementById("miCanvas");
+    var context = canvas.getContext("2d"); 
+    context.fillStyle = "white";  // Color de relleno "white"
+    context.strokeStyle = "green";  // Color de borde "green"
+    context.lineWidth = 1;  // Grosor de línea 1
+    // Rectángulo
+    context.fillRect(100,100,300,200);  // Relleno de rectángulo situado en (100,100) de anchura y altura 300x200
+    context.strokeRect(100,100,300,200);// Borde de rectángulo situado en (100,100) de anchura y altura 300x200 
+    
+    // Círculo
+    context.beginPath(); // Comienza un camino
+    context.arc(550, 200, 100, 0, 2 * Math.PI, false); // Arco posicionado en (550,200) de radio 100 que va de 0 a 2*Pi grados
+    context.strokeStyle = "red";  // Color de borde "red"
+    context.stroke(); // Dibuja el borde
+
+    // Elipse
+    context.save(); // Apila el estado del contexto
+    context.scale(1.5, 1); // Escala 1.5 y 1 los ejes x e y
+    context.beginPath();  // Comienza un camino
+    context.strokeStyle = "blue";  // Color de borde "blue"
+    context.arc(560, 200, 100, 0, 2 * Math.PI, false); // Arco posicionado en (560,200) de radio 100 que va de 0 a 2*Pi grados
+    context.stroke(); // Dibuja el borde
+    context.restore(); // DesApila el estado del contexto
+    
+    // Línea
+    context.beginPath(); // Comienza un camino
+    context.strokeStyle = "blue";  // Color de borde "blue"
+    context.moveTo(100,550); // Posición del lapiz en (100,550)
+    context.lineTo(400,350); // Traza una línea desde la posición actual a (400,350);  
+    context.stroke(); // Dibuja el borde
+      
+    // MultiLínea  
+    context.beginPath(); // Comienza un camino
+    context.strokeStyle = "green";  // Color de borde "green"
+    context.moveTo(450,550); // Posición del lapiz en (450,550)
+    context.lineTo(500,350); // Traza una línea desde la posición actual a (500,350);
+    context.lineTo(550,550); // Traza una línea desde la posición actual a (550,550);
+    context.lineTo(600,350); // Traza una línea desde la posición actual a (600,350);
+    context.lineTo(650,550); // Traza una línea desde la posición actual a (650,550);
+    context.stroke(); // Dibuja el borde
+    
+    // Polígono  
+    context.beginPath(); // Comienza un camino
+    context.strokeStyle = "red";  // Color de borde "red"
+    context.moveTo(775,550); // Posición del lapiz en (450,550)
+    context.lineTo(700,430); // Traza una línea desde la posición actual a (500,350);
+    context.lineTo(850,350); // Traza una línea desde la posición actual a (550,550);
+    context.lineTo(1000,430); // Traza una línea desde la posición actual a (600,350);
+    context.lineTo(925,550); // Traza una línea desde la posición actual a (650,550);
+    //context.lineTo(775,550); // Traza una línea desde la posición actual a (650,550);
+    
+    context.closePath(); // Acaba un camino
+    context.stroke(); // Dibuja el borde
+
+};
+
+//-->
+</script>
+
+</head>
+<body>
+<h1>Canvas: figuras principales</h1>
+<canvas id="miCanvas" width="1050" height="700">
+</canvas> 
+
+</body>
+</html>

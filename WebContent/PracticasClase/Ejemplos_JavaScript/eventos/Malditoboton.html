@@ -1,0 +1,32 @@
+<html><head><title>Eventos</title></head>
+<body >
+  <script language="JavaScript" type="text/javascript">
+  <!--
+  
+     
+    function Mueve(){
+      var numY = parseInt(Math.random()*300);
+      var numX = parseInt(Math.random()*150);
+      lacapa = document.getElementById ('capa');
+      lacapa.style.top = numY + 'px';
+      lacapa.style.left = numX + 'px';
+      }
+                     
+  //-->
+  </script>
+  
+  <div id='unacapa' STYLE='position:absolute;top:100px;left:150px;height:75px;background-color:C0C0C0;border:1px solid black;'>
+    <p style='text-align:center:color:red'>¿Cree que va a aprobar este curso?
+    <form>
+      <input id='bno' type='button' value='  No  ' STYLE='position:absolute;top:40px;left:100px;' 
+                            onclick='alert("¡Vaya!")'>
+    </form>
+  </div>  
+  <div id='capa' STYLE='position:absolute;top:110px;left:150px;height:75px;'
+                onmouseover='Mueve()'>    
+    <form>      
+      <input id='bsi' type='button' value='   Si   ' STYLE='position:absolute;top:30px;left:40px;'>      
+    </form>
+  </div>
+</body>
+</html>

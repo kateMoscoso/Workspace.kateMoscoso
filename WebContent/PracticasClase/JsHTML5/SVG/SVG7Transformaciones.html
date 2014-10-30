@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="iso-8859-1">
+<title>Transformaciones</title>
+</head>
+<body>
+<h1 style="text-align:center">Transformaciones</h1>
+<svg version="1.1" width="1300" height="700"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  style = "font-size:24pt;fill:red;">
+ 
+<defs>
+<rect id="rectangulo1" width="300" height="200" 
+      rx="20" ry="10" stroke="green" stroke-width="10" fill="orange" />
+</defs>
+
+<use  x="100" y="100" id="rectangulo2" xlink:href="#rectangulo1" />
+
+<use  transform="translate(400,0)" xlink:href="#rectangulo2" />
+
+<use  transform="translate(900,100) scale(0.8)" xlink:href="#rectangulo1" />
+
+<use  transform="translate(100,400) rotate(15)" xlink:href="#rectangulo1" />
+
+<use  transform="translate(500,400) skewX(15)" xlink:href="#rectangulo1" />
+
+<use  transform="translate(900,400) skewY(-25)" xlink:href="#rectangulo1" />
+</svg>
+</body>
+</html>
+
+

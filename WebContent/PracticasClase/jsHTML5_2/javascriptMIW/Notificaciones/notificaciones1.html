@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="iso-8859-1" />
+<title>Notificaciones</title>
+<script>
+
+var contadorNotificaciones = 0;
+
+
+function pedirPermiso() {
+
+  if (webkitNotifications) {
+    
+    window.webkitNotifications.requestPermission();
+  } else {
+
+    alert("Notificaciones no son soportadas");
+  }
+}
+
+
+function lanzarNotificacion() {
+  if (contadorNotificaciones < 5){
+  contadorNotificaciones++;
+
+  var notificacion = webkitNotifications.createNotification(
+    'wait.gif',
+    'Número '+contadorNotificaciones,
+    'Otra vez número '+contadorNotificaciones);
+
+  notificacion.show();
+  setTimeout("lanzarNotificacion()",4000)
+  }
+}
+
+
+</script>
+</head>
+<body>
+  <h1>Notificaciones</h1>
+  <section>
+    <button type="button" onclick="pedirPermiso()">Pedir permiso</button>
+    <button type="button" onclick="lanzarNotificacion()">Lanzar notificación</button>
+  </section>
+</body>
+</html>

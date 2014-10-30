@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="iso-8859-1">
+<title>Manipulación de pixels</title>
+<style>
+  canvas{border:1px solid pink;}
+  img{border:1px solid orange;}
+</style>
+<script language="JavaScript" type="text/javascript">
+<!--
+   
+    window.onload = function(){ 
+    var canvas = document.getElementById("miCanvas");
+    var context = canvas.getContext("2d"); 
+    var imageObj = new Image();
+    imageObj.src = 'naturaleza.jpg';
+    imageObj.onload = function() {
+          context.drawImage(imageObj, 100, 50, 300, 200);
+          
+          
+          
+          datosImagen = context.getImageData(100, 50, 300, 200);
+          
+          
+          
+          for (i=0; i < datosImagen.data.length;i+=4){
+            var rojo = datosImagen.data[i];
+            var verde = datosImagen.data[i + 1];
+            var azul = datosImagen.data[i + 2];
+            var colorgris = rojo * 0.3 + verde * 0.59 + azul * 0.11;
+            datosImagen.data[i] = colorgris;
+            datosImagen.data[i + 1] = colorgris;
+            datosImagen.data[i + 2] = colorgris;
+          }
+         context.putImageData(datosImagen,500,50);
+         var datosURL = canvas.toDataURL();
+         document.getElementById('imagendecanvas').src = datosURL;
+    };
+   }
+
+//-->
+</script>
+
+</head>
+<body>
+<h1>Manipulación de pixels</h1>
+ <p>Ojo: Si no se descarga la página desde un servidor se dispara una excepción de seguridad</p>
+
+<canvas id="miCanvas" width="1300" height="300">
+</canvas> 
+<img id="imagendecanvas">
+
+</body>
+</html>

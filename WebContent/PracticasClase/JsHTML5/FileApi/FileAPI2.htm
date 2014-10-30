@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="iso-8859-1">
+<title>...</title>
+<style>
+#salida{width:800px; border:1px solid red}
+</style>
+<script language="javascript">
+
+  function processFiles(files) {
+  var file = files[0];
+  cadena = "";
+  for (i in files[0])
+    cadena += i+" = "+ files[0][i]+" \n"
+  alert(cadena);
+  var reader = new FileReader(); 
+  reader.onload = function (e) {
+  var output = document.getElementById("salida");
+  output.textContent = e.target.result;
+  alert(e.target.result)
+  };
+  reader.readAsText(file);
+}
+</script>
+</head>
+<body>
+<h1>Lectura de fichero como texto y su visualización</h1>
+<form>
+  <input id="fileInput" type="file" onchange="processFiles(this.files)"> 
+</form>
+<div id="salida">
+</div>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>13.5 Basic Notification</title>
+<script>
+// counter for notifications
+var notificationCount = 0;
+
+// initialize the page
+function init() {
+
+  // reference the buttons
+  var btnSetPermission = document.getElementById('setPermission');
+  var btnFireNotification = document.getElementById('fireNotification');
+
+  // set our button click event handlers
+  btnSetPermission.addEventListener('click',setPermission,false);
+  btnFireNotification.addEventListener('click',fireNotification,false);
+}
+
+// Request the user permission for notifications
+function setPermission() {
+  // check if the webkitNotifications is supported
+  if (webkitNotifications) {
+    // request permission from the user
+    window.webkitNotifications.requestPermission();
+  } else {
+    // Let the user know that notifications are not supported
+    alert("Notifications are not supported on this browser.");
+  }
+}
+
+// Function to fire the notification
+function fireNotification() {
+  // increment our notification counter
+  notificationCount++;
+
+  // create the notification passing in icon, title, body
+  var notification = webkitNotifications.createNotification(
+    'wait.gif',
+    'Number '+notificationCount,
+    'This is notification '+notificationCount);
+
+  // now show the actual notification
+  notification.show();
+}
+
+// Add our page load listener to initialize
+window.addEventListener('load',init,false);
+
+</script>
+</head>
+<body>
+  <h1>Basic Notification Recipe</h1>
+  <p>Click set permission to allow notifications, then fire a notification.</p>
+  <section>
+    <button id="setPermission" type="button">Set Permission</button>
+    <button id="fireNotification" type="button">Fire Notification</button>
+  </section>
+</body>
+</html>
+(function($) {
+  $(document).ready(function() {
+
+    function activate($el) {
+      $el.removeClass('inactive').addClass('active');
+      $el.find(':input').removeAttr('disabled');
+    }
+    function deactivate($el) {
+      $el.removeClass('active').addClass('inactive');
+      $el.find(':input').attr('disabled','disabled');
+    }
+
+    function check_permission() {
+      switch(window.webkitNotifications.checkPermission()) {
+        case 0:
+          // Continue
+          activate($('.needs_permission'));
+          deactivate($('.needs_support'));
+          break;
+        case 2:
+          // Fail
+          $('#blocked').fadeIn();
+          break;
+      }
+    }
+
+    // Disable all input elements per default
+    $(':input').attr('disabled', 'disabled');
+
+    // Determine if notifications are supported, currently Chrome only
+    if (window.webkitNotifications) {
+      activate($('.needs_support'));
+      check_permission();
+    } else {
+      $("#not_supported").fadeIn();
+    }
+
+    // Ask for permission
+    $('#ask_permission').click(function(e) {
+      e.preventDefault();
+      window.webkitNotifications.requestPermission(check_permission);
+    });
+
+    // Display the plain text notification
+    $('#plain_form').submit(function(e) {
+      e.preventDefault();
+      var icon = $('#plain_icon').val(),
+          title = $('#plain_title').val(),
+          message = $('#plain_message').val(),
+          notification;
+
+      // Create a new notification
+      notification = window.webkitNotifications.createNotification(icon, title, message);
+      notification.ondisplay = function() {
+        $('#plain_debug').html('Fired the <b>ondisplay</b> event<br>' + $('#plain_debug').html());
+      };
+      notification.onclose = function() {
+        $('#plain_debug').html('Fired the <b>onclose</b> event<br>' + $('#plain_debug').html());
+      };
+      // Display the notification, calling close() on notification will dismiss it
+      notification.show();
+    });
+
+    // Display the html notification
+    $('#html_form').submit(function(e) {
+      e.preventDefault();
+      var file = $('#html_file').val(),
+          notification;
+
+      // Create a new notification
+      notification = window.webkitNotifications.createHTMLNotification(file);
+      notification.ondisplay = function() {
+        $('#html_debug').html('Fired the <b>ondisplay</b> event<br>' + $('#html_debug').html());
+      };
+      notification.onclose = function() {
+        $('#html_debug').html('Fired the <b>onclose</b> event<br>' + $('#html_debug').html());
+      };
+      // Display the notification, calling close() on notification will dismiss it
+      notification.show();
+    })
+
+  });
+})(jQuery);

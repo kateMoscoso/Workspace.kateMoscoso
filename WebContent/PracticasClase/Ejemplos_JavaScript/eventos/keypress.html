@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+<title>Untitled</title>
+</head>
+<body>
+<script>
+function DaTeclaKeypress (ElEvento){
+  var evento = ElEvento || window.event;   
+  var codigo = evento.charCode || evento.keyCode;
+  var codigo =  evento.keyCode;
+  caracter = String.fromCharCode(codigo);
+  alert (codigo);
+  alert (caracter);
+  }    
+function DaTeclaKeyDownUp (ElEvento){
+  var evento = ElEvento || window.event;   
+  var codigo = evento.keyCode;
+  caracter = String.fromCharCode(codigo);
+  alert (codigo);  
+  alert (caracter);
+  }    
+
+ document.onkeypress = DaTeclaKeypress;
+ //document.onkeydown = DaTeclaKeyDownUp;
+ //document.onkeyup = DaTeclaKeyDownUp;
+
+</script>
+
+</body>
+</html>

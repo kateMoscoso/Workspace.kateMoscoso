@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+	<title>Menú sencillo</title> 
+	
+	<script type="text/javascript" src="../jquery.js"></script>
+	
+	<style type="text/css"> 
+		html {	background: #1d1d1d; }
+		body {
+			margin: 0; padding: 0;
+			font: 10px normal Verdana, Arial, Helvetica, sans-serif;
+			background: #1d1d1d; 
+		}
+		h1 {
+			font: 4.7em normal Georgia, 'Times New Roman', Times, serif;
+			color: #fff;
+			margin: 0;
+			text-align: center;
+			padding: 5px 0;
+		}
+		h1 small{
+			font: 0.2em normal Verdana, Arial, Helvetica, sans-serif;
+			text-transform:uppercase;
+			letter-spacing: 1.4em;
+			display: block;
+			color: #ccc;
+		}
+		.contenedor {
+			width: 520px;
+			height: 330px;
+			position: absolute;
+			top: 50%; left: 50%;
+			margin: -165px 0 0 -260px;
+			overflow: hidden;
+		}
+		img {border: none;}
+		ul#menu {
+			margin: 20px 0 20px; 
+			padding: 0; 
+			list-style: none;	
+			font-size: 1.1em;
+			clear: both;
+			float: left;
+			width: 600px;
+		}
+		ul#menu li{
+			margin: 0; 
+			padding: 0; 
+			overflow: hidden; 
+			float: left; 
+			height:40px;
+			background:url(botonNaranja.png) ;
+		}
+		ul#menu a, ul#menu span {
+			padding: 10px 20px; 
+			float: left; 
+			text-decoration: none; 
+			color: #fff;
+			text-transform: uppercase;
+			clear: both;
+			height: 20px;
+			line-height: 20px;
+			background: #1d1d1d; 
+		}
+		ul#menu a {	color: DeepPink; }
+		ul#menu span {
+			display: none;
+		}
+		 
+		ul#menu.v2 span{
+			background: url(botonNegro.png) repeat-x left top;
+		}
+		ul#menu.v2 a{
+			color: #555;
+			background: url(botonNaranja.gif) repeat-x left bottom;
+		}
+	</style> 
+
+	<script type="text/javascript"> 	 
+	<!--	
+		$(document).ready(function() {
+			
+			//Añade un span vacío justo antes de la etiqueta del menú en la que nos hemos posicionado
+			$("#menu li").prepend("<span></span>"); 
+			
+			$("#menu li").each(function() { //Para cada punto de la lista...
+				var texto = $(this).find("a").html(); //Encuentra el texto que hay dentro de la etiqueta
+				$(this).find("span").show().html(texto); //Añade el texto dentro del span
+			}); 
+			
+			$("#menu li").hover(function() {	//Al posicionarnos encima...
+				$(this).find("span").stop().animate({ 
+					marginTop: "-40" //Encuentra el span y lo mueve 40 pixeles
+				}, 250);
+			} , function() { //Cuando salimos de la zona...
+				$(this).find("span").stop().animate({
+					marginTop: "0" //Mueve el span a su sitio original (0px)
+				}, 250);
+			});	
+		});
+	-->
+	</script> 
+</head> 
+ 
+<body>  
+	<div class="contenedor"> 
+		<h1>Menú con jQuery<br /><small>Dos opciones a elegir</small></h1> 
+		
+		<ul id="menu" class="v2"> 
+			<li><a href="">Opción 1</a></li> 
+			<li><a href="">Opción 2</a></li> 
+			<li><a href="">Opción 3</a></li> 
+			<li><a href="">Opción 4</a></li> 
+			<li><a href="">Opción 5</a></li> 
+			<li><a href="">Opción 6</a></li> 
+		</ul> 
+		
+		<ul id="menu"> 
+			<li><a href="">Opción 1</a></li> 
+			<li><a href="">Opción 2</a></li> 
+			<li><a href="">Opción 3</a></li> 
+			<li><a href="">Opción 4</a></li> 
+			<li><a href="">Opción 5</a></li> 
+			<li><a href="">Opción 6</a></li> 
+		</ul> 
+	</div> 
+</body> 
+</html> 

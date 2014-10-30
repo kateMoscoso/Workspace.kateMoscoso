@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+<title>Untitled</title>
+  <style>
+    #capaform{
+          position:absolute;
+          left:0px;
+          top:10px
+          }              
+  </style>  
+	 <link href="css/ui-lightness/jquery-ui-1.9.0.custom.css" rel="stylesheet">
+	 <script src="js/jquery-1.8.2.js"></script>
+	 <script src="js/jquery-ui-1.9.0.custom.js"></script>
+</head>
+<body>
+<script>
+  $().ready(function (){
+        $('#fechae').datepicker({
+                                 dateFormat: "dd/mm/yy",
+                                 dayNamesMin: ["D","L","M","X","J","V","S"],
+                                 firstDay:1,
+                               });//de datepicker
+        $('#boton').click(function (){
+                    $('#fechae').datepicker().show();
+                    });                       
+    }); // de ready
+</script>
+<div id='capaform'>
+  <form name='miform' id='miform'>
+    Fecha de entrada: <input type='text' name='fechae' id='fechae' size='10' readonly>
+    <br /><hr /><br />
+    <input type='button' id='boton' size='10' value='Pulsa para aparicion'> <br />
+  </form>  
+</div>
+<br />
+</body>
+</html>

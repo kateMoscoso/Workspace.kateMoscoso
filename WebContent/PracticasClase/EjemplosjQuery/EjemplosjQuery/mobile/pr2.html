@@ -1,0 +1,97 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+	<title>My Page</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+</head> 
+<body> 
+<!-- Home -->
+<div data-role="page" id="page1">
+    <div id="cab" data-theme="a" data-role="header" data-position="fixed">
+        <h2 id="cabtext">
+            Mi aplicación
+        </h2>
+    </div>
+<div data-role="content">
+        <img id="mark" src="https://maps.googleapis.com/maps/api/staticmap?center=calle%20de%20la%20arboleda,%20Madrid&amp;zoom=15&amp;size=288x200&amp;markers=&amp;sensor=false"
+        height="200" width="288">
+        <a id="boton" data-role="button" data-direction="reverse" data-theme="b"
+        href="www.eui.upm.es" data-icon="arrow-r" data-iconpos="left">
+            Button
+        </a>
+            <h2 id="texto">
+            Zona visualizada
+        </h2>
+            <div style="">
+                <img style="width: 288px; height: 100px" src="paisaje.jpg">
+                <img src="paisaje.jpg">
+                <img style="width: 100%; " src="paisaje.jpg">                
+            </div>
+        <div data-role="fieldcontain">
+            <fieldset data-role="controlgroup">
+                <label for="botonon">
+                    Desliza
+                </label>
+           <select name="toggleswitch1" id="botonon" data-theme="e" data-role="slider"
+                data-mini="true">
+                    <option value="off">
+                        Off
+                    </option>
+                    <option value="on">
+                        On
+                    </option>
+                </select>
+            </fieldset>
+        </div>
+        <div data-role="fieldcontain">
+            <fieldset data-role="controlgroup" data-mini="true">
+                <label for="desliz">
+                    Profundidad
+                </label>
+                <input id="desliz" name="desliz" value="50" min="0" max="100" data-highlight="true"
+                type="range">
+            </fieldset>
+        </div>
+
+<div data-role="fieldcontain">
+    <fieldset data-role="controlgroup">
+    	<legend>Elige un curso</legend>
+         	<input type="radio" name="curso" id="curso1" value="el1" checked="checked" />
+         	<label for="curso1">Primer Curso</label>
+
+         	<input type="radio" name="curso" id="curso2" value="el2"  />
+         	<label for="curso2">Segundo Curso</label>
+
+         	<input type="radio" name="curso" id="curso3" value="el3"  />
+         	<label for="curso3">Tercer Curso</label>
+
+         	<input type="radio" name="curso" id="curso4" value="el4"  />
+         	<label for="curso4">Lizard</label>
+    </fieldset>
+</div>
+<br /><hr /><br />
+<div data-role="fieldcontain">
+    <fieldset data-role="controlgroup" data-type='horizontal'>
+    	<legend>Elige un curso</legend>
+         	<input type="radio" name="curso" id="curso1" value="el1" checked="checked" />
+         	<label for="curso1">Primer Curso</label>
+
+         	<input type="radio" name="curso" id="curso2" value="el2"  />
+         	<label for="curso2">Segundo Curso</label>
+
+         	<input type="radio" name="curso" id="curso3" value="el3"  />
+         	<label for="curso3">Tercer Curso</label>
+
+         	<input type="radio" name="curso" id="curso4" value="el4"  />
+         	<label for="curso4">Lizard</label>
+    </fieldset>
+</div>
+				
+    </div>
+</div>
+
+</body>
+</html>

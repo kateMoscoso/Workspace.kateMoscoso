@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head><title>Selects</title>
+<script type='text/javascript'>
+  var P_Amer = new Array('Cuba', 'EEUU', 'Canada', 'Méjico', 'Ecuador', 'Puerto Rico');
+	var P_Europa = new Array ('España', 'Francia', 'Portugal', 'Polonia', 'Estonia');
+	var P_Asia = new Array ('China', 'Japón', 'Tailandia', 'Vietnam');
+	var P_Oceania = new Array ('Australia', 'Nueva Zelanda');
+	var P_Africa = new Array ('Túnez', 'Sudáfrica', 'Marruecos', 'Egipto', 'Costa de Marfil', 'Cabo Verde', 'Argelia', 'Mozambique'); 
+  var Datos = new Array (P_Amer,P_Africa,P_Asia, P_Europa,P_Oceania);
+  
+  function RellenaPaises(){
+     var DatosAPoner = new Array();
+     var el_select = document.getElementById('continentes');
+     var ind = el_select.selectedIndex;
+     DatosAPoner = Datos[ind];
+
+      var otro_select = document.getElementById('paises');
+      otro_select.options.length = DatosAPoner.length;
+      //alert (DatosAPoner);
+      for (i=0; i< DatosAPoner.length;i++){
+        otro_select.options[i].value = DatosAPoner[i];
+        otro_select.options[i].text = DatosAPoner[i];     
+        } //for       
+		  } // de la funcion
+</script>
+</head>
+<body>
+ <br /><br /><hr />
+ <form method='get' action='http://138.100.152.2/~salonso/master/procesa.php'>
+   Continentes: 
+	 <select name='continentes' id='continentes' onchange="RellenaPaises()">
+	   <option value='America'>América</option>
+	   <option value='Africa'>Africa</option>
+	   <option value='Asia'>Asia</option>
+ 	   <option value='Europa'>Europa</option>
+	   <option value='Oceania' SELECTED>Oceanía</option>
+	 </select>
+   Paises: <select name='paises' id='paises'>
+     <option value='Australia'>Australia</option>
+	   <option value='Nueva Zelanda'>Nueva Zelanda</option>
+	 </select>	 
+	 <br /><br /><br /> 
+	 <button type='submit' >Enviar</button>
+ </form>
+ <br /><br /><hr />
+</body>
+</html>

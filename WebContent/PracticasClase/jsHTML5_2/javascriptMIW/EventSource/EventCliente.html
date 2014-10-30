@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<style>
+  #contenido{width:500px; height:500px;border:10px solid red; overflow:auto}
+</style>
+<script language="JavaScript" type="text/javascript">
+// Modificado de https://developer.mozilla.org/en-US/docs/Server-sent_events/Using_server-sent_events
+
+function incluir(destino, texto){
+  document.getElementById(destino).innerHTML += texto +"<br>"+
+  "-----------------------------------------------------<br>";
+}
+
+function inicial(){
+  var evtSource = new EventSource("Eventserver.php");
+
+  evtSource.onmessage = function(e) {  
+    incluir("contenido", "message: "+ e.data);
+  };
+  
+  evtSource.onerror = function(e) {  
+    //alert("error")
+  };
+  
+  evtSource.onopen = function(e) {  
+    //alert("Conectado...")
+  };
+
+  evtSource.addEventListener("ping", function(e) {     
+    var obj = JSON.parse(e.data); 
+    incluir("contenido", "ping at " + obj.time);  
+  }, false); 
+
+  evtSource.addEventListener("nuevoEvento", function(e) {     
+    incluir("contenido", "nuevoEvento " + e.data);  
+  }, false);
+
+}
+
+
+</script>
+
+</head>
+
+<body onload="inicial()">
+<div id="contenido">
+</div>
+</body>
+</html>

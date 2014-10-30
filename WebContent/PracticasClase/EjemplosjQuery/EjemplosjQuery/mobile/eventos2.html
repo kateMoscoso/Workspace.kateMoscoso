@@ -1,0 +1,55 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+	<title>Eventos2: Mi Aplicación</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+</head> 
+<body> 
+<script>
+ $(document).ready(function (){
+/*        $(document).bind('tap', function (){
+                            alert('Has tocado');
+                            });
+*/                            
+        $(document).bind('orientationchange', function (evento){
+                                   if (evento.orientation=="landscape")
+                                      $('#capa').html('<b>Estoy horizontal</b>');
+                                   else
+                                      $('#capa').html('<b>Estoy vertical</b>');
+                            });                                                        
+    }); //de inicio
+	</script>
+<!-- Home -->
+<div data-role="page" id="page1">
+    <div id="cab" data-theme="a" data-role="header" data-position="fixed">
+        <h2 id="cabtext">
+            Mi aplicación
+        </h2>
+    </div><!-- de cabecera-->
+    <div data-role="content">
+        <div data-role="fieldcontain">
+            <fieldset data-role="controlgroup">
+                <label for="botonon">
+                    Desliza
+                </label>
+            <select name="toggleswitch1" id="botonon" data-theme="e" data-role="slider"
+                data-mini="true">
+                    <option value="off">
+                        Off
+                    </option>
+                    <option value="on">
+                        On
+                    </option>
+                </select>
+            </fieldset>
+        </div> <!-- del boton -->
+        <br /><hr /><br />
+       <div id='capa' style='color:red'>   
+       </div><!-- de la capa -->       
+    </div><!-- de content-->
+</div> <!-- de pagina-->
+</body>
+</html>

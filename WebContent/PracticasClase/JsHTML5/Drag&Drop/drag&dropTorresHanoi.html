@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<!--
+Ejemplo de HTML5 Developer's Cookbook
+By: Chuck Hudson; Tom Leadbetter
+Publisher: Addison-Wesley Professional
+Pub. Date: December 06, 2011
+Print ISBN-10: 0-321-76938-4
+Print ISBN-13: 978-0-321-76938-1
+Web ISBN-10: 0-13-269736-X
+Web ISBN-13: 978-0-13-269736-1
+-->
+<head>
+<meta charset="UTF-8" />
+<title>13.2 Towers Game</title>
+<style>
+.towerDropZone {
+  float: left;
+  height: 200px;
+  width: 200px;
+  margin: 5px;
+  padding: 15px;
+  position:relative;
+  background-color:#888;
+  background-image:url(tower.png);
+  background-repeat:no-repeat;
+  background-position:bottom;
+}
+.towerDropZone.over {
+  border-radius: 15px 15px;
+  background-color:#EEE;
+}
+.tower {
+  width: 200px;
+  position:absolute;
+  bottom:1px;
+  border:none;
+}
+.block {
+  height: 25px;
+  margin:1px auto;
+  border: 1px solid #ccc;
+  border-radius: 15px 15px;
+  background-color:#00F;
+  color:#FFF;
+  text-align:center;
+  font-size:19px;
+  font-weight:bold;
+}
+</style>
+<script>
+// Declare the map of towers, number of blocks and step count
+var towers = [[],[],[]];
+var numblocks = 4;
+var numMoves = 0;
+
+// Initialize the event handlers and state
+function initTowers() {
+
+  // Set the event handlers for the tower drop zones
+  var towerDropZones = document.querySelectorAll('#towers .towerDropZone');
+  [].forEach.call(towerDropZones, function(tdz) {
+    tdz.addEventListener('dragover', towerHandleDragOver, false);
+    tdz.addEventListener('drop', towerHandleDragDrop, false);
+    tdz.addEventListener('dragleave', towerHandleDragLeave, false);
+  });
+
+  // Set the event handlers for the individual blocks
+  var blocks = document.querySelectorAll('.block');
+  [].forEach.call(blocks, function(block) {
+    block.addEventListener('dragstart', blockHandleDragStart, false);
+    block.addEventListener('dragend', blockHandleDragEnd, false);
+  });
+
+  // Set up the map of initial block state on tower 0
+  for (var i=numblocks-1;i>=0;i--) {
+
+    // add the block to the tower map on first tower (3,2,1,0)
+    towers[0].push(i);
+
+    // Create the different widths for the blocks
+    document.getElementById(i+"block").style.width = (90 + i * 30) + "px";
+  }
+}
+
+// Handler for a block dragging over a tower drop zone
+function towerHandleDragOver(e) {
+  // prevent the default action from occurring so we can drop
+  if (e.preventDefault) {
+    e.preventDefault();
+  }
+
+  // Set the effect to the move option
+  e.dataTransfer.dropEffect = 'move';
+
+  // Set the look of the tower to show available
+  this.className = "towerDropZone over";
+
+  return false;
+}
+
+// Handler for a block drag leaving a tower drop zone
+function towerHandleDragLeave(e) {
+  // Set tower drop zone look back to normal
+  this.className = "towerDropZone";
+}
+
+// Handler for dropping a block on a tower drop zone
+function towerHandleDragDrop(e) {
+
+  // prevent the default action
+  if (e.preventDefault) {
+    e.preventDefault(); // necessary; allows us to drop
+  }
+
+  // Change the tower drop zone look back to normal
+  this.className = "towerDropZone";
+
+  // Get the JSON data passed through dataTransfer
+  var blockInfo = JSON.parse(e.dataTransfer.getData("Text"));
+
+  // Set the origin / destination towers, and block info
+  var blockId = blockInfo.blockId;
+  var blockNum = parseInt(blockInfo.blockId);
+  var fromTowerId = parseInt(blockInfo.fromTowerId);
+  var toTowerId = this.id;
+
+  // Get tower element
+  var tower = document.getElementById("tower"+toTowerId);
+
+  // Logic to determine if the block can be dropped on tower
+  var towerheight = towers[toTowerId].length;
+  if ( towerheight == 0) {
+    // Tower empty - Insert block before <p> holder in the tower
+    tower.insertBefore(document.getElementById(blockId),document.getElementById("p"+toTowerId));
+  } else {
+    // Tower has blocks - get top block value on tower
+    var topBlock = towers[toTowerId][towerheight-1];
+
+    // check if block can be put on top of block
+    if ( topBlock > blockNum) {
+    // insert block before top block to go on top
+    tower.insertBefore(document.getElementById(blockId),document.getElementById(topBlock+"block"));
+    } else {
+      // block can not be put on top of current top block
+      // return false to kill action
+      return false;
+    }
+  }
+
+  // Update the game map locations for this block
+  towers[toTowerId].push(blockNum);
+  towers[fromTowerId].pop();
+
+  // Increment the number of moves made
+  numMoves++;
+  document.getElementById("numMoves").textContent = numMoves;
+
+  // Check to see if game is over - all blocks in order on 3rd tower
+  if (towers[2].length==numblocks) {
+
+    // Game complete - make blocks not draggable
+    var blocks = document.querySelectorAll('.block');
+    [].forEach.call(blocks, function(block) {
+      block.draggable = false;
+    });
+
+    // notify user
+    alert("Congratulations - you have moved the tower.");
+  }
+}
+
+// Handler for a block starting to be dragged
+function blockHandleDragStart(e) {
+
+  // Retrieve the block id and origin tower id
+  var blockId = this.id;
+  var fromTowerId = this.parentNode.parentNode.id;
+
+  // Get variables to be able to check if the block grabbed
+  // is the top block on the tower
+  var towerheight = towers[fromTowerId].length;
+  var topBlock = towers[fromTowerId][towerheight-1];
+  var thisBlock = parseInt(blockId);
+
+  // Check if this is the top block on the tower
+  if (topBlock == thisBlock) {
+
+    // block is the top block so we can move it
+    this.style.opacity = '0.4';
+
+    // create the JSON packet for passing info with dataTransfer
+    var blockinfo = {
+      "blockId": blockId,
+      "fromTowerId": fromTowerId};
+
+    // set the data for the dataTransfer
+    e.dataTransfer.setData("Text", JSON.stringify(blockinfo));
+
+  } else {
+
+    // block is not the top block
+    this.style.opacity = '1.0';
+
+    // return false to prevent the block being dragged
+    return false;
+  }
+}
+
+// Handler for a block drag action ending
+function blockHandleDragEnd(e) {
+  // set the block opacity back to normal
+  this.style.opacity = '1.0';
+}
+
+// Call our initilization function when page loads
+window.addEventListener('load',initTowers,false);
+
+</script>
+</head>
+<body>
+  <h1>Towers Game</h1>
+  <p>Move the pieces on the left stack to the right most tower.<br>
+  A block may only be moved onto an empty tower or a tower with a larger block.</p>
+  <div>Number of moves made: <span id="numMoves">0</span></div>
+  <section id="towers">
+    <div class="towerDropZone" id="0">
+      <div class="tower" id="tower0">
+        <div class="block" id="0block" draggable="true">1</div>
+        <div class="block" id="1block" draggable="true">2</div>
+        <div class="block" id="2block" draggable="true">3</div>
+        <div class="block" id="3block" draggable="true">4</div>
+        <p id="p0" />
+      </div>
+    </div>
+    <div class="towerDropZone" id="1">
+        <div class="tower" id="tower1"><p id="p1" /></div>
+    </div>
+    <div class="towerDropZone" id="2">
+        <div class="tower" id="tower2"><p id="p2" /></div>
+    </div>
+  </section>
+</body>
+</html>

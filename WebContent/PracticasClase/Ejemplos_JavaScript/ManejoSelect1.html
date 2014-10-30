@@ -1,0 +1,48 @@
+<!DOCTYPE HTML >
+
+<html>
+<head><title>Manejo de select</title>
+<style>
+ body {text-align:center;}
+</style>
+<script language='javascript'>
+  function Borrar(){
+    var el_select = document.getElementById('ciudades');
+    var indice = el_select.selectedIndex;
+    el_select.options[indice] = null; 
+    }
+  function Aniadir(){
+    var el_texto = document.getElementById('ntexto').value;
+    var el_valor = document.getElementById('nvalor').value;
+    var el_select = document.getElementById('ciudades');
+    var nelems = el_select.length;
+    el_select.options[nelems] = new Option(el_texto,el_valor);    
+    }
+  function Dimelo(){
+    var el_select = document.getElementById('ciudades');
+    var indice = el_select.selectedIndex;
+    var el_valor = el_select.options[indice].value;
+    var el_texto = el_select.options[indice].text;
+    alert ("El valor es: "+el_valor + " y texto: " + el_texto);
+    }
+</script>
+</head>
+<body>
+  <br /><br /><br />
+  <form>
+  <select name='ciudades' id='ciudades'>
+    <option value='Madrid'> La capital del reino</option>
+    <option value='Barcelona'> La capital del otro reino</option>
+    <option value='Málaga'> Andaluces al poder</option>
+    <option value='Vigo'> ¿Y por qué lo dices?</option>    
+  </select>
+  <br />
+  <button type='button' onClick="Dimelo()">Púlsame</button>
+  <br /><br /><br /><hr /><br /><br />
+  Texto: <input type='text' name='ntexto' id='ntexto'>
+  Valor: <input type='text' name='nvalor' id='nvalor'> <br />
+  <button type='button' onClick="Aniadir()">Añadir Elemento</button>
+  <button type='button' onClick="Borrar()">Borrar Elemento</button>  
+  </form>
+</body>
+</html>

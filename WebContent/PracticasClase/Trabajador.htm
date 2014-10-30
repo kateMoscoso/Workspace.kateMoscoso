@@ -1,0 +1,72 @@
+  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+  
+  <html>
+  <head>
+  <title>Untitled</title>
+  <script language="JavaScript" type="text/javascript">
+  
+  var identificador=0;
+  var nombre="";
+  var cantidad="";
+  var trabajadoresArray = new Array(); 
+	
+  function Trabajador(nombre, cantidad, id){
+  				 this.nombre= nombre;
+  				 this.cantidad = cantidad;
+  				 this.id=id;
+  				 this.getId = function (){return this.id}
+  				 this.getCantidad = function (){return this.cantidad}
+  				 this.setCantidad = function (cantidad){return this.cantidad = cantidad}
+					 document.getElementById(this.Capas).innerHTML += this.Nombre + ""+ this.DineroAhorrado + "<BR>\n"
+  }
+  
+  function Registrar(){
+ 					 transaccion = document.getElementById('transacciones');
+  				 nombre = document.getElementById('nombre').value;
+  				 cantidad = document.getElementById('cantidad').value;
+  				 this.trabajadoresArray[identificador] = new Trabajador(nombre,cantidad,identificador)
+  				 nodo=document.createElement("p");
+  				 transaccion.appendChild(nodo);
+  				 var t = document.createTextNode(identificador + nombre+ " tiene ahorrado: " + cantidad);
+  				 this.identificador++;
+  				 nodo.appendChild(t);
+  }
+	function Ahorrar(){
+					 transaccion = document.getElementById('transacciones');
+					 numero = parseInt(document.getElementById('numero').value);
+  				 cantidadSumada = parseInt(document.getElementById('cantidadAhorro').value);
+					 cantidad= trabajadoresArray[numero].getCantidad();
+					 nodo=document.createElement("p");
+  				 transaccion.appendChild(nodo);
+  				 var t = document.createTextNode( " tiene ahorrado: " + cantidad);
+	}
+  
+  </script>
+  
+  </head>
+  <body>
+  <div id='trabajadores' align="left">
+   <p>Datos del Trabajador</p>
+   <form>
+   			 Nombre:<input type='text' id='nombre'><br />
+  	 		 Cantidad: <input type='text' id='cantidad'><br /><br />
+  	 <button type='button' onclick='Registrar()'>Registrar</button> 
+   </form>
+   </div>
+   <div id="ahorro" align="left">
+   <p>Datos del Ahorro</p>
+    <form>
+   			 Numero:<input type='text' id='numero'><br />
+  	 		 Cantidad: <input type='text' id='cantidadAhorro'><br /><br />
+  	 <button type='button' onclick='Ahorrar()'>Ahorrar</button> 
+  	 <button type='button' onclick='Gastar()'>Gastar</button> 
+   </form>
+   </div>
+   <div id="transacciones" >
+   			 <p>Las transacciones son:</p>
+   </div>
+   
+  
+  </body>
+  </html>
+  

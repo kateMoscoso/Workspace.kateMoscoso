@@ -1,0 +1,23 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+    <script type="text/javascript">
+        function GetSelectedText () {
+            if (window.getSelection) {  // all browsers, except IE before version 9
+                var range = window.getSelection ();                                        
+                alert (range.toString ());
+            } 
+            else {
+                if (document.selection.createRange) { // Internet Explorer
+                    var range = document.selection.createRange ();
+                    alert (range.text);
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <button onclick="GetSelectedText ()">Muestra texto Seleccionado</button>
+   Selecciona algo de texto
+</body>

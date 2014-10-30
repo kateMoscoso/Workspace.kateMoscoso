@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+	<head>
+		<title>CSS</title>
+		
+		<script type="text/javascript" src="../jquery.js"></script>
+		
+		<style type="text/css">
+			body { font-family: Verdana, sans-serif; line-height:25px; text-align: justify;}
+			#info {font-style: italic; font-size: 10pt; position: absolute;top:10px;left:10px}
+			
+			#imgAmazonas { width: 375px; float:left; margin: 20px 30px 90px 10px; padding: 10px; border: 5px black solid;}
+			.estilo2 { background: OliveDrab; color: Snow;}
+			.estilo1 { color: DarkKhaki; font-style: italic; }
+			#dimensionesFoto { font-size:8pt; position: absolute; top: 400px; left: 20px;}
+		</style>
+		
+		<script type="text/javascript">
+		<!--
+			$(document).ready(function (){	
+					//Cambia el color y la alineación de todas las cabeceras h1.
+					$("h1").css({"color":"Gold", "text-align":"center"});
+					
+					//Cambia el color y quita el subrayado de todos los enlaces.
+					$("a").css("text-decoration","none");
+					$("a").css("color","Gold");
+					
+					//Añade la clase "estilo1" a todos los párrafos
+					$("p").addClass("estilo1");
+					//Elimina la clase "estilo1" el párrafo con id="parrafo6"
+					$("#parrafo6").removeClass("estilo1");
+					
+					//alert($("#parrafo6").hasClass("estilo1"));
+					
+					//Cuando se abre el documento web, el scroll se posiciona 150px hacia abajo.
+					$(document).scrollTop(150);
+					
+					//Cuando se presiona el botón añadimos o eliminamos la clase "estilo2" al cuerpo del documento
+					$(":button").click(function () {
+						$("body").toggleClass("estilo2");
+  					//Cambia las coordenadas (la posición) del div "info".
+   					$("#info").offset({top:700 ,left:600});            
+					});
+					
+					//Cuando el ratón se posiciona encima de la imagen muestra su altura, anchura, 
+					  //altura interna, anchura interna, altura externa y anchura externa.
+					$("img").mouseover(function () {
+						var altura=$(this).height();
+						var anchura=$(this).width();
+						var alturaInt=$(this).innerHeight();
+						var anchuraInt=$(this).innerWidth();
+						var alturaExt=$(this).outerHeight();
+						var anchuraExt=$(this).outerWidth();
+						$("#dimensionesFoto").html(
+							"Esta foto tiene " + altura + "px de alto y " + anchura + "px de ancho.<br>Esta foto tiene " 
+							+ alturaInt + "px de altura interior y " + anchuraInt + "px de anchura interior.<br>Esta foto tiene " 
+							+ alturaExt + "px de altura exterior y " + anchuraExt + "px de anchura exterior."
+						);
+					});
+					
+					//Cuando el ratón sale de la foto cambia el texto del <div>.
+					$("img").mouseout(function () {
+						$("#dimensionesFoto").html("Sitúa el ratón encima de la foto");
+					});
+					
+				
+					$("#parrafo6").hasClass("estilo1");
+				}
+			);
+		//-->
+		</script>
+	</head>
+	
+	<body>
+		<h1>Fauna y flora del Amazonas</h1>
+		
+		<img src="amazonas.jpg" id="imgAmazonas">
+		<div id="dimensionesFoto"></div>
+		
+		<p id="parrafo1">Toda la flora y fauna de la selva intertropical húmeda americana está presente en la Amazonia.
+		Allí existen innumerables especies de plantas, miles de especies de aves, incontables anfibios y millones de insectos todavía sin clasificar.</p>
+		<p id="parrafo2">La fauna es muy variada, desde los insectos más pequeños hasta los grandes mamíferos como el jaguar, el puma, el tapir y varias especies de venados. También hay reptiles como tortugas, caimanes, babillas y serpientes. Hay aves y peces de todas las especies, plumajes y escamas. En las lagunas a lo largo del Amazonas florece la planta Victoria Regia, una especie de nenúfar cuyas hojas circulares alcanzan más de un metro de diámetro y en ocasiones, hasta 5 m, lo que ha dado pie al mito de que una de estas hojas puede sostener a una persona, lo cual es falso.</p>
+		<p id="parrafo3">La inmensa selva ecuatorial oculta una fauna abundante, aún pendiente de una clasificación completa. En la Amazonia existen 4.000 especies de mariposas, más de 3.000 de peces de agua dulce, 1.700 de aves y el 20% de las especies de primates del planeta. Bajo su extraordinaria frondosidad conviven diferentes hábitats y la mayor diversidad genérica del mundo animal. La riqueza biológica se explica porque durante millones de años el ecosistema amazónico ha permanecido inalterado.
+		<p id="parrafo4">Es tan amplio su aporte en especies de peces y plantas acuáticas que enumerarlas todas no es tarea fácil. Para los aficionados al acuarismo, se trata de la fuente que provee la mayor cantidad de especies piscícolas que pueblan los comercios y acuarios de todo el mundo.</p>
+		<p id="parrafo5">También alberga una gran cantidad de anfibios de todo tipo, como ranas, sapos, tritones, salamandras y anfibios aún sin conocer.</p>
+		<p id="parrafo6">Tras recorrerlo en una de sus expediciones, el famoso oceanógrafo Jacques-Yves Cousteau llegó a afirmar que “hay más especies de peces en el Amazonas que en el océano Atlántico”.</p>
+		
+		<form>
+			<input type="button" value="Cambiar colores" />
+		</form>
+		
+		<div id="info">
+			<p>Contenido: <a href="http://es.wikipedia.org/wiki/R%C3%ADo_Amazonas" target="_blank">Wikipedia</a></p>
+		</div>
+	</body>
+</html>

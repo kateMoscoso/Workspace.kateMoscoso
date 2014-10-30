@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<title>Edición texto enriquecido</title>
+<script type="text/javascript">
+  function ejecuta(comando,IUporDefecto,valor){
+    document.execCommand(comando,IUporDefecto,valor);
+  }
+  
+  function mostrarContenido(){
+    alert(document.getElementById("texto").innerHTML);
+  }
+</script>
+<style type="text/css">
+  *{font-size:20px}
+  #texto{width:600px;height:200px;border:1px solid orange;overflow:auto}
+</style>
+</head>
+<body onload="">
+<div id="texto" contenteditable="true"><p>contenido</p></div>
+<form>
+<button type="button" onclick="ejecuta('bold',false,0)">Neguita</button>
+<button type="button" onclick="ejecuta('italic',false,0)">Itálica</button>
+<button type="button" onclick="ejecuta('indent',false,0)">Indenta</button>
+<button type="button" onclick="ejecuta('insertHTML',false,'<h1>hola</h1>')">Inserta HTML</button>
+<button type="button" onclick="mostrarContenido()">Mostrar Contenido</button>
+</form>
+</body>
+</html> 

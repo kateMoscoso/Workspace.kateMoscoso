@@ -1,0 +1,111 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+	<head>
+		<title>Selectores de filtrado básicos</title>
+		
+		<script type="text/javascript" src="jquery.js"></script>
+		
+		<style type="text/css">
+			body { font-family: Verdana, sans-serif; line-height:25px;}
+			h1 { text-align: center; color: FireBrick; }
+			h2 { color: DarkBlue; }
+			#info {font-style: italic; font-size:10pt;}
+		</style>
+		
+		<script type="text/javascript">
+		<!--
+			$(document).ready(function (){
+               //Selecciona la primera celda y la pone en cursiva
+					$("td:eq(0)").css("font-style", "italic"); 
+					
+               //Selecciona las filas pares y cambia el color de fondo
+					$("tr:even").css("background-color", "AntiqueWhite"); 
+
+               //Selecciona las filas impares y cambia el color de fondo
+					$("tr:odd").css("background-color", "Lavender"); 
+
+					//Selecciona la primera fila y transforma el texto a mayúsculas
+					$("tr:first").css("text-transform","uppercase");							
+
+					//Selecciona la última fila y la pone en negrita							
+					$("tr:last").css("font-weight", "bold");			
+
+		         //Selecciona las celdas con índice superior a 3
+					$("td:gt(3)").css("color", "grey"); 
+
+               //Selecciona las celdas con índice inferior a 4
+					$("td:lt(4)").css({color: "White", background: "FireBrick"}); 
+
+					//Selecciona todas las cabeceras y las subraya
+					$(":header").css("text-decoration", "underline"); 
+
+					//Selecciona todos las celdas de la tabla excepto la última y cambia
+               //el tipo de letra.
+					$("td:not(':last')").css("font-family", "Calibri");						
+				}
+			);
+		//-->
+		</script>
+	</head>
+	
+	<body>
+		<h1>Alfred Hitchcock</h1>
+		<h2>Premios</h2>
+		<table>
+			<tr>
+				<td>Año</td>
+				<td>Categor&iacute;a</td>
+				<td>Pel&iacute;cula</td>
+				<td>Resultado</td>
+			</tr>
+			<tr>
+				<td>1968</td>
+				<td>Premio en Memoria de Irving Thalberg</td>
+				<td>-</td>
+				<td>Ganador</td>
+			</tr>
+			<tr>
+				<td>1960</td>
+				<td>Mejor Director</td>
+				<td>Psicosis</td>
+				<td>Candidato</td>
+			</tr>
+			<tr>
+				<td>1954</td>
+				<td>Mejor Director</td>
+				<td>La ventana indiscreta</td>
+				<td>Candidato</td>
+			</tr>
+			<tr>
+				<td>1945</td>
+				<td>Mejor Director</td>
+				<td>Recuerda</td>
+				<td>Candidato</td>
+			</tr>
+			<tr>
+				<td>1944</td>
+				<td>Mejor Director</td>
+				<td>Náufragos</td>
+				<td>Candidato</td>
+			</tr>
+			<tr>
+				<td>1944</td>
+				<td>Mejor Pelicula</td>
+				<td>Náufragos</td>
+				<td>Candidato</td>
+			</tr>
+			<tr>
+				<td>1940</td>
+				<td>Mejor Director</td>
+				<td>Rebeca</td>
+				<td>Ganador</td>
+			</tr>
+		</table>
+		<div id="info">
+			<p>Contenido: www.wikipedia.es <br>
+		</div>	
+	</body>
+</html>
+

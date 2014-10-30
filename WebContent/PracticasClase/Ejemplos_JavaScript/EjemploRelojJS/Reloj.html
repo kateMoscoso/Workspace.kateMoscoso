@@ -1,0 +1,87 @@
+<HTML>
+<HEAD>
+<TITLE>Reloj en Página Web</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+
+   // Precarga de las imágenes
+   fuente_numeros= new Array("cero.jpg","uno.jpg","dos.jpg","tres.jpg",
+                             "cuatro.jpg","cinco.jpg","seis.jpg","siete.jpg",
+                             "ocho.jpg","nueve.jpg","separador.jpg");
+   imagenes_numeros=new Array(10);
+   for (var i=0;i<11;i++)
+      {
+      imagenes_numeros[i]=new Image();
+      imagenes_numeros[i].src=fuente_numeros[i]
+      }
+
+   // Devuelve la imagen correspondiente de un número
+   function devolver_imagen(numero,imagenes_numeros)
+   {
+   return imagenes_numeros[numero].src;
+   }
+
+   // Recibe un número de dos dígitos y devuelve el primer dígito
+   function primer_digito(numero_dos_digitos)
+   {
+   return Math.round((numero_dos_digitos / 10)-0.5);
+   }
+
+   // Recibe un número de dos dígitos y devuelve el segundo dígito
+   function segundo_digito(numero_dos_digitos)
+   {
+   return numero_dos_digitos % 10;
+   }
+
+   // Obtiene la hora actual y actualiza las imágenes que la muestran
+   function reloj(imagenes_numeros)
+   {
+   var hoy=new Date();
+   var horas=hoy.getHours();
+   var minutos=hoy.getMinutes();
+   var segundos=hoy.getSeconds();
+   document.decenas_horas.src=
+                     devolver_imagen(primer_digito(horas),imagenes_numeros);
+   document.unidades_horas.src=
+                     devolver_imagen(segundo_digito(horas),imagenes_numeros);
+   document.decenas_minutos.src=
+                     devolver_imagen(primer_digito(minutos),imagenes_numeros);
+   document.unidades_minutos.src=
+                     devolver_imagen(segundo_digito(minutos),imagenes_numeros);
+   document.decenas_segundos.src=
+                     devolver_imagen(primer_digito(segundos),imagenes_numeros);
+   document.unidades_segundos.src=
+                     devolver_imagen(segundo_digito(segundos),imagenes_numeros);
+   }
+
+</SCRIPT>
+</HEAD>
+<BODY BGCOLOR="orange" onLoad="setInterval('reloj(imagenes_numeros)',100)">
+<BR>
+<CENTER><H1>Reloj</H1></CENTER><BR>
+<TABLE CELLPADDING=0 CELLSPACING=0 ALIGN="CENTER" BORDER=10>
+   <TR>
+      <TD>
+      <TABLE CELLPADDING=0 CELLSPACING=0 BORDER=0>
+         <TR>
+            <TD><IMG SRC="cero.jpg" NAME="decenas_horas" WIDTH=30 HEIGHT=50
+                                                                  BORDER=0></TD>
+            <TD><IMG SRC="cero.jpg" NAME="unidades_horas" WIDTH=30 HEIGHT=50
+                                                                  BORDER=0></TD>
+            <TD><IMG SRC="separador.jpg" NAME="separador_1" WIDTH=15 HEIGHT=50
+                                                                  BORDER=0></TD>
+            <TD><IMG SRC="cero.jpg" NAME="decenas_minutos" WIDTH=30 HEIGHT=50
+                                                                  BORDER=0></TD> 
+            <TD><IMG SRC="cero.jpg" NAME="unidades_minutos" WIDTH=30 HEIGHT=50
+                                                                  BORDER=0></TD>
+            <TD><IMG SRC="separador.jpg" NAME="separador_2" WIDTH=15 HEIGHT=50
+                                                                  BORDER=0></TD>
+            <TD><IMG SRC="cero.jpg" NAME="decenas_segundos" WIDTH=30 HEIGHT=50
+                                                                  BORDER=0></TD>
+            <TD><IMG SRC="cero.jpg" NAME="unidades_segundos" WIDTH=30 HEIGHT=50
+                                                                  BORDER=0></TD>
+         </TR>
+      </TABLE>
+      </TD>
+   </TR>
+</TABLE>
+</HTML>

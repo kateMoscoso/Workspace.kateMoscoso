@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+    <meta name="notifications" content="HTML Tidy, see www.w3.org">
+    <title>HTML5 Notification Example</title>
+</head>
+<body>
+
+<div><a href="" onclick="askPermission()">Generate a Notification</a></div>
+
+<script> 
+  function askPermission(){
+    webkitNotifications.requestPermission(testNotification);
+  }
+  function testNotification(){
+    var notification = webkitNotifications.createNotification('wait.gif', 'developerWorks app available', 'Download dW iPhone app v1.1.1 today');
+    notification.show();
+  }    
+</script>        
+</body>
+</html> 

@@ -1,0 +1,23 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head> 
+<script> 
+function validar(e) { 
+    tecla = (e.charCode) ? e.charCode :  e.keyCode;
+    //alert(tecla);
+    if (tecla==8) return true; //Tecla de retroceso (para poder borrar) 
+    patron = /\d/; //ver nota 
+    te = String.fromCharCode(tecla); 
+    return patron.test(te);  
+}  
+</script> 
+</head> 
+
+<body> 
+<input type="text" onkeypress="return validar(event)"> 
+</body> 
+</html>  
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="iso-8859-1">
+<title>...</title>
+<style>
+ *{color:gray;font-size:20pt}
+</style>
+</head>
+<body>
+<h1>Gráfico computacional</h1>
+<svg version="1.1" width="1050" height="700"
+xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<defs>
+<rect id="rectangulo" x="100" y="100" width="300" height="200" 
+      rx="20" ry="10" stroke="green" fill="white" />
+</defs>
+
+<use  xlink:href="#rectangulo" />
+
+<circle cx="550" cy="200" r="100" stroke="red" fill="white"/>
+
+<ellipse cx="850" cy="200" rx="150" ry="100" stroke="blue" fill="white"/>
+
+<line x1="100" y1="550" x2="400" y2="350" stroke="blue" fill="white"/>
+
+<polyline points="450 550, 500 350, 550 550, 600 350, 650 550"  fill="none" stroke="green"/>
+
+<polygon points=" 775 550, 700 430, 850 350, 1000 430, 925 550" stroke="red" fill="white"/>
+</svg>
+</body>
+</html>

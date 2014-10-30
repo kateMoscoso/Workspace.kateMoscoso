@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+	<head>
+		<title>Eventos de ratón</title>
+		
+		<script type="text/javascript" src="../jquery.js"></script>
+		
+		<style type="text/css">
+			body { font-family: Verdana, sans-serif; line-height:25px; text-align: justify; font-size:10pt; }
+			h1 {text-align: center; color: Cornsilk; background: LightCoral; padding-top:30px; padding-bottom:30px;}
+			#imagenes { text-align:center; }
+			.imgAntLopezPequeña { height: 300px; position: relative; top: 15px; }
+			.imgAntLopezGrande { height: 450px;  position: relative; top: 15px; }
+			#lupa { position: relative; top: 40px; left:50%; }
+			#instrucciones { text-align:center; position: relative; top: 10px; font-size: 10pt;}
+			#coordenadas {position: absolute; bottom: 10px; right: 5px; font-size: 10pt;}
+		</style>
+		
+		<script type="text/javascript">
+		<!--
+        var raiz="AntonioLopez/";
+        var imagenes=new Array("Granvía.jpg", "TorresBlancas.jpg", "Vallecas.jpg", "Nevera.jpg","Lavabo.gif");
+        var actual=0;  
+
+			$(document).ready(function (){	
+				//Al hacer doble click sobre la lupa la imagen cambia su tamaño
+				$("#lupa").dblclick(function () {  
+					$("#imgAntLopez").toggleClass("imgAntLopezGrande");
+				});
+				
+				//Al posicionarnos encima de la imagen nos muestra las instrucciones para cambiar el tamaño.
+				$("#imgAntLopez").hover(
+					function () { 
+						$("#instrucciones").html("<br>Haz doble click en la lupa para cambiar el tamaño");
+					},
+					function () { 
+						$("#instrucciones").html("");
+					}
+				);
+
+				//Las imágenes cambian cuando se pincha encima de ellas
+				$("#imgAntLopez").click(
+					function () {
+            if (actual == imagenes.length-1) 
+               actual = 0
+            else
+               actual ++;
+						$(this).attr("src", raiz + imagenes[actual]);
+					  }
+				);
+				
+				//Al mover el ratón se muestran sus coordenadas
+				$(document).mousemove(function(e){
+					$("#coordenadas").html("X: " + e.pageX + " <br> Y: " + e.pageY);
+				});
+			});
+		//-->
+		</script>
+	</head>
+	
+	<body>
+		<h1>Antonio López</h1>
+		<div id="imagenes">
+			<img id="imgAntLopez" class="imgAntLopezPequeña" src="AntonioLopez/GranVía.jpg">
+		</div>
+		
+		<img id="lupa" src="lupa.png">
+		<div id="instrucciones"></div>
+		<div id="coordenadas"></div>
+	</body>
+</html>

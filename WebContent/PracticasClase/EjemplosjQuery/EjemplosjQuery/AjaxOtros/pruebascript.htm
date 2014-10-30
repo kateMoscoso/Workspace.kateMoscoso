@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <script src="../jquery.js"></script>
+</head>
+<body>
+
+<script>
+ $(document).ready( function(){
+    alert('Soy el cuerpo');
+    $.getScript("script.js", function() {
+      alert ('Soy la función');
+      });     
+  });
+</script>
+
+</body>
+</html> 

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="iso-8859-1">
+<title>Bordes y color</title>
+<style>
+  canvas{border:1px solid pink;}
+</style>
+<script language="JavaScript" type="text/javascript">
+<!--
+   
+    window.onload = function(){ 
+    var canvas = document.getElementById("miCanvas");
+    var context = canvas.getContext("2d"); 
+    var imageObj = new Image();
+    imageObj.src = 'naturaleza.jpg';
+    imageObj.onload = function() {
+          context.drawImage(imageObj, 100, 100, 300, 200);
+    };
+    
+    context.strokeStyle = "green";  
+    context.lineWidth = 1; 
+    
+    // gradiente lineal
+    gradiente1 = context.createLinearGradient(0,100,0,300);
+    gradiente1.addColorStop(0,"red");
+    gradiente1.addColorStop(0.5,"yellow");
+    gradiente1.addColorStop(1,"green");
+    
+    // Rectángulo relleno de gradiente lineal
+    context.fillStyle = gradiente1;  
+    context.fillRect(500,100,300,200);  
+    context.strokeRect(500,100,300,200);
+    
+    // Gradiente radial o circular
+    gradiente2 = context.createRadialGradient(1050,200,20,1050,200,150);
+    gradiente2.addColorStop(0,"rgba(255,255,255,0)");
+    gradiente2.addColorStop(1,"rgba(0,0,255,1)");
+    
+    
+    // Rectángulo relleno de gradiente circular
+    context.fillStyle = gradiente2;  
+    context.fillRect(900,100,300,200);  
+    context.strokeRect(900,100,300,200);
+    
+    // Creación de patrón
+    var imageObj1 = new Image();
+    imageObj1.src = 'patron.jpg';
+    imageObj1.onload = function() {
+         patron1 = context.createPattern(imageObj1,"repeat-y");
+         patron2 = context.createPattern(imageObj1,"repeat");
+         // Rectángulo con el patrón de fondo
+         context.fillStyle = patron1;    
+         context.fillRect(100,400,300,200);
+         context.strokeRect(100,400,300,200);
+         
+         context.fillStyle = patron2;   
+         context.fillRect(500,400,300,200);  
+         context.strokeRect(500,400,300,200); 
+    
+         context.strokeStyle = patron2;
+         context.fillStyle = "white"; 
+         context.lineWidth = 20; 
+         context.fillRect(900,400,300,200);  
+         context.strokeRect(900,400,300,200); 
+     
+    };
+
+   }
+
+//-->
+</script>
+
+</head>
+<body>
+<h1>Canvas: bordes y color</h1>
+<img src='patron.jpg' alt="">
+<canvas id="miCanvas" width="1300" height="700">
+</canvas> 
+
+
+</body>
+</html>

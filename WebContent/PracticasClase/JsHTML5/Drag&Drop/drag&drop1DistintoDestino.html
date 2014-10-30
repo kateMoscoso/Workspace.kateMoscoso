@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="iso-8859-1">
+<title>Drag&amp;Drop</title>
+<style>
+* {font-size:20px}
+
+#origen1, #origen2{
+  color: red;
+  padding: 5px;
+  border: 1px solid green;
+  background-color:#666666;
+  border-radius:5px;
+  width:100px;
+  height:100px;
+}
+
+ .destino{
+   height: 250px;
+   width: 250px;
+   position:absolute;
+   border: 2px solid #666666;
+   background-color : orange;
+ }
+ #destino1{
+   left:800px;
+   top:100px;
+ }
+ 
+ #destino2{
+   left:800px;
+   top:400px;
+ }
+ 
+ #destino3{
+   left:1100px;
+   top:100px;
+ }
+ 
+ #destino4{
+   left:1100px;
+   top:400px;
+ }
+ 
+ #debug{
+   display:none;
+   height: 250px;
+   width: 250px;
+   position:absolute;
+   left:100px;
+   top:700px;
+   border: 2px solid #666666;
+ }
+</style>
+<script language="JavaScript" type="text/javascript">
+<!--
+
+
+function manejadorDragStart(e) {
+  // Target (this) element is the source node.
+  this.style.opacity = '0.4';
+  e.dataTransfer.effectAllowed = 'copyMove';
+  e.dataTransfer.setData('text/plain', this.id);
+  e.dataTransfer.setData('text/html', this.innerHTML);
+  //alert(this.innerHTML);
+}
+
+function manejadorDragStart2(e) {
+  // Target (this) element is the source node.
+  this.style.opacity = '0.4';
+  e.dataTransfer.effectAllowed = 'copyMove';
+  e.dataTransfer.setData('text/plain', this.id);
+}
+
+function manejadorDragEnd(e) {
+  // Target (this) element is the source node.
+  this.style.opacity = '1';
+}
+
+function manejadorDragEnter(e) {
+  // this / e.target is the current hover target.
+  this.style.opacity="0.2";
+}
+
+function manejadorDragLeave(e) {
+    // this / e.target is previous target element.
+    this.style.opacity="1";
+}
+
+function manejadorDragOver(e) {
+  if (e.preventDefault) {
+    e.preventDefault(); // Necessary. Allows us to drop.
+  }
+  e.dataTransfer.dropEffect = 'copy';  
+ 
+  
+  return false; 
+}
+
+function manejadorDrop1(e) {
+  // this/e.target is current target element.
+
+  if (e.stopPropagation) {
+    e.stopPropagation(); // Stops some browsers from redirecting.
+  }
+  alert(e.dataTransfer.getData('text/html'));
+  this.innerHTML += e.dataTransfer.getData('text/html')+"\n";
+   e.preventDefault();
+  return false;
+}
+
+function manejadorDrop2(e) {
+  // this/e.target is current target element.
+
+  if (e.stopPropagation) {
+    e.stopPropagation(); // Stops some browsers from redirecting.
+  }
+   alert(e.dataTransfer.getData('text/plain'));
+   var elemento = e.dataTransfer.getData('text/plain')
+   referencia = document.getElementById(elemento);
+   this.style.opacity="1";
+   // Debería desligarse de su padre y luego insertarse en la nueva ubicación
+   this.appendChild(referencia);
+   e.preventDefault();
+  return false;
+}
+
+function manejadorDrop3(e) {
+  // this/e.target is current target element.
+
+  if (e.stopPropagation) {
+    e.stopPropagation(); // Stops some browsers from redirecting.
+  }
+   alert(e.dataTransfer.getData('text/plain'));
+   var elemento = e.dataTransfer.getData('text/plain')
+   referencia = document.getElementById(elemento);
+   var nuevo = referencia.cloneNode(true);
+   nuevo.style.opacity="1";
+   this.style.opacity="1";
+   this.appendChild(nuevo);
+   e.preventDefault();
+  return false;
+}
+
+
+function inicial(){
+
+  document.getElementById("origen1").addEventListener('dragstart', manejadorDragStart, false);
+  document.getElementById("origen1").addEventListener('dragend', manejadorDragEnd, false);
+  
+  document.getElementById("origen2").addEventListener('dragstart', manejadorDragStart, false);
+  document.getElementById("origen2").addEventListener('dragend', manejadorDragEnd, false);
+  
+  document.getElementById("imagen").addEventListener('dragstart', manejadorDragStart2, false);
+  document.getElementById("imagen").addEventListener('dragend', manejadorDragEnd, false);
+  
+  document.getElementById("destino2").addEventListener('dragover', manejadorDragOver, false)
+  document.getElementById("destino2").addEventListener('drop', manejadorDrop1, false);
+  
+  document.getElementById("destino3").addEventListener('dragenter', manejadorDragEnter, false)
+  document.getElementById("destino3").addEventListener('dragover', manejadorDragOver, false);
+  document.getElementById("destino3").addEventListener('dragleave', manejadorDragLeave, false);
+  document.getElementById("destino3").addEventListener('drop', manejadorDrop2, false);
+  
+  document.getElementById("destino4").addEventListener('dragenter', manejadorDragEnter, false)
+  document.getElementById("destino4").addEventListener('dragover', manejadorDragOver, false);
+  document.getElementById("destino4").addEventListener('dragleave', manejadorDragLeave, false);
+  document.getElementById("destino4").addEventListener('drop', manejadorDrop3, false);
+
+}
+
+//-->
+</script>
+</head>
+<body onload="inicial()">
+<h1>Drag&Drop</h1>
+
+<br><br>
+<div id="origen1" draggable="true">
+   <header>texto <b>movible 1</b></header>
+</div>
+<br><br>
+<div id="origen2" draggable="true">
+   <header>texto <b>movible 2</b></header>
+</div>
+<br><br>
+<img id="imagen" src="naturaleza.jpg" alt="naturaleza">
+<br><br>
+<a id="enlace" href="http://www.eui.upm.es">enlace</a>
+
+<div id="destino1" class="destino">NO PERMITIDO</div>
+
+<div id="destino2" class="destino">TEXTO</div>
+
+<div id="destino3" class="destino">MOVER</div>
+
+<div id="destino4" class="destino">COPIAR</div>
+
+
+<div id="debug"></div>
+</body>
+</html>

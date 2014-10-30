@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="iso-8859-1">
+	<meta name="viewport" content="width=620" /> 
+	<title>Geolocalización</title>
+	<meta name="description" content="Demostration of the Geolocation Javascript object">
+	<meta name="author" content="Jorge Iván Meza Martínez" >
+	  
+	<style type="text/css">
+	
+	body
+	{
+		background-color: #EAF8EA; 
+		font-family: Helvetica;
+	}	
+	
+	.page
+	{
+		width: 90%;
+		max-width: 1024px;
+		margin: auto;
+		background-color: #FFFFFF;
+		border-top: 1px solid #DDD;
+		border-left: 1px solid #DDD;	
+		-moz-box-shadow: 10px 10px 5px #888;
+		-webkit-box-shadow: 10px 10px 5px #888;
+		box-shadow: 10px 10px 5px #888;
+	}	
+	
+	header
+	{
+		padding-top: 10px;
+		margin-bottom: 20px;
+		padding-left: 30px;
+	}	
+	
+	header h1
+	{
+		margin: 0;
+		font-size: 3em;
+	}
+	
+	header h2
+	{
+		margin: 0;
+	}
+	
+	#Map
+	{
+		width: 98%;
+		height: 500px;
+		margin: auto;
+		border: 1px solid #BBB;
+	}	
+	
+	footer
+	{
+		text-align: center;
+		font-size: 0.8em;
+		margin-top: 15px;
+		padding-bottom: 15px;
+	}
+	
+	footer a
+	{
+		text-decoration: none;
+	}
+	
+	</style>
+
+	
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 	
+	
+	<script type="text/javascript">
+	
+		////////////////////////////////////////////////////////////////////////////////////////////
+		
+		var map = null;		
+				
+		////////////////////////////////////////////////////////////////////////////////////////////		
+
+		function init()
+		{
+			if(!checkGeolocationSupport())
+			{
+				alert("Sorry but your browser does not have geolocation support.");
+			}
+
+			map = setupMap();
+		
+			findWhereAmI();
+		}	
+		
+		////////////////////////////////////////////////////////////////////////////////////////////		
+
+		function setupMap()
+		{
+			var theOptions = 
+			{
+				zoom: 15,
+				center: new google.maps.LatLng(4, -72),
+				mapTypeControl: false,
+				mapTypeId: google.maps.MapTypeId.ROADMAP,
+				navigationControlOptions: 
+				{
+					style: google.maps.NavigationControlStyle.SMALL
+				}
+			};
+
+			return new google.maps.Map(document.getElementById("Map"), theOptions);
+  		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////		
+		
+		function checkGeolocationSupport()
+		{
+			return navigator.geolocation;
+		}		
+		
+		function findWhereAmI()
+		{
+			navigator.geolocation.getCurrentPosition(onSuccessGeolocating, 
+			                                         onErrorGeolocating,
+			                                         {
+			                                         		enableHighAccuracy: true,
+			                                         		maximumAge:         5000,
+			                                         		timeout:            20000
+			                                         });
+		}
+		
+		function onSuccessGeolocating(position)
+		{
+			var userLocation = new google.maps.LatLng(position.coords.latitude, 
+ 			                                          position.coords.longitude);
+
+			var message = "Estamos aqui!\n\n" + 
+			              "\tLatitude = " + position.coords.latitude + "\n" + 
+			              "\tLongitude = " + position.coords.longitude;
+      alert(message);              
+
+			var marker = new google.maps.Marker({
+				position: userLocation, 
+				map: map, 
+				title: message
+			});
+ 			                                          
+			map.setCenter(userLocation);
+		}
+		
+		function onErrorGeolocating(error)
+		{
+			switch(error.code)
+			{
+				case error.PERMISSION_DENIED:
+					alert('ERROR: User denied access to track physical position!');
+				break;
+				
+				case error.POSITION_UNAVAILABLE:
+					alert("ERROR: There is a problem getting the position of the device!");
+				break;
+				
+				case error.TIMEOUT:
+					alert("ERROR: The application timed out trying to get the position of the device!");
+				break;
+				
+				default:
+					alert("ERROR: Unknown problem!");
+				break;
+			}
+		}
+	
+	</script>
+</head>  
+  
+<body onload="init()">
+
+	<div class="page"> 
+		<header>
+			<hgroup>
+				<h1>Geolocalización</h1>
+				<h2>Ejemplo con Google Maps</h2> 
+			</hgroup>
+
+		</header>
+	
+		<div id="main">
+			<section>
+				<div id="Map">&nbsp;</div>
+			</section>
+		</div>
+    
+    <!--
+		  http://www.w3.org/2008/geolocation/<br>
+    	http://www.w3.org/2008/geolocation/<br>
+      demo de geolocalización http://demo.jorgeivanmeza.com/JavaScript/GeolocationDemo/0.1/
+      documentación Javascript https://developer.mozilla.org/es/
+      documentación de Google Maps http://code.google.com/intl/es/apis/maps/documentation/javascript/
+		
+    watchPosition;
+    Observa los cambios en la actual geolocalización del dispositivo.
+
+var watchId = navigator.geolocation.watchPosition(geolocationSuccess,
+                                                  [geolocationError],
+                                                  [geolocationOptions]);
+Argumentos :
+•geolocationSuccess: La función 'callback' a la que se le entregara la posición actual.
+•geolocationError: (Opcional) La función 'callback' que sera llamada si ocurriera un error.
+•geolocationOptions: (Opcional) Opciones de geolocalización.
+Retorna :
+•String: Un ID es retornado por la función, ese ID apunta a este observador de geolocalización, puedes usarlo en la función geolocation.clearWatch para dejar de observar la geolocalización.
+Descripción :
+La función geolocation.watchPosition es una función asíncrona. Esta función retorna la actual posición cada vez que se detecta un cambio. Cuando el dispositivo retorna la nueva localización, automáticamente llamara a la función geolocationSuccess pasándole el argumento Position. Si en caso contrario hubiera un error, se llamaría a la función geolocationError y se le pasara el objeto PositionError.
+
+
+	</div>
+   
+	<div>
+   function getLocation(){
+  script = document.createElement('script')
+  script.src = 'http://www.nitinh.com/ip_query.php?callback=initialize'
+  document.body.appendChild(script)
+}
+function initialize(obj){
+  document.getElementById('spanLocation').innerHTML = obj['City'] + ', ' + obj['RegionName'] + ', ' + obj['CountryName']
+}
+
+
+  </div>-->
+</body>
+
+</html>

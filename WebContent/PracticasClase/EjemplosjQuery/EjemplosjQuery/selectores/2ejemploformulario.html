@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+	<head>
+		<title>Formulario</title>	
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		
+		<script type="text/javascript" src="../jquery.js"></script>
+		
+		<style type="text/css">
+			body { font-family: Verdana, sans-serif; line-height:25px; 
+              background-color: WhiteSmoke; color:#4682B4; }
+			h1 { text-align: center; }
+			#info {font-style: italic; font-size:10pt;}
+			fieldset {width:450px;}
+		</style>
+		
+		<script type="text/javascript">
+		<!--
+			$(document).ready(function (){
+					$(":button").css({background:"PapayaWhip", border:"2px Crimson solid"});
+					$(":input").css("color", "orange");
+					$(":password").css("color","grey");
+					$(":text").css("font-weight","bold");
+				}
+			);	
+		//-->
+		</script>		
+	</head>
+	
+	<body>
+		<h2 align="center"><b>Iniciar sesi&oacute;n</b></h2>
+		
+		<form name="formulario" enctype="text/plain" method="post">
+			<table width="97%" border="0" align="center">
+				<tr>
+					<td align="right">Usuario:</td>
+					<td><input type="text" name="user" maxlength="70" /></td>
+				</tr>
+				<tr>
+					<td align="right">Contraseña:</td>
+					<td><input type="password" name="pass" maxlength="70" /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td align="left"><input type="button" value="Entrar" /></td>
+				</tr>				
+			</table>
+		</form>	
+	</body>
+</html>
+

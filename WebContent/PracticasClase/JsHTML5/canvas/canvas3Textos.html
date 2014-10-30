@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="iso-8859-1">
+<title>Bordes y color</title>
+<style>
+  canvas{border:1px solid pink;}
+</style>
+<script language="JavaScript" type="text/javascript">
+<!--
+    
+    window.onload = function(){ 
+    var canvas = document.getElementById("miCanvas");
+    var context = canvas.getContext("2d"); 
+    context.fillText("Texto situado en (100,100)",100,100);
+    
+    context.font = "20px Verdana"
+    context.fillText("Texto de 20px y familia Verdana",100,150);
+    
+    context.fillStyle = "green";
+    context.fillText("Texto: verde, 20px, Verdana",100,200);
+    
+    context.font = "italic small-caps 20px Verdana";
+    context.fillText("Texto: verde, italic, 20px, small-caps, Verdana",100,250);
+    
+    context.strokeStyle = "orange";
+    context.strokeText("Texto: borde naranja, italic, 20px, small-caps, Verdana",100,300);
+
+    texto = "Este texto ocupa un nº de pixels = ";
+    context.fillText(texto + context.measureText(texto).width,100,350);
+    
+    context.rotate(90*Math.PI/180);
+    //context.fillRect(50,20,100,50);
+    context.fillText("Texto: rotado",400,-100);
+    
+    
+    
+};
+
+//-->
+</script>
+
+</head>
+<body>
+<h1>Canvas: bordes y color</h1>
+<canvas id="miCanvas" width="1300" height="700">
+</canvas> 
+
+
+</body>
+</html>

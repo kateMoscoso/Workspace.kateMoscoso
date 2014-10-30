@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="iso-8859-1">
+<title>Shared worker</title>
+<style>
+ progress{width:900px;margin:10px}
+ input[type='text']{width:25px;text-align:right}
+ #ganador{text-align:center; color:red}
+</style>
+<script src="EscrutinioComun.js" type="text/javascript"></script>
+
+<script language="javascript">
+var datos, valores, inferior, superior;
+
+
+function actualizarPueblo(indicePueblo, valor){
+  //alert(indicePueblo+" "+valor)
+  if (indicePueblo >= inferior && indicePueblo <= superior){
+  document.getElementById("progress" + indicePueblo).value = valor;
+  document.getElementById("contador" + indicePueblo).value = valor;
+  }
+  else
+    alert("error");
+}
+
+function actualizarGanador(mensaje){
+  document.getElementById("ganador").innerHTML = "El pueblo campeón es " +
+                                                  mensaje;
+}
+
+
+function actualizarEscrutinioPueblos(contadoresLimites){
+  for (var i = 0; i < contadoresLimites.length; i++){
+    actualizarPueblo(i+inferior,contadoresLimites[i])
+  }
+}
+
+function refrescaResultados(){
+   miSharedWorker = new SharedWorker("EscrutinioSharedWorker.js");
+   datosWorker = {"inferior" : inferior,"superior" :superior};
+   mensaje = JSON.stringify(datosWorker); 
+   //miSharedWorker.port.start();
+   miSharedWorker.port.postMessage(mensaje);
+   miSharedWorker.port.onmessage = function(e) {
+     //document.getElementById("debug").innerHTML +=e.data+"<br>\n";
+     mensaje = JSON.parse(e.data);
+     if (mensaje.ciudadGanadora == "")
+       actualizarEscrutinioPueblos(mensaje.contadoresLimites);
+     else{ 
+      actualizarGanador(mensaje.ciudadGanadora);
+      }
+  }   
+}
+
+
+function escribirPueblos(inferior,superior,maximo){
+  var cadena="<table border='0' cellspacing='10'>\n";
+  for (var i = inferior; i <= superior;i++){
+    cadena+="<tr>\n";
+    cadena+="<td style='color:green'>"+pueblos[i]+":</td>\n"+
+            "<td><progress id='progress"+i+
+            "' value='0' max='"+maximo+"'></progress></td>\n"+
+            "<td><input type='text' id='contador"+i+"' value='0'></td>\n";
+    cadena+="</tr>\n";
+  }
+  cadena+="</table>";
+  // alert( cadena)
+  document.write(cadena);
+}
+
+</script>
+</head>
+<body onload="refrescaResultados()">
+<h1 style="text-align:center"> SharedWorker</h1>
+<div id="ganador">Nadie ha ganado todavía!!</div>
+<script language="JavaScript" type="text/javascript">
+do {
+datos = prompt("Intervalo de datos: \nValores entre 1 y "+
+               pueblos.length+"separados por un guión\n Ej(2-10)");
+valores = datos.split("-");
+inferior = parseInt(valores[0]) - 1;
+superior = parseInt(valores[1]) - 1         
+}
+while (!(inferior>=0 && inferior < pueblos.length &&
+       superior>=1 && superior < pueblos.length && inferior < superior))
+
+escribirPueblos(inferior, superior, maximo);
+
+</script>
+<div id="debug">a</div>
+</body>
+</html>

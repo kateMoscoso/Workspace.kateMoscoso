@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="iso-8859-1">
+<title>...</title>
+<style>
+  section{background-color:yellow}
+  div{border:3px solid red}
+  .cambiado{border:3px solid blue}
+  .insertado{border:3px solid green;margin-left:50px;margin-right:50px}
+</style>
+<script language="javascript">
+  function operarOuterHTML(identificador){
+    nodo = document.getElementById(identificador)
+    alert(nodo.outerHTML);
+    nodo.outerHTML="<h1 class='cambiado'>cambiado</h1>";
+  
+  }
+   
+  function hacerInsertBeforeBegin(identificador){
+    nodo = document.getElementById(identificador)
+    nodo.insertAdjacentHTML("beforeBegin","<p class='insertado'>párrafo insertado antes</p>")
+  
+  }
+  
+  function hacerInsertAfterEnd(identificador){
+    nodo = document.getElementById(identificador)
+    nodo.insertAdjacentHTML("afterEnd","<p class='insertado'>párrafo insertado después</p>")
+  
+  }
+
+  function hacerInsertAfterBegin(identificador){
+    nodo = document.getElementById(identificador)
+    nodo.insertAdjacentHTML("afterBegin","<p class='insertado'>párrafo insertado dentro al principio</p>")
+  
+  }
+
+  function hacerInsertBeforeEnd(identificador){
+    nodo = document.getElementById(identificador)
+    nodo.insertAdjacentHTML("beforeEnd","<p class='insertado'>párrafo insertado dentro al final</p>")
+  
+  }
+</script>
+</head>
+<body>
+<section id="contenedor">
+<h1>titulo de contenedor</h1>
+<div id="primero">primero</div>
+<div id="segundo">segundo</div>
+<form>
+  <button type="button" onclick="operarOuterHTML('primero')">outerHTML</button>
+  <button type="button" onclick="hacerInsertBeforeBegin('segundo')">inserBeforeBegin "segundo"</button>
+  <button type="button" onclick="hacerInsertAfterEnd('segundo')">inserAfterEnd "segundo"</button>
+  <button type="button" onclick="hacerInsertAfterBegin('segundo')">inserAfterBegin "segundo"</button>
+  <button type="button" onclick="hacerInsertBeforeEnd('segundo')">inserBeforeEnd "segundo"</button>
+</form>
+</section>
+</body>
+</html>

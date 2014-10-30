@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+<title>Untitled</title>
+</head>
+<body>
+<Script language='JavaScript'>
+ function CalculaCoste(){
+  var Suma=0;
+  for (var i=0; i< document.otroform.elements.length - 1; i++)
+    if (document.otroform.elements[i].checked){
+       window.opener.document.miform.oculto.value += document.otroform.elements[i].name +";"; 
+       Suma = Suma + parseFloat(document.otroform.elements[i].value);
+       }      
+  window.opener.document.miform.importe.value = Suma;
+  window.close();
+  }  
+
+</script>
+<Center>
+<Font color='blue'><H3>Catalogo</H3></Font>
+<hr><br> 
+<Form name='otroform'>
+ <Table border=0>
+ <tr>
+ <td> Producto 1 (30€):</td><td> <Input name='p1' type='checkbox' value=30></td></tr>
+ <td>Producto 2 (40€): </td><td><Input name='p2' type='checkbox' value=40></td></tr>
+ <td>Producto 3 (50€): </td><td><Input name='p3' type='checkbox' value=50></td></tr>
+ <Tr><td colspan=2>&nbsp;</td></tr>
+ <Tr><td colspan=2>&nbsp;</td></tr>
+ <tr><td colspan=2 align='center'><Input type='button' value='Cerrar' onclick="CalculaCoste()"></td> 
+ </table>
+<hr>
+</Center> 
+</body>
+</html>

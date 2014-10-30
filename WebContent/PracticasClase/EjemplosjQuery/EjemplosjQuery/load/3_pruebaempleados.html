@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+ <head>
+<!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8">-->
+ <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"> 
+ <title>Función load</title>
+  <script type="text/javascript" src="../jquery.js"></script>    
+  <style type="text/css">
+    body { font-family: Verdana, sans-serif; }
+    h1, h2 { text-align:center; }
+    ul { padding-left:300px; }
+    li {color:red}
+    a {text-decoration:none}
+    .impar {color:green}                
+  </style>  
+ <script type="text/javascript">
+ <!--
+ $(document).ready(function (){
+    $('#D01').click( function (){
+                          $('#empsc').load('buscaempleados.php', 'tipo=D01', function (resp,stat,xhr){
+                                  if (stat =='success'){
+                                     alert (resp);
+                                     alert(xhr.status);
+                                     alert(xhr.statusText);
+                                     }                                     
+                                  });                                                        
+                   });
+    $('#D02').click( function (){  
+                          $('#empinv').load('buscaempleados.php', 'tipo=D02');
+                        });
+    $('#D03').click( function (){
+                          $('#empventas').load('buscaempleados.php', 'tipo=D04');
+                        });
+		});   
+ //-->
+ </script>
+ </head>
+ 
+ <body>
+  <hr />
+  <h2>Búsqueda de empleados con "load"</h2>
+  <hr />  
+  <h2 id='titulo'>Departamentos</h2>
+  <hr /><br />      
+  <ul>
+    <li class='impar' id='D01'>Servicios Centrales<br/>
+       <div id='empsc'></div>
+    </li>
+    <li class='par' id='D02'>Investigación<br/>
+       <div id='empinv'></div>
+    </li>
+    <li class='impar' id='D03'>Marketing<br/>
+       <div id='empventas'></div>
+    </li>
+  </ul>          
+  <br /><br />
+  <hr /><br /><br />
+ </body>
+</html>

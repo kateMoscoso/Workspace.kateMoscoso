@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="iso-8859-1">
+<title>Imágenes y Gradientes</title>
+</head>
+<body>
+<h1 style="text-align:center">Imágenes y Gradientes</h1>
+<svg version="1.1" width="1300" height="700"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<image x="100" y="100" width="300" height="400" xlink:href="naturaleza.jpg" />
+
+<linearGradient id="gradiente1" x1="0" y1="0" x2="0" y2="100%">
+  <stop offset="0" stop-color="red" />
+  <stop offset="50%" stop-color="yellow" />
+  <stop offset="100%" stop-color="green" />
+</linearGradient>
+
+
+<radialGradient id="grad1" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+   <stop offset="0%" style="stop-color:rgb(255,255,255); stop-opacity:0" />
+   <stop offset="100%" style="stop-color:rgb(0,0,255);stop-opacity:1" />
+</radialGradient>
+
+<rect x="500" y="200" width="300" height="200"
+      rx="20" ry="10" stroke="green" fill="url(#gradiente1)" />
+
+<rect x="900" y="200" width="300" height="200"
+      rx="20" ry="10" stroke="green" fill="url(#grad1)" />
+      
+</svg>
+</body>
+</html>

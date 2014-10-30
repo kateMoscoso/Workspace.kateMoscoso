@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+ <head>
+ <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"> 
+ <title>getJSON</title>
+  <script type="text/javascript" src="../jquery.js"></script>    
+  <style type="text/css">
+    body { font-family: Verdana, sans-serif; }
+    h1, h2 { text-align:center; }
+    ul { padding-left:300px; }
+    li {color:red}
+    a {text-decoration:none}
+    .impar {color:green}                
+  </style>  
+ <script type="text/javascript">
+ <!--
+ $(document).ready(function (){
+ 
+ function Llama(dato, area){
+    var cadena="<table border='1'>";
+    $.getJSON('JSONbuscaempleados.php', "tipo="+dato, function(retorno){                    
+       $.each(retorno, function (indice, valor){
+         cadena += "<tr>";
+         $.each(valor, function (otroind, valorfinal){
+            cadena += "<td>"+valorfinal+'</td>';
+            }); //del each interno
+         cadena += "<tr />";            
+          }); //del each
+       cadena += '</table>'; 
+       $(area).html(cadena);                
+       }); //del getJSON                                 
+    } //de la funcion
+          
+    $('#D01').click( function (){
+                     Llama("D01", '#empsc');    
+                     });                   
+    $('#D02').click( function (){
+                     Llama("D02", '#empinv');
+                     });                                          
+    $('#D03').click( function (){
+                      Llama("D03", '#empventas');
+                     });
+                                                           
+		});   
+ //-->
+ </script>
+ </head>
+ 
+ <body>
+  <hr />
+  <h2>Búsqueda de empleados con "getJSON"</h2>
+  <hr />  
+  <h2 id='titulo'>Departamentos</h2>
+  <hr /><br />      
+  <ul>
+    <li class='impar' id='D01'>Servicios Centrales<br/>
+       <div id='empsc'></div>
+    </li>
+    <li class='par' id='D02'>Investigación<br/>
+       <div id='empinv'></div>
+    </li>
+    <li class='impar' id='D03'>Marketing<br/>
+       <div id='empventas'></div>
+    </li>
+  </ul>          
+  <br /><br />
+  <hr /><br /><br />
+ </body>
+</html>

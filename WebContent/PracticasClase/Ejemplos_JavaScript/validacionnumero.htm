@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+<title>Untitled</title>
+<script language="JavaScript" type="text/javascript">
+<!--
+function validar(){
+   var caracteres="0123456789"
+   valor1 = document.miform.micaja.value;
+   // valor2 = document.getElementById("caja").value;
+   correcto = true;
+   for(i=0;i<valor1.length;i++){
+     car = valor1.charAt(i);
+     if (caracteres.indexOf(car)<0){
+       correcto = false
+       break;
+     }   
+   } 
+   alert(correcto);
+   return correcto
+}
+//-->
+</script>
+
+</head>
+<body>
+<form name="miform" onsubmit="return validar()">
+numero:<input name="micaja" id="caja" type="text">
+<button type="submit">validar</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+	<head>
+		<title>Eventos de teclado</title>
+		
+		<script type="text/javascript" src="../jquery.js"></script>
+		
+		<style type="text/css">
+			body { font-family: courier new; line-height:25px; text-align: justify; font-size: 10pt; }
+			h1 { font-family:Verdana, sans-serif; text-align: center; color: MistyRose; background: MediumVioletRed; padding-top:30px; padding-bottom:30px;}
+			h3 { font-family:Verdana, sans-serif; font-weight:bold; color:MidnightBlue;}
+			#teclado { position: relative; left: 10px; display:block; }
+			#espejo {position: relative; left: 5px; height:100px; width:610px; border: 1px MediumVioletRed solid;}
+			#barraEsp input{ width: 300px; height: 30px; }
+		</style>
+		
+		<script type="text/javascript">
+		<!--
+		
+			$(document).ready(function(){
+			
+				$(":button").attr("disabled","disabled");
+			
+				var cont=0;
+				var cont2=0;
+
+				$("#texto").keydown(function(e){ //Cuando presionamos una tecla
+					var tecla;
+					if ((e.which>40 || e.which<32) && (e.which!=13) && (e.which!=16 )){ //Si es una letra o número
+						tecla = String.fromCharCode(e.which); //Transformamos el código de tecla en lo que contiene
+						tecla = tecla.toLowerCase();  //Cambiamos el valor a minúscula
+					}else{
+						tecla = e.which;  //Es una caracter especial, la tecla es igual al código de tecla
+					}
+					var selector = "#" + tecla; //Creamos el selector
+					$(selector).css({background:"red", color:"white"}); //Cambiamos el color a la tecla correspondiente
+				});
+				
+				$("#texto").keyup(function(e){ //Cuando soltamos la tecla
+					var tecla;
+					if ((e.which>40 || e.which<32) && (e.which!=13) && (e.which!=16 )){
+						tecla = String.fromCharCode(e.which);
+						tecla = tecla.toLowerCase(); 
+					}else{
+						tecla = e.which;
+					}
+					var selector = "#" + tecla;
+					$(selector).css({background:"green", color:"white"}); //El fondo de la tecla se vuelve de color verde.
+					
+				});
+			});
+		//-->
+		</script>
+	</head>
+	
+	<body>
+		<h1>Eventos de teclado</h1>
+		<h3>Introduce el texto</h3>
+		<form>
+			<textarea cols=75 rows=5 id="texto"></textarea>
+		</form>
+		
+		
+		<h3>Teclado</h3>
+		<div id="teclado"> 
+			<div id="fila0"> 
+				<input name="1" type="button" value="1" id="1"/> 
+				<input name="2" type="button" value="2" id="2"/> 
+				<input name="3" type="button" value="3" id="3"/> 
+				<input name="4" type="button" value="4" id="4"/> 
+				<input name="5" type="button" value="5" id="5"/> 
+				<input name="6" type="button" value="6" id="6"/> 
+				<input name="7" type="button" value="7" id="7"/> 
+				<input name="8" type="button" value="8" id="8"/> 
+				<input name="9" type="button" value="9" id="9"/> 
+				<input name="0" type="button" value="0" id="0"/>  
+			</div> 
+						
+			<div id="fila1"> 
+				<input name="q" type="button" value="q" id="q" /> 
+				<input name="w" type="button" value="w" id="w"/> 
+				<input name="e" type="button" value="e" id="e"/> 
+				<input name="r" type="button" value="r" id="r"/> 
+				<input name="t" type="button" value="t" id="t"/> 
+				<input name="y" type="button" value="y" id="y"/> 
+				<input name="u" type="button" value="u" id="u"/> 
+				<input name="i" type="button" value="i" id="i"/> 
+				<input name="o" type="button" value="o" id="o"/> 
+				<input name="p" type="button" value="p" id="p"/> 
+			</div> 
+			
+			<div id="fila2"> 
+				<input name="a" type="button" value="a" id="a"/> 
+				<input name="s" type="button" value="s" id="s"/> 
+				<input name="d" type="button" value="d" id="d"/> 
+				<input name="f" type="button" value="f" id="f"/> 
+				<input name="g" type="button" value="g" id="g"/> 
+				<input name="h" type="button" value="h" id="h"/> 
+				<input name="j" type="button" value="j" id="j"/> 
+				<input name="k" type="button" value="k" id="k"/> 
+				<input name="l" type="button" value="l" id="l"/> 
+			</div> 
+			
+			<div id="fila3"> 
+				<input name="Shift" type="button" value="Shift" id="16" /> 
+				<input name="z" type="button" value="z" id="z"/> 
+				<input name="x" type="button" value="x" id="x"/> 
+				<input name="c" type="button" value="c" id="c"/> 
+				<input name="v" type="button" value="v" id="v"/> 
+				<input name="b" type="button" value="b" id="b"/> 
+				<input name="n" type="button" value="n" id="n"/> 
+				<input name="m" type="button" value="m" id="m"/> 
+			</div>
+			
+			<div id="barraEsp"> 
+				<input name="barraEsp" type="button" value=" " id="32"/> 
+			</div> 
+			
+			<div id="fila4"> 
+				<input name="repag" type="button" value="repag" id="33"/> 
+				<input name="avpag" type="button" value="avpag" id="34"/> 	
+				<input name="fin" type="button" value="fin" id="35"/> 
+				<input name="inicio" type="button" value="inicio" id="36"/> 
+				<input name="derecha" type="button" value="derecha" id="37"/> 
+				<input name="arriba" type="button" value="arriba" id="38"/> 
+				<input name="izq" type="button" value="izq" id="39"/> 
+				<input name="abajo" type="button" value="abajo" id="40"/> 
+				<input name="intro" type="button" value="intro" id="13"/> 
+			</div> 			
+		</div> 		
+	</body>
+</html>

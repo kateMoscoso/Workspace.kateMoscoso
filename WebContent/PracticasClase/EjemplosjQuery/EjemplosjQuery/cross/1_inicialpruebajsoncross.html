@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+ <head>
+<!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8">-->
+ <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"> 
+ <title>Ejemplo de cross domain</title>
+  <script type="text/javascript" src="../jquery.js"></script>    
+  <style type="text/css">
+    body { font-family: Verdana, sans-serif; }
+    h1, h2 { text-align:center; }
+    ul { padding-left:300px; }
+    li {color:red}
+    a {text-decoration:none}
+    .impar {color:green}                
+  </style>  
+ <script type="text/javascript">
+ <!--   
+  $(document).ready(function(){
+      $('#D01').click(function(){
+         $.ajax({
+           crossDomain:true,
+           dataType: "jsonp",           
+           url: "http://www.eui.upm.es/~salonso/master/ajaxjquery/cross/pruebajsoncross.php",
+           success: function(datos){         
+                var cadena='';                    
+                for (var clave in datos)
+                    cadena += '   - Las iniciales <b>'+ clave + '</b> corresponden a: ' + datos[clave]+"<br />";
+                $('#primer').html(cadena); 
+                } //de success
+           });  // del ajax
+      }); // de click
+
+    $('#D02').click( function (){  
+                          $('#segundo').load('pruebajsoncross.php', 'tipo=D02');
+                        });
+    $('#D03').click( function (){
+                          $('#proy').load('pruebajsoncross.php', 'tipo=D04');
+                        });
+		}); //de document.ready   
+ //-->
+ </script>
+ </head>
+ 
+ <body>
+  <hr />
+  <h2>Ejemplo de petición AJAX en cross domain</h2>
+  <hr />  
+  <h2 id='titulo'>Asignaturas</h2>
+  <hr /><br />      
+  <ul>
+    <li class='impar' id='D01'>Primer Cuatrimestre<br/>
+       <div id='primer'></div>
+    </li>
+    <li class='par' id='D02'>Segundo Cuatrimestre<br/>
+       <div id='segundo'></div>
+    </li>
+    <li class='impar' id='D03'>Desarrollo de Proyecto de Fin de Máster<br/>
+       <div id='proyecto'></div>
+    </li>
+  </ul>          
+  <br /><br />
+  <hr /><br /><br />
+ </body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+<title>Untitled</title>
+<style>
+.sinborde{border:0px}
+</style>
+<script language="JavaScript" type="text/javascript">
+<!--
+//alert(('localStorage' in window && window.localStorage != null)+window.localStorage);
+
+function escribirLocal(){
+var cadena ="";
+for (i in localStorage)
+  cadena+=i+" "+localStorage[i]+" \n";
+alert(cadena); 
+}
+//localStorage['limiteInferior'] == 'vacio';
+escribirLocal();
+function cargarDatos(){
+document.getElementById("entrada").value = "";
+ document.getElementById('boton').disabled=false;
+if (localStorage['jugando']!='jugando'){
+limiteInferior = 1;
+limiteSuperior = 10;
+intentos = 0;
+numero = Math.round(Math.random()*1000)%(limiteSuperior - limiteInferior + 1) + 
+         limiteInferior;  
+localStorage['limiteInferior'] = limiteInferior;
+localStorage['limiteSuperior'] = limiteSuperior;
+localStorage['numero'] = numero;  
+localStorage['intentos'] = intentos;
+localStorage['jugando']='jugando'
+
+}
+else{
+limiteInferior = localStorage['limiteInferior'];
+limiteSuperior = localStorage['limiteSuperior'];
+numero = localStorage['numero'];
+intentos = localStorage['intentos']; 
+
+}       
+document.getElementById("inferior").value = limiteInferior;
+document.getElementById("superior").value = limiteSuperior;
+document.getElementById("intentos").value = intentos;
+}
+
+function exito(){
+  alert('Lo has Adivinado!!\n El número es '+numero);
+  localStorage['limiteInferior'] = 'vacio';
+  document.getElementById('boton').disabled=true;
+  localStorage['jugando'] = null;
+}
+
+function fracaso(){
+  valorActual = parseInt(document.getElementById("entrada").value);
+  document.getElementById("entrada").value = "";
+  if (!(limiteInferior <= valorActual &&  valorActual <=limiteSuperior)){
+    alert("El número tiene que estar entre los límites "+
+          limiteInferior+" y "+limiteSuperior);
+    
+    return;
+  }
+  intentos++;
+  document.getElementById("intentos").value = intentos;
+  localStorage['intentos'] = intentos
+  if ( valorActual > numero){
+    alert('Te has pasado!!');
+    localStorage['limiteSuperior'] = valorActual;
+    document.getElementById("superior").value = valorActual;
+  }
+  else{
+    alert('Te has quedado corto'); 
+    document.getElementById("inferior").value = valorActual;
+    localStorage['limiteInferior'] = valorActual;
+    } 
+}
+
+function actualizar(){
+  //escribirLocal() 
+  if (document.getElementById("entrada").value == numero)
+    exito();
+  else
+    fracaso();
+}
+
+function validar(e) { 
+    tecla = (document.all) ? e.keyCode : e.which; 
+    if (tecla==8) return true; //Tecla de retroceso (para poder borrar) 
+    patron = /\d/; 
+    te = String.fromCharCode(tecla); 
+    return patron.test(te);  
+} 
+
+//-->
+</script>
+</head>
+<body onload="cargarDatos()">
+<h1>Ojo solo funciona en línea</h1>
+<h1>Adivina el número</h1>
+<form>
+inferior = 
+<input class="sinborde" type="text" id="inferior" maxlength=2 size=2 readonly><br>
+superior = 
+<input class="sinborde" type="text" id="superior" maxlength=2 size=2 readonly><br>
+Intentos =
+<input class="sinborde" type="text" id="intentos" maxlength=2 size=2 readonly><br>
+Introduce un valor entre inferior y superior:
+<input type="text" id="entrada" value="" maxlength=2 size=2 
+       onkeypress="return validar(event)">
+<button type="button" onclick="actualizar()" id="boton">Intentar</button>
+</form>
+</body>
+</html>

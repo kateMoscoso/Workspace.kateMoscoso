@@ -1,0 +1,61 @@
+<!DOCTYPE html> 
+<html lang="es">   
+<head>
+<style>       
+  body {
+         color: #222;         
+         font: 14px Arial;       
+         }              
+  body a {         
+         color: #3D5C9D;         
+         text-decoration: none;       
+         }     
+</style>     
+<script>    
+
+var db = null;   
+function abrir(){           
+  db = openDatabase("miAgenda", "1.0", "itemsList", 5 * 1024 * 1024);   
+}    
+          
+function SQLCreartabla(tx){           
+    tx.executeSql("CREATE TABLE IF NOT EXISTS Agenda (telefono INTEGER PRIMARY KEY ASC, nombre TEXT, direccion TEXT)");
+}        
+  
+function crearTabla() {                
+  db.transaction(SQLCreartabla);
+}
+  
+function insertar() {         
+  db.transaction(
+  function(tx){                
+     tx.executeSql("INSERT INTO Agenda (telefono, nombre, direccion) VALUES (111111111,'Daniela Palacios','Pez 5')")
+  });       
+}         
+              
+function SQLlistar(tx){
+  tx.executeSql("SELECT * FROM Agenda",[],function(tx, resultado){
+    var cadena = "";
+    for (var i = 0; i < resultado.rows.length; i++) 
+      cadena += resultado.rows.item(i).nombre; 
+    alert("resultado ="+cadena);
+  });  
+}
+   
+function listar(){
+  db.transaction(SQLlistar);
+}
+             
+function init() {         
+  abrir();         
+  crearTabla(); 
+  insertar();        
+  listar();       
+}  
+          
+</script>   
+</head>   
+<body onload="init();">     
+
+</body> 
+</html>

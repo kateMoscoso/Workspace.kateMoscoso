@@ -8,22 +8,23 @@
 
 </head>
 <body>
-	<header>
+	<header onclick="location.href='index.html'">
 		<figure>
 			<img alt="MIW" src="imagenes/logoMIW.png">
 			<h1>Máster en Ingenería Web</h1>
 		</figure>
 	</header>
-	<nav id="menu">
+	<nav >
 		<ul>
+		<li><a href="index.html">Inicio</a></li>
 			<li><a href="asignaturas.html">Asignaturas</a></li>
 			<li><a href="inscripcion.html">Inscribirse</a></li>
 		</ul>
 	</nav>
-	<article>
+	<article id="contenido">
 		<section>
 			<h2>ASIGNATURAS EN SECUENCIA TEMPORAL</h2>
-			<table id="asignaturas">
+			<table class="tabla">
 				<tr>
 					<th>Nombre</th>
 					<th>Crédito</th>
@@ -47,7 +48,7 @@
 
 		<section>
 			<h2>Materias</h2>
-			<table id="materias">
+			<table class="tabla">
 				<tr>
 					<td>Materia 1: Fundamentos de la Ingeniería Web.</td>
 					<td>Se aportan los conocimientos necesarios para que el alumno

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="iso-8859-1">
+<title>...</title>
+<style>
+ *{color:gray;font-size:20pt}
+</style>
+</head>
+<body>
+<h1 style="text-align:center">Textos</h1>
+<svg version="1.1" width="1300" height="700"
+xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<desc>Ejemplos de texto en svg</desc>
+<text x="100" y="100">Texto situado en (100,100)</text>
+
+<text x="500,540,580,620,660" y="100">Texto con lista de valores</text> 
+
+<text x="100" y="200" textLength="350">Texto con tamaño</text>
+
+<text x="500" y="200" rotate="10 20 30 40 50 60 70">Rotadas</text>
+
+<text x="100" y="300" font-family="verdana" style="font-size:20px" font-style="italic" 
+text-decoration="underline">
+Verdana 20px italic underline</text>
+
+<text x="500" y="300" stroke="black" style="font-size:70px" 
+  stroke-width="2px" stroke-dasharray="2 4 5" fill="blue"> stroke y fill
+</text>
+
+<text x="100" y="400"> 
+<tspan fill="red">
+tspan
+</tspan> permite 
+<tspan dy="20">subíndices</tspan>
+</text>
+<text x="500" y="400" writing-mode="tb"> writing-mode=tb
+</text>
+</svg>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head><title>Factura</title>
+<style>
+  input {text-align:right}
+</style>
+<script type='text/javascript'>
+  function Calcula(){
+	  var lacant = document.getElementById('cant').value;
+		var eliva = lacant * 0.21;
+		document.getElementById('iva').value = eliva;
+		var eltotal = parseInt(lacant) + eliva;
+		document.getElementById('total').value=eltotal;
+		//Ahora sumamos la forma de pago		
+	  var elradio= document.getElementsByName('tpago');
+	  for (i=0;i<elradio.length;i++){
+		  if(elradio[i].checked==true){
+          eltotal =  eltotal + parseFloat(elradio[i].value);
+				} //del if
+			}	//del for
+    document.getElementById('total').value = eltotal;					
+	  } //de la función
+</script>
+</head>
+<body>
+ <form name='elform'>
+ <table border=0>
+   <tr><td>Cantidad:</td><td><input type='text' name='cant' id='cant' onkeyup='Calcula()'></td></tr>
+   <tr><td>IVA (21%):</td><td><input type='text' name='iva' id='iva' readonly></td></tr>
+   <tr><td>Total:</td><td><input type='text' name='total' id='total' readonly></td></tr>
+   <tr><td colspan=2 style='text-align:center'><button type='button' onclick='Calcula()'>Calcula</button></td></tr>	 	 	 
+ </table>
+ <br /><hr/><br/>
+ <table border=1>
+   <tr>
+	  <td>Tarjeta (1€)<input type='radio'  name='tpago' value='1' onclick='Calcula()'></td>
+	  <td>Transferencia (0€) <input type='radio'  name='tpago' value='0' onclick='Calcula()'></td>
+	  <td>Cheque (2€)<input type='radio' name='tpago' value='2' onclick='Calcula()'></td>				
+   </tr>
+ </table>
+ </form>
+</body>
+</html>

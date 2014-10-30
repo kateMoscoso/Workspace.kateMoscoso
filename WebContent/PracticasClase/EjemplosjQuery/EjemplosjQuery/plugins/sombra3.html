@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+	<head>
+		<title>Formulario</title>	
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		
+		<script type="text/javascript" src="../jquery.js"></script>
+		
+		<style type="text/css">
+			body { font-family: Verdana, sans-serif; line-height: 25px;
+             background-color: WhiteSmoke; color: #4682B4; }
+			h1 { text-align: left; font-size:26pt}             
+			h2 { text-align: left; font-size:22pt; position:static}    
+		</style>
+  </head>
+  <body>
+  <h2>Esto es un texto con sombra</h2>
+  <br /><hr />
+  <h1>Esto es un texto SIN sombra</h1>
+  <br /><hr />  
+  <h2>Esto es un texto con sombra</h2>    		
+		<script type="text/javascript">
+		<!--
+			$(document).ready(function (){
+      jQuery.fn.sombra = function(opciones){
+        var valorespordefecto = {
+             veces: 5,
+             opacidad:0.2,
+             desplazamiento: 1
+             };
+        var opciones = jQuery.extend(valorespordefecto, opciones);    
+        return this.each( function (){
+           var original = jQuery(this);
+           for (var i=1; i<= opciones.veces; i++){
+             original.clone()
+             .css({
+                position:'absolute',
+                left:original.offset().left + opciones.desplazamiento*i,
+                top:original.offset().top + opciones.desplazamiento*i,
+                margin:0,
+                zIndex: -1,
+                opacity:opciones.opacidad,               
+                })
+                .appendTo('body');
+            }
+          });  
+       };
+       $('h2').sombra ({
+           desplazamiento: -3, 
+           });                                                         
+      });
+    -->      
+  </script>
+</body>
+</html>
