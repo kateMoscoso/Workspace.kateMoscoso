@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>Ferretería González</title>
+	<link rel="stylesheet" href="../css/estilos.css">
+</head>
+<script type="text/javascript" src="../JavaScript/funciones.js"></script>
+<script type="text/javascript">
+var numFilas =1;
+
+/* jquery
+$().ready(function(){
+	
+	$('#Add').click( function(){
+		if (numFilas < 8) {
+		$("#productosFacturas").append('<tr class="elementoTabla"> <td><input type="text" placeholder="concepto"></td><td><input type="text" placeholder="precio unidad"></td> <td><input type="text" placeholder="unidades"></td> <td><input type="text" placeholder="total"></td> </tr> ')
+	numFilas++;
+	}
+	});
+
+	$('#Elimina').click( function(){
+		if (numFilas >1) {
+		$('#productosFacturas tr:last').remove();
+		numFilas--;
+	}
+	});
+})
+*/
+
+
+</script>
+<body>
+	<header onclick="location.href='index.html'">
+		<figure id="logo">
+			<img alt="" src="../imagenes/llave.png">
+		</figure>
+		<h1>Ferretería González</h1>
+	</header>
+	<nav>
+		<ul>
+			<li><a href="index.html">Inicio</a></li>
+			<li><a href="factura_1.html">Facturacion 1</a></li>
+			<li><a href="factura_2.html">Facturacion 2</a></li>
+		</ul>
+	</nav>
+	<section id="contenedorFactura">
+		<article id="articulosFactura">
+			
+				<label>Fecha Actual:</label> <input type="text" id="inicio" placeholder="Fecha Actual"><br>
+				<p>Fecha de pago será en:</p>
+					<input type="date" id="fechafin"name="fecha">
+					<input type="text" id="prueba"required>
+
+				<label>Fecha Final:</label><input type="text" id ="fin" placeholder="Fecha Final"><br>
+			<form>
+			<table id="tablaFacturas" border=1>
+				<tbody id="bodyTablas" >
+					<tr class="cabecera">
+						<th>Concepto</th>
+						<th>Precio Unidad</th>
+						<th>Unidades</th>
+						<th>Total</th>
+					</tr>
+					<tr id="elemento" required>
+						<td><input type="text" required></td>
+						<td><input type="number" min="1" required></td>
+						<td><input type="number"  min="1" required></td>
+						<td><output type="number" ></td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<table id="totales">
+				<tbody>
+					<tr>
+						<th>Subtotal</th>
+						<th>Iva</th>
+						<th>Total</th>
+					</tr>
+					<tr>
+						<td><output id ="subtotal" type="text" placeholder="Subtotal"></td>
+						<td><output id ="iva"type="text" placeholder="Iva"></td>
+						<td><output id="total"   type="text" placeholder="total"></td>
+					</tr>
+				</tbody>
+			</table>
+			<button id="Calcular" type="submit" onclick="Calcular()">Calcular</button>
+			</form>
+			<button id="Add" type="button" onclick="Add()">Añadir</button>
+			<button id="Elimina" type="button" onclick="Elimina()">Eliminar</button>
+		</article>
+	</section>
+	<footer>
+		<p>Creado por Katherin Moscoso León</p>
+	</footer>
+</body>
+</html>

@@ -8,8 +8,8 @@ body {
 }
 
 header {
-	background-color: rgba(228, 134, 83, 0.4);  
-	color: white;
+	background-color: white;  
+	color: black;
 	margin: 0;
 	padding: 0.5em;
 }
@@ -32,7 +32,7 @@ header h1 {
 }
 
 header img {
-	width: 80px;
+	width: 90px;
 }
 
 header h1 {

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>Ferretería González</title>
+	<link rel="stylesheet" href="../css/estilos.css">
+</head>
+<script type="text/javascript" src="../JavaScript/funciones.js"></script>
+
+
+
+</script>
+<body>
+	<header onclick="location.href='index.html'">
+		<figure id="logo">
+			<img alt="" src="../imagenes/llave.png">
+		</figure>
+		<h1>Ferretería González</h1>
+	</header>
+	<nav>
+		<ul>
+			<li><a href="index.html">Inicio</a></li>
+			<li><a href="factura_1.html">Facturacion1</a></li>
+			<li><a href="factura_2.html">Facturacion2</a></li>
+		</ul>
+	</nav>
+	<section id="contenedorFactura">
+		<article id="articulosFactura">
+			
+				<label>Fecha Actual:</label> <input type="text" id="inicio" placeholder="Fecha Actual"><br>
+				<p>Fecha de pago será en:</p>
+				<form>
+					<input type="radio" id="noventa"name="dias" value="90">90<br>
+					<input type="radio" id="cientoveinte"name="dias" value="120">120<br>
+					<input type="radio" id="cientoochenta"name="dias" value="180">180<br>
+				</form>
+				<label>Fecha Final:</label><input type="text" id ="fin" placeholder="Fecha Final"><br>
+			
+			<table id="tablaFacturas" border=1>
+				<tbody id="bodyTablas" >
+					<tr class="cabecera">
+						<th>Concepto</th>
+						<th>Precio Unidad</th>
+						<th>Unidades</th>
+						<th>Total</th>
+					</tr>
+					<tr class="elemento">
+						<td><input type="text" placeholder="concepto" ></td>
+						<td><input type="number" placeholder="precio unidad" ></td>
+						<td><input type="number" placeholder="unidades" ></td>
+						<td><output type="text" placeholder="total"></td>
+					</tr>
+					<tr class="elemento">
+						<td><input type="text" placeholder="concepto" ></td>
+						<td><input type="number" placeholder="precio unidad" ></td>
+						<td><input type="number" placeholder="unidades" ></td>
+						<td><output type="text" placeholder="total"></td>
+					</tr>
+					<tr class="elemento">
+						<td><input type="text" placeholder="concepto" ></td>
+						<td><input type="number" placeholder="precio unidad" ></td>
+						<td><input type="number" placeholder="unidades" ></td>
+						<td><output type="text" placeholder="total"></td>
+					</tr>
+					<tr class="elemento">
+						<td><input type="text" placeholder="concepto" ></td>
+						<td><input type="number" placeholder="precio unidad" ></td>
+						<td><input type="number" placeholder="unidades" ></td>
+						<td><output type="text" placeholder="total"></td>
+					</tr>
+					<tr class="elemento">
+						<td><input type="text" placeholder="concepto" ></td>
+						<td><input type="number" placeholder="precio unidad" ></td>
+						<td><input type="number" placeholder="unidades" ></td>
+						<td><output type="text" placeholder="total"></td>
+					</tr>
+					<tr class="elemento">
+						<td><input type="text" placeholder="concepto" ></td>
+						<td><input type="number" placeholder="precio unidad" ></td>
+						<td><input type="number" placeholder="unidades" ></td>
+						<td><output type="text" placeholder="total"></td>
+					</tr>
+					<tr class="elemento">
+						<td><input type="text" placeholder="concepto" ></td>
+						<td><input type="number" placeholder="precio unidad" ></td>
+						<td><input type="number" placeholder="unidades" ></td>
+						<td><output type="text" placeholder="total"></td>
+					</tr>
+					<tr class="elemento">
+						<td><input type="text" placeholder="concepto" ></td>
+						<td><input type="number" placeholder="precio unidad" ></td>
+						<td><input type="number" placeholder="unidades" ></td>
+						<td><output type="text" placeholder="total"></td>
+					</tr>
+
+				</tbody>
+			</table>
+		</article>
+		<article>
+			<table id="elementosFacturas" border=1 rules=cols>
+				<tbody>
+					<tr>
+						<th>Subtotal</th>
+						<th>Iva</th>
+						<th>Total</th>
+					</tr>
+					<tr>
+						<td><output id ="subtotal" type="number" placeholder="Subtotal"></td>
+						<td><output id ="iva"type="number" placeholder="Iva"></td>
+						<td><output id="total"   type="number" placeholder="total"></td>
+					</tr>
+				</tbody>
+			</table>
+			<button id="Calcular" type="button" onclick="Calcular()">Calcular</button>
+		</article>
+	</section>
+	<footer>
+		<p>Creado por Katherin Moscoso León</p>
+	</footer>
+</body>
+</html>
