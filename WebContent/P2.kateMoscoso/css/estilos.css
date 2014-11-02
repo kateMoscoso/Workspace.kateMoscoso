@@ -42,7 +42,7 @@ header h1 {
 }
 
 nav {
-	background-color: rgba(228, 134, 83, 0.6); 
+	background-color: #70B6D6; 
 	position: relative;
 }
 
@@ -66,22 +66,32 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-	background-color: rgba(228, 134, 83, 0.4);  
+	background-color: rgba(112, 182, 214, 0.33);  
 }
 
 
-#contenido {
+#contenedor {
 	margin: 1em;
 }
 
-#contenido .item {
+#contenedor .item {
 	background: white;
 	border-bottom: 3px solid #22BCE0;
 	margin-bottom: 3em;
 	min-height: 128px;
 	position: relative;
 }
-
+#contenedor #fechasFactura{
+	color:black;
+	
+	
+}
+#calcular {
+	background-color: olive;
+	}
+.cabecera {
+	background-color: olive;
+}
 .formulario {
 	text-align: left;
 	padding: 1em;
@@ -104,10 +114,5 @@ nav ul li a:hover {
 .tabla {
 	width: 550px;
 	border: 2px solid #000;
-	border-collapse: collapse;
-	border-radius: 5px;
-}
-
-.tabla tr th, .tabla tr td {
-	border: 1px solid #000;
-}
+	border-collapse:
+	}
