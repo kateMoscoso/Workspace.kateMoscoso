@@ -1,0 +1,177 @@
+a {
+	color: black;
+}
+
+body {
+	font-family: Helvetica, sans-serif background-color : rgba(240, 255, 251,
+		0.2);
+	font-size: 16 px;
+	background-image: url("imagenes/logo.png");
+	background-attachment: fixed;
+	background-position: 100% 60%;
+	background-repeat: no-repeat;
+}
+
+footer {
+	background: -webkit-linear-gradient(left, #9bcadb, #207ce5);
+	/* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(right, #9bcadb, #207ce5);
+	/* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(right, #9bcadb, #207ce5);
+	/* For Firefox 3.6 to 15 */
+	background: linear-gradient(to right, #9bcadb, #207ce5);
+	/* Standard syntax (must be last) */
+	color: white;
+	text-align: center;
+	width: 100%;
+}
+
+footer p {
+	margin: 0;
+}
+
+header {
+	background: white;
+	color: black;
+	margin: 0;
+	padding: 0.5em;
+}
+
+header:after {
+	clear: both;
+	content: "";
+	display: block;
+}
+
+header figure {
+	float: left;
+}
+
+header img {
+	width: 90px;
+}
+
+header h1 {
+	font-size: 1.2em;
+	font-weight: normal;
+	margin: 0 70px 0 0;
+	display: block;
+}
+
+h2 {
+	font-style: italic;
+	font-size: 1.5em;
+	color: black;
+	font-size: 1.5em;
+	 
+}
+
+nav {
+	background-color: #70B6D6;
+	position: relative;
+}
+
+nav ul {
+	list-style: none;
+	margin: 0;
+	padding: 0 6em 0 .5em;
+}
+
+nav ul li {
+	display: inline-block;
+	margin: 0 0.5em 0 0;
+}
+
+nav ul li a {
+	color: white;
+	display: block;
+	padding: 0.5em;
+	text-decoration: none;
+	-webkit-transition: .3s;
+}
+
+nav ul li a:hover {
+	background-color: #207ce5;
+}
+
+p {
+	color: #444;
+	text-decoration: none;
+}
+
+#contenedor {
+	margin: 1em;
+}
+
+#contenedor #formulario {
+	background: white;
+	border-bottom: 3px solid #207ce5;
+	margin-bottom: 3em;
+	min-height: 128px;
+	position: relative;
+}
+
+#contenedor #fechasFactura {
+	color: black;
+}
+
+#contenedorPrincipal {
+	display: inline;
+}
+
+#contenedorPrincipal .item {
+	width: 60%;
+	box-shadow: 2px 2px 5px #999;
+}
+#contenedorPrincipal .item h2{
+	 border-bottom: thick solid #999;
+}
+
+#contenedorPrincipal .item ul {
+	margin: 12px 12px 12px 12px;
+	padding: 3px 3px 3px 3px;
+	´
+}
+
+#contenido .tabla {
+	width: 550px;
+	border: 2px solid #70B6D6;
+	border-collapse: collapse;
+	box-shadow: 2px 2px 5px #999;
+}
+
+#contenido .tabla tr, th, td {border-collapse;
+	border: 2px solid #70B6D6;
+}
+
+#contenido .tabla tr th {
+	background-color: #207ce5;
+}
+
+formulario {
+	text-align: left;
+	padding: 1em;
+}
+
+.formulario input {
+	border-radius: 5px;
+	padding: 0.2em 0.6em;
+}
+
+.formulario item {
+	display: inline-block;
+}
+
+.formulario label {
+	border-radius: 5px;
+	padding: 0.2em 0.6em;
+}
+
+#formulario .boton {
+	background: #207ce5;
+	border-radius: 0.5em;
+	color: white;
+	float: left;
+	padding: 0.2em 0.5em;
+	text-decoration: none;
+}
